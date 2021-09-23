@@ -113,7 +113,7 @@ on("change:repeating_heropowers:hero_die_selector", function(e) {
 	});
 });
 
-on("change:repeating_heropowers change:repeating_heroqualities change:hero_die_selector_status_green change:hero_die_selector_status_yellow change:hero_die_selector_status_red", function() {
+on("sheet:opened change:repeating_heropowers change:repeating_heroqualities change:hero_die_selector_status_green change:hero_die_selector_status_yellow change:hero_die_selector_status_red", function() {
 	var alist = [ "hero_die_selector_status_green", "hero_die_selector_status_yellow", "hero_die_selector_status_red" ];
 	getSectionIDs("repeating_heroqualities", function(q) {
 		for ( var i=0; i < q.length; i++ ) {
@@ -153,6 +153,7 @@ on("change:repeating_heropowers change:repeating_heroqualities change:hero_die_s
 					statusname = "Red";
 					statusfield = "hero_status_die_red";
 				}
+
 				var vlist = [];
 				if (statusfield !== "") {
 					vlist[vlist.length] = statusfield;
@@ -170,38 +171,39 @@ on("change:repeating_heropowers change:repeating_heroqualities change:hero_die_s
 						pat = {};
 						if (powerprefix !== "") {
 							pat["selected_die_power"] = "d" + v[`${powerprefix}die`]
-							pat["selected_die_power_text"] =  pat["selected_die_power"] + " " + v[`${powerprefix}name`];
-							pat["selected_die_pool_text"] = pat["selected_die_power_text"];
+							pat["selected_die_power_text"] = v[`${powerprefix}name`];
+						} else {
+							pat["selected_die_power"] = "d4";
+							pat["selected_die_power_text"] = "No Power";
 						}
+						pat["selected_die_pool_text"] = pat["selected_die_power_text"];
 						if (qualityprefix !== "") {
 							pat["selected_die_quality"] = "d" + v[`${qualityprefix}die`]
-							pat["selected_die_quality_text"] =  pat["selected_die_quality"] + " " + v[`${qualityprefix}name`];
-							if ( pat["selected_die_pool_text"] === "" ) {
-								pat["selected_die_pool_text"] = pat["selected_die_quality_text"];
-							} else {
-								pat["selected_die_pool_text"] = pat["selected_die_pool_text"] + ", " + pat["selected_die_quality_text"];
-							}
+							pat["selected_die_quality_text"] = v[`${qualityprefix}name`];
+						} else {
+							pat["selected_die_quality"] = "d4";
+							pat["selected_die_quality_text"] = "No Quality";
 						}
+						pat["selected_die_pool_text"] = pat["selected_die_pool_text"] + ", " + pat["selected_die_quality_text"];
 						if (statusfield !== "") {
-							pat["selected_die_status"] = "d" + v[statusfield]
-							pat["selected_die_status_text"] =  pat["selected_die_status"] + " " + statusname;
-							if ( pat["selected_die_pool_text"] === "" ) {
-								pat["selected_die_pool_text"] = pat["selected_die_status_text"];
-							} else {
-								pat["selected_die_pool_text"] = pat["selected_die_pool_text"] + ", " + pat["selected_die_status_text"];
-							}
+							pat["selected_die_status"] = "d" + v[statusfield];
+							pat["selected_die_status_text"] = statusname;
+						} else {
+							pat["selected_die_status"] = "d4";
+							pat["selected_die_status_text"] = "No Status";
 						}
+						pat["selected_die_pool_text"] = pat["selected_die_pool_text"] + ", " + pat["selected_die_status_text"];
 						setAttrs(pat);
 					});
 				} else {
 					setAttrs({
-						"selected_die_pool_text": "",
-						"selected_die_status_text": "",
-						"selected_die_power_text": "",
-						"selected_die_quality_text": "",
-						"selected_die_status": "",
-						"selected_die_power": "",
-						"selected_die_quality": ""
+						"selected_die_pool_text": "No Power, No Quality, No Status",
+						"selected_die_status_text": "No Status",
+						"selected_die_power_text": "No Power",
+						"selected_die_quality_text": "No Quality",
+						"selected_die_status": "d4",
+						"selected_die_power": "d4",
+						"selected_die_quality": "d4"
 					});
 				}
 			});
@@ -222,11 +224,55 @@ on("change:repeating_heropowers change:repeating_heroqualities change:hero_die_s
 <input type="hidden" name="attr_selected_die_power" value="">
 <input type="hidden" name="attr_selected_die_quality" value="">
 
-Rollables
-<div><span name="attr_selected_die_pool_text"></span></div>
-<div><span name="attr_selected_die_power_text"></span></div>
-<div><span name="attr_selected_die_quality_text"></span></div>
-<div><span name="attr_selected_die_status_text"></span></div>
+<div class="sheet-dicecols">
+
+	<div class="sheet-dicecol">
+		<div class="sheet-dicecol-head">Rolls</div>
+		<div>
+			<div class="sheet-rollblock">
+				<span><button type="roll" value="&{template:default} {{power=[[@{selected_die_power}]]}} {{quality=[[@{selected_die_quality}]]}} {{status=[[@{selected_die_status}]]}} {{character=@{character_name}}}">
+					<input type="hidden" name="attr_selected_die_status" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+					<input type="hidden" name="attr_selected_die_power" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+					<input type="hidden" name="attr_selected_die_quality" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+				</button>(<span name="attr_selected_die_pool_text"></span>)</span>
+			</div>
+			<div class="sheet-rollblock">
+				<span><button type="roll" value="&{template:default} {{power=[[@{selected_die_power}]]}} {{character=@{character_name}}}">
+					<input type="hidden" name="attr_selected_die_power" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+				</button>(<span name="attr_selected_die_power_text"></span>)</span>
+				<span><button type="roll" value="&{template:default} {{power=[[@{selected_die_power}]]}} {{character=@{character_name}}}">
+					<input type="hidden" name="attr_selected_die_quality" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+				</button>(<span name="attr_selected_die_quality_text"></span>)</span>
+				<span><button type="roll" value="&{template:default} {{power=[[@{selected_die_power}]]}} {{character=@{character_name}}}">
+					<input type="hidden" name="attr_selected_die_status" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+				</button>(<span name="attr_selected_die_status_text"></span>)</span>
+			</div>
+			<div class="sheet-rollblock">
+				<button type="roll" value="&{template:default} {{die=d4}} {{character=@{character_name}}}">
+						<input type="hidden" value="d4" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+				</button>
+				<button type="roll" value="&{template:default} {{die=d6}} {{character=@{character_name}}}">
+						<input type="hidden" value="d6" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+				</button>
+				<button type="roll" value="&{template:default} {{die=d8}} {{character=@{character_name}}}">
+						<input type="hidden" value="d8" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+				</button>
+				<button type="roll" value="&{template:default} {{die=d10}} {{character=@{character_name}}}">
+						<input type="hidden" value="d10" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+				</button>
+				<button type="roll" value="&{template:default} {{die=d12}} {{character=@{character_name}}}">
+						<input type="hidden" value="d12" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+				</button>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="sheet-dicecol sheet-noflexgrow">
+		<div class="sheet-dicecol-head">Health</div>
+	</div>
+
+</div>
 
 <div class="sheet-dicecols">
 
@@ -270,7 +316,7 @@ Rollables
 
 	</div>
 
-	<div class="sheet-dicecol">
+	<div class="sheet-dicecol sheet-noflexgrow">
 
 		<div class="sheet-dicecol-head">Status</div>
 		<div class="sheet-dicerow">
