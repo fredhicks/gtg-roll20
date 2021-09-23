@@ -1,30 +1,345 @@
 <script type="text/worker">
 
+var uniqueids = {};
+
+var generateActuallyUniqueRowID = function() {
+	var generated = generateRowID();
+	while ( uniqueids[generated] === true ) {
+		log("generateActuallyUniqueRowID: " + generated + " is not a unique ID, trying again.");
+		generated = generateRowID();
+	}
+	// log("generateActuallyUniqueRowID: " + generated + " verified as unique, returning.");
+	uniqueids[generated] = true;
+	return generated;
+};
+
+on("change:hero_die_selector_status_green", function() {
+	getAttrs(["hero_die_selector_status_green"], function(sval) {
+		var a = {};
+		if ( 
+			typeof sval["hero_die_selector_status_green"] !== "undefined" 
+			&& sval["hero_die_selector_status_green"] === "on" 
+		) {
+			a["hero_die_selector_status_yellow"] = "";
+			a["hero_die_selector_status_red"] = "";
+			setAttrs(a);
+		}
+	});
+});
+
+on("change:hero_die_selector_status_yellow", function() {
+	getAttrs(["hero_die_selector_status_yellow"], function(sval) {
+		var a = {};
+		if ( 
+			typeof sval["hero_die_selector_status_yellow"] !== "undefined" 
+			&& sval["hero_die_selector_status_yellow"] === "on" 
+		) {
+			a["hero_die_selector_status_green"] = "";
+			a["hero_die_selector_status_red"] = "";
+			setAttrs(a);
+		}
+	});
+});
+
+on("change:hero_die_selector_status_red", function() {
+	getAttrs(["hero_die_selector_status_red"], function(sval) {
+		var a = {};
+		if ( 
+			typeof sval["hero_die_selector_status_red"] !== "undefined" 
+			&& sval["hero_die_selector_status_red"] === "on" 
+		) {
+			a["hero_die_selector_status_green"] = "";
+			a["hero_die_selector_status_yellow"] = "";
+			setAttrs(a);
+		}
+	});
+});
+
+on("change:repeating_heroqualities:hero_die_selector", function(e) {
+	// var rowid = (e.sourceAttribute).slice(0,-17); // Strips off the 'hero_die_selector';
+	var selid = e.sourceAttribute;
+	getAttrs([selid], function(dval) {
+		var a = {};
+		if ( 
+			typeof dval[selid] !== "undefined" 
+			&& dval[selid] === "on" 
+		) {
+			getSectionIDs("repeating_heroqualities", function(d) {
+				for ( var i=0; i < d.length; i++ ) {
+					var thisid = "repeating_heroqualities_" + d[i] + "_hero_die_selector";
+					if ( thisid !== selid ) {
+						// Then it should not be selected, because it's 
+						// not the one that just GOT selected.
+						//
+						// Will eventually need to override this for
+						// support of Divided characters that roll two Q
+						// or two P instead of 1P&1Q, but let's cross that
+						// bridge when we come to it.
+						a[thisid] = "";
+					}
+				}
+				setAttrs(a);
+			});
+		}
+	});
+});
+
+on("change:repeating_heropowers:hero_die_selector", function(e) {
+	// var rowid = (e.sourceAttribute).slice(0,-17); // Strips off the 'hero_die_selector';
+	var selid = e.sourceAttribute;
+	getAttrs([selid], function(dval) {
+		var a = {};
+		if ( 
+			typeof dval[selid] !== "undefined" 
+			&& dval[selid] === "on" 
+		) {
+			getSectionIDs("repeating_heropowers", function(d) {
+				for ( var i=0; i < d.length; i++ ) {
+					var thisid = "repeating_heropowers_" + d[i] + "_hero_die_selector";
+					if ( thisid !== selid ) {
+						// Then it should not be selected, because it's 
+						// not the one that just GOT selected.
+						//
+						// Will eventually need to override this for
+						// support of Divided characters that roll two Q
+						// or two P instead of 1P&1Q, but let's cross that
+						// bridge when we come to it.
+						a[thisid] = "";
+					}
+				}
+				setAttrs(a);
+			});
+		}
+	});
+});
+
+on("change:repeating_heropowers change:repeating_heroqualities change:hero_die_selector_status_green change:hero_die_selector_status_yellow change:hero_die_selector_status_red", function() {
+	var alist = [ "hero_die_selector_status_green", "hero_die_selector_status_yellow", "hero_die_selector_status_red" ];
+	getSectionIDs("repeating_heroqualities", function(q) {
+		for ( var i=0; i < q.length; i++ ) {
+			var thisid = "repeating_heroqualities_" + q[i] + "_hero_die_selector";
+			alist[i+3] = thisid;
+		}
+		getSectionIDs("repeating_heropowers", function(p) {
+			for ( var i=0; i < p.length; i++ ) {
+				var thisid = "repeating_heropowers_" + p[i] + "_hero_die_selector";
+				alist[i+q.length+3] = thisid;
+			}
+			getAttrs(alist, function(dice) {
+				var powerprefix = ""; var powername = ""; var powerdie = "";
+				var qualityprefix = ""; var qualityname = ""; var qualitydie = "";
+				var statusfield = ""; var statusname = ""; var statusdie = "";
+				for ( var i=0; i < p.length; i++ ) {
+					var thisid = "repeating_heropowers_" + p[i] + "_hero_die_selector";
+					if ( dice[thisid] === "on" ) {
+						powerprefix = "repeating_heropowers_" + p[i] + "_";
+						break;
+					}
+				}
+				for ( var i=0; i < q.length; i++ ) {
+					var thisid = "repeating_heroqualities_" + q[i] + "_hero_die_selector";
+					if ( dice[thisid] === "on" ) {
+						qualityprefix = "repeating_heroqualities_" + q[i] + "_";
+						break;
+					}
+				}
+				if ( dice["hero_die_selector_status_green"] === "on" ) {
+					statusname = "Green";
+					statusfield = "hero_status_die_green";
+				} else if ( dice["hero_die_selector_status_yellow"] === "on") {
+					statusname = "Yellow";
+					statusfield = "hero_status_die_yellow";
+				} else if ( dice["hero_die_selector_status_red"] === "on") {
+					statusname = "Red";
+					statusfield = "hero_status_die_red";
+				}
+				var vlist = [];
+				if (statusfield !== "") {
+					vlist[vlist.length] = statusfield;
+				}
+				if (powerprefix !== "") {
+					vlist[vlist.length] = powerprefix + "name";
+					vlist[vlist.length] = powerprefix + "die";
+				}
+				if (qualityprefix !== "") {
+					vlist[vlist.length] = qualityprefix + "name";
+					vlist[vlist.length] = qualityprefix + "die";
+				}
+				if ( vlist.length > 0 ) {
+					getAttrs(vlist, function(v) {
+						pat = {};
+						if (powerprefix !== "") {
+							pat["selected_die_power"] = "d" + v[`${powerprefix}die`]
+							pat["selected_die_power_text"] =  pat["selected_die_power"] + " " + v[`${powerprefix}name`];
+							pat["selected_die_pool_text"] = pat["selected_die_power_text"];
+						}
+						if (qualityprefix !== "") {
+							pat["selected_die_quality"] = "d" + v[`${qualityprefix}die`]
+							pat["selected_die_quality_text"] =  pat["selected_die_quality"] + " " + v[`${qualityprefix}name`];
+							if ( pat["selected_die_pool_text"] === "" ) {
+								pat["selected_die_pool_text"] = pat["selected_die_quality_text"];
+							} else {
+								pat["selected_die_pool_text"] = pat["selected_die_pool_text"] + ", " + pat["selected_die_quality_text"];
+							}
+						}
+						if (statusfield !== "") {
+							pat["selected_die_status"] = "d" + v[statusfield]
+							pat["selected_die_status_text"] =  pat["selected_die_status"] + " " + statusname;
+							if ( pat["selected_die_pool_text"] === "" ) {
+								pat["selected_die_pool_text"] = pat["selected_die_status_text"];
+							} else {
+								pat["selected_die_pool_text"] = pat["selected_die_pool_text"] + ", " + pat["selected_die_status_text"];
+							}
+						}
+						setAttrs(pat);
+					});
+				} else {
+					setAttrs({
+						"selected_die_pool_text": "",
+						"selected_die_status_text": "",
+						"selected_die_power_text": "",
+						"selected_die_quality_text": "",
+						"selected_die_status": "",
+						"selected_die_power": "",
+						"selected_die_quality": ""
+					});
+				}
+			});
+		});		
+	});
+});
+
 </script>
+
 <input type="hidden" name="attr_sheet-version" value="1.0">
-<div class="whole">
+<div class="sheet-whole">
 
-<h4>Status</h4>
+<input type="hidden" name="attr_selected_die_pool_text" value="">
+<input type="hidden" name="attr_selected_die_status_text" value="">
+<input type="hidden" name="attr_selected_die_power_text" value="">
+<input type="hidden" name="attr_selected_die_quality_text" value="">
+<input type="hidden" name="attr_selected_die_status" value="">
+<input type="hidden" name="attr_selected_die_power" value="">
+<input type="hidden" name="attr_selected_die_quality" value="">
 
-<div class="status_grid">
-	<input type="hidden" name="attr_hero_status_green_die" value="8" class="dieval">
-	<div class="die">
+Rollables
+<div><span name="attr_selected_die_pool_text"></span></div>
+<div><span name="attr_selected_die_power_text"></span></div>
+<div><span name="attr_selected_die_quality_text"></span></div>
+<div><span name="attr_selected_die_status_text"></span></div>
+
+<div class="sheet-dicecols">
+
+	<div class="sheet-dicecol">
+		<div class="sheet-dicecol-head">Powers</div>
+		
+		<fieldset class="repeating_heropowers">
+			<input type="hidden" name="attr_name" value="">
+			<div class="sheet-dicerow">
+				<input type="hidden" name="attr_hero_die_selector" value="" class="sheet-dieselected">
+				<input type="hidden" name="attr_die" value="" class="sheet-dieval">
+				<div class="sheet-die">
+					<input type="checkbox" name="attr_hero_die_selector" value="on" class="sheet-dieboxer">
+					<div class="sheet-diepic"></div>
+				</div>
+				<div class="sheet-dielabel">
+					<span name="attr_name"></span>
+				</div>
+			</div>
+		</fieldset>
+
 	</div>
-	<div class="label">
-		Green
+
+	<div class="sheet-dicecol">
+		<div class="sheet-dicecol-head">Qualities</div>
+		
+		<fieldset class="repeating_heroqualities">
+			<input type="hidden" name="attr_name" value="">
+			<div class="sheet-dicerow">
+				<input type="hidden" name="attr_hero_die_selector" value="" class="sheet-dieselected">
+				<input type="hidden" name="attr_die" value="" class="sheet-dieval">
+				<div class="sheet-die">
+					<input type="checkbox" name="attr_hero_die_selector" value="on" class="sheet-dieboxer">
+					<div class="sheet-diepic"></div>
+				</div>
+				<div class="sheet-dielabel">
+					<span name="attr_name"></span>
+				</div>
+			</div>
+		</fieldset>
+
 	</div>
+
+	<div class="sheet-dicecol">
+
+		<div class="sheet-dicecol-head">Status</div>
+		<div class="sheet-dicerow">
+			<input type="hidden" name="attr_hero_die_selector_status_green" value="" class="sheet-dieselected">
+			<input type="hidden" name="attr_hero_status_die_green" value="8" class="sheet-dieval">
+			<div class="sheet-die">
+				<input type="checkbox" name="attr_hero_die_selector_status_green" value="on" class="sheet-dieboxer">
+				<div class="sheet-diepic"></div>
+			</div>
+			<div class="sheet-dielabel sheet-status-green">
+				Green
+			</div>
+		</div>
+		<div class="sheet-dicerow">
+			<input type="hidden" name="attr_hero_die_selector_status_yellow" value="" class="sheet-dieselected">
+			<input type="hidden" name="attr_hero_status_die_yellow" value="8" class="sheet-dieval">
+			<div class="sheet-die">
+				<input type="checkbox" name="attr_hero_die_selector_status_yellow" value="on" class="sheet-dieboxer">
+				<div class="sheet-diepic"></div>
+			</div>
+			<div class="sheet-dielabel sheet-status-yellow">
+				Yellow
+			</div>
+		</div>
+		<div class="sheet-dicerow">
+			<input type="hidden" name="attr_hero_die_selector_status_red" value="" class="sheet-dieselected">
+			<input type="hidden" name="attr_hero_status_die_red" value="8" class="sheet-dieval">
+			<div class="sheet-die">
+				<input type="checkbox" name="attr_hero_die_selector_status_red" value="on" class="sheet-dieboxer">
+				<div class="sheet-diepic"></div>
+			</div>
+			<div class="sheet-dielabel sheet-status-red">
+				Red
+			</div>
+			
+		</div>
+
+	</div>
+
 </div>
+
+</div>
+
 
 <h3>Quick Edit Area</h3>
 
 <h4>Status</h4>
 
-<input name="attr_hero_status_green_die" value="8">
+<input name="attr_hero_status_die_green" value="8" type="text">
+<input name="attr_hero_status_die_yellow" value="8" type="text">
+<input name="attr_hero_status_die_red" value="8" type="text">
+
+<h4>Powers</h4>
+
+<fieldset class="repeating_heropowers">
+<div>
+	<input type="text" name="attr_name" value="">
+	<input type="text" name="attr_die" value="8">
+</div>
+</fieldset>
 
 <h4>Qualities</h4>
 
-<fieldset class="repeating_hero_qualities">
-
+<fieldset class="repeating_heroqualities">
+<div>
+	<input type="text" name="attr_name" value="">
+	<input type="text" name="attr_die" value="8">
+</div>
 </fieldset>
 
-</div>
+
+
