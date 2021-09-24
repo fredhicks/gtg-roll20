@@ -508,22 +508,6 @@ on("change:health sheet:opened change:scene_status", function() {
 				</span>
 			</div>
 		</div>
-		<div class="sheet-smalldata-row sheet-padding">
-			<div class="sheet-smalldata sheet-centered">
-				<input type="number" name="attr_health_max" value="17" min="0">
-				<span>Max Health</span>
-			</div>
-			<!--
-			<div class="sheet-smalldata sheet-centered">
-				<input type="number" name="attr_health_yellow_top" value="13" min="0">
-				<span>Yellow Start</span>
-			</div>
-			<div class="sheet-smalldata sheet-centered">
-				<input type="number" name="attr_health_red_top" value="6" min="0">
-				<span>Red Start</span>
-			</div>
-			-->
-		</div>
 	</div>
 
 </div>
@@ -615,6 +599,28 @@ on("change:health sheet:opened change:scene_status", function() {
 					<option value="red">Red</option>
 				</select>
 			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="sheet-dicecols">
+
+	<div class="sheet-dicecol">
+		<div class="sheet-dicecol-head">Modifiers</div>
+	</div>
+
+	<div class="sheet-dicecol">
+		<div class="sheet-dicecol-head">Hero Points</div>
+		<div>
+			Earned This Session
+		</div>
+		<div>
+			<input type="checkbox" value="on" class="sheet-oval-marker" name="attr_shp1"><span class="sheet-oval-icon"></span>
+			<input type="checkbox" value="on" class="sheet-oval-marker" name="attr_shp2"><span class="sheet-oval-icon"></span>
+			<input type="checkbox" value="on" class="sheet-oval-marker" name="attr_shp3"><span class="sheet-oval-icon"></span>
+			<input type="checkbox" value="on" class="sheet-oval-marker" name="attr_shp4"><span class="sheet-oval-icon"></span>
+			<input type="checkbox" value="on" class="sheet-oval-marker" name="attr_shp5"><span class="sheet-oval-icon"></span>
 		</div>
 	</div>
 
@@ -752,23 +758,47 @@ on("change:health sheet:opened change:scene_status", function() {
 
 </div>
 
+<input type="hidden" name="attr_principle1_of" value="">
+<input type="hidden" name="attr_principle1_rp" value="">
+<input type="hidden" name="attr_principle1_twist_minor" value="">
+<input type="hidden" name="attr_principle1_twist_major" value="">
+<input type="hidden" name="attr_principle2_of" value="">
+<input type="hidden" name="attr_principle2_rp" value="">
+<input type="hidden" name="attr_principle2_twist_minor" value="">
+<input type="hidden" name="attr_principle2_twist_major" value="">
+
+
 <div class="sheet-dicecols">
 
-	<div class="sheet-dicecol">
-		<div class="sheet-dicecol-head">Principle of</div>
+	<div class="sheet-dicecol sheet-halfsies">
+		<div class="sheet-dicecol-head">Principle of <span name="attr_principle1_of"></span></div>
+		<div class="sheet-padding">
+			<i><span name="attr_principle1_rp"></span></i>
+		</div>
+		<div class="sheet-padding">
+			<b>Minor Twist:</b> <span name="attr_principle1_twist_minor"></span>
+		</div>
+		<div class="sheet-padding">
+			<b>Major Twist:</b> <span name="attr_principle1_twist_major"></span>
+		</div>
 	</div>
 
-	<div class="sheet-dicecol">
-		<div class="sheet-dicecol-head">Principle of</div>
+	<div class="sheet-dicecol sheet-halfsies">
+		<div class="sheet-dicecol-head">Principle of <span name="attr_principle2_of"></span></div>
+		<div class="sheet-padding">
+			<i><span name="attr_principle2_rp"></span></i>
+		</div>
+		<div class="sheet-padding">
+			<b>Minor Twist:</b> <span name="attr_principle2_twist_minor"></span>
+		</div class="sheet-padding">
+		<div class="sheet-padding">
+			<b>Major Twist:</b> <span name="attr_principle2_twist_major"></span>
+		</div>
 	</div>
 
 </div>
 
 <div class="sheet-dicecols">
-
-	<div class="sheet-dicecol">
-		<div class="sheet-dicecol-head">Hero Points</div>
-	</div>
 
 	<div class="sheet-dicecol">
 		<div class="sheet-dicecol-head">Back Issues</div>
@@ -853,6 +883,65 @@ on("change:health sheet:opened change:scene_status", function() {
 
 
 <h3>Quick Edit Area</h3>
+
+		<div class="sheet-smalldata-row sheet-padding">
+			<div class="sheet-smalldata sheet-centered">
+				<input type="number" name="attr_health_max" value="17" min="0">
+				<span>Max Health</span>
+			</div>
+		</div>
+
+
+<h4>Status</h4>
+
+<input name="attr_hero_status_die_green" value="8" type="text">
+<input name="attr_hero_status_die_yellow" value="8" type="text">
+<input name="attr_hero_status_die_red" value="8" type="text">
+
+<h4>Powers</h4>
+
+<fieldset class="repeating_heropowers">
+<div>
+	<input type="text" name="attr_name" value="">
+	<input type="text" name="attr_die" value="8">
+</div>
+</fieldset>
+
+<h4>Qualities</h4>
+
+<fieldset class="repeating_heroqualities">
+<div>
+	<input type="text" name="attr_name" value="">
+	<input type="text" name="attr_die" value="8">
+</div>
+</fieldset>
+
+<h4>Principles</h4>
+<div>
+	Principle of <input type="text" name="attr_principle1_of" value="">
+</div>
+<div>
+	During Roleplay <input type="text" name="attr_principle1_rp" value="">
+</div>
+<div>
+	Minor Twist <input type="text" name="attr_principle1_twist_minor" value="">
+</div>
+<div>
+	Major Twist <input type="text" name="attr_principle1_twist_major" value="">
+</div>
+
+<div>
+	Principle of <input type="text" name="attr_principle2_of" value="">
+</div>
+<div>
+	During Roleplay <input type="text" name="attr_principle2_rp" value="">
+</div>
+<div>
+	Minor Twist <input type="text" name="attr_principle2_twist_minor" value="">
+</div>
+<div>
+	Major Twist <input type="text" name="attr_principle2_twist_major" value="">
+</div>
 
 <h4>Abilities</h4>
 
@@ -972,28 +1061,3 @@ on("change:health sheet:opened change:scene_status", function() {
 	</div>
 </div>
 </fieldset>
-
-<h4>Status</h4>
-
-<input name="attr_hero_status_die_green" value="8" type="text">
-<input name="attr_hero_status_die_yellow" value="8" type="text">
-<input name="attr_hero_status_die_red" value="8" type="text">
-
-<h4>Powers</h4>
-
-<fieldset class="repeating_heropowers">
-<div>
-	<input type="text" name="attr_name" value="">
-	<input type="text" name="attr_die" value="8">
-</div>
-</fieldset>
-
-<h4>Qualities</h4>
-
-<fieldset class="repeating_heroqualities">
-<div>
-	<input type="text" name="attr_name" value="">
-	<input type="text" name="attr_die" value="8">
-</div>
-</fieldset>
-
