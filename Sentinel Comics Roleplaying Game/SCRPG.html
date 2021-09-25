@@ -116,7 +116,7 @@ on("change:hero_die_selector_status_green", function() {
 		var a = {};
 		if ( 
 			typeof sval["hero_die_selector_status_green"] !== "undefined" 
-			&& sval["hero_die_selector_status_green"] === "on" 
+			&& sval["hero_die_selector_status_green"] === "1" 
 		) {
 			a["hero_die_selector_status_yellow"] = "";
 			a["hero_die_selector_status_red"] = "";
@@ -130,7 +130,7 @@ on("change:hero_die_selector_status_yellow", function() {
 		var a = {};
 		if ( 
 			typeof sval["hero_die_selector_status_yellow"] !== "undefined" 
-			&& sval["hero_die_selector_status_yellow"] === "on" 
+			&& sval["hero_die_selector_status_yellow"] === "1" 
 		) {
 			a["hero_die_selector_status_green"] = "";
 			a["hero_die_selector_status_red"] = "";
@@ -144,7 +144,7 @@ on("change:hero_die_selector_status_red", function() {
 		var a = {};
 		if ( 
 			typeof sval["hero_die_selector_status_red"] !== "undefined" 
-			&& sval["hero_die_selector_status_red"] === "on" 
+			&& sval["hero_die_selector_status_red"] === "1" 
 		) {
 			a["hero_die_selector_status_green"] = "";
 			a["hero_die_selector_status_yellow"] = "";
@@ -160,7 +160,7 @@ on("change:repeating_heroqualities:hero_die_selector", function(e) {
 		var a = {};
 		if ( 
 			typeof dval[selid] !== "undefined" 
-			&& dval[selid] === "on" 
+			&& dval[selid] === "1" 
 		) {
 			getSectionIDs("repeating_heroqualities", function(d) {
 				for ( var i=0; i < d.length; i++ ) {
@@ -189,7 +189,7 @@ on("change:repeating_heropowers:hero_die_selector", function(e) {
 		var a = {};
 		if ( 
 			typeof dval[selid] !== "undefined" 
-			&& dval[selid] === "on" 
+			&& dval[selid] === "1" 
 		) {
 			getSectionIDs("repeating_heropowers", function(d) {
 				for ( var i=0; i < d.length; i++ ) {
@@ -229,25 +229,25 @@ on("sheet:opened change:repeating_heropowers change:repeating_heroqualities chan
 				var statusfield = ""; var statusname = ""; var statusdie = "";
 				for ( var i=0; i < p.length; i++ ) {
 					var thisid = "repeating_heropowers_" + p[i] + "_hero_die_selector";
-					if ( dice[thisid] === "on" ) {
+					if ( dice[thisid] === "1" ) {
 						powerprefix = "repeating_heropowers_" + p[i] + "_";
 						break;
 					}
 				}
 				for ( var i=0; i < q.length; i++ ) {
 					var thisid = "repeating_heroqualities_" + q[i] + "_hero_die_selector";
-					if ( dice[thisid] === "on" ) {
+					if ( dice[thisid] === "1" ) {
 						qualityprefix = "repeating_heroqualities_" + q[i] + "_";
 						break;
 					}
 				}
-				if ( dice["hero_die_selector_status_green"] === "on" ) {
+				if ( dice["hero_die_selector_status_green"] === "1" ) {
 					statusname = "Green";
 					statusfield = "hero_status_die_green";
-				} else if ( dice["hero_die_selector_status_yellow"] === "on") {
+				} else if ( dice["hero_die_selector_status_yellow"] === "1") {
 					statusname = "Yellow";
 					statusfield = "hero_status_die_yellow";
-				} else if ( dice["hero_die_selector_status_red"] === "on") {
+				} else if ( dice["hero_die_selector_status_red"] === "1") {
 					statusname = "Red";
 					statusfield = "hero_status_die_red";
 				}
@@ -355,19 +355,19 @@ on("change:health sheet:opened change:scene_status", function() {
 
 				if ( health <= red || scene === "red" ) {
 					// then consider selecting red - even if the scene is red
-					supdate.hero_die_selector_status_red = "on";
+					supdate.hero_die_selector_status_red = "1";
 					supdate.hero_die_selector_status_yellow = "";
 					supdate.hero_die_selector_status_green = "";
 				} else if ( ( health <= yellow || scene === "yellow" ) && scene !== "red" ) {
 					// then consider selecting yellow
 					supdate.hero_die_selector_status_red = "";
-					supdate.hero_die_selector_status_yellow = "on";
+					supdate.hero_die_selector_status_yellow = "1";
 					supdate.hero_die_selector_status_green = "";
 				} else {
 					// then consider selecting green
 					supdate.hero_die_selector_status_red = "";
 					supdate.hero_die_selector_status_yellow = "";
-					supdate.hero_die_selector_status_green = "on";
+					supdate.hero_die_selector_status_green = "1";
 				}
 
 				setAttrs(supdate);
@@ -376,6 +376,180 @@ on("change:health sheet:opened change:scene_status", function() {
 	);
 });
 
+on("clicked:addbonus", function() {
+	getAttrs(["addbonus_value", "addbonus_persistent", "addbonus_exclusive", "addbonus_tag"], function(a) {
+		var id = generateActuallyUniqueRowID();
+		var prefix = `repeating_bonuses_${id}_`;
+		var bupdate = {
+			"addbonus_value": 1,
+			"addbonus_persistent": 0,
+			"addbonus_exclusive": 0,
+			"addbonus_tag": ""
+		};
+		bupdate[`${prefix}value`] = 1;
+		bupdate[`${prefix}persistent`] = 0;
+		bupdate[`${prefix}exclusive`] = 0;
+		bupdate[`${prefix}tag`] = "";
+		if ( typeof a.addbonus_value !== "undefined" ) {
+			bupdate[`${prefix}value`] = a.addbonus_value;
+		}
+		if ( typeof a.addbonus_persistent !== "undefined" && a.addbonus_persistent === "1" ) {
+			bupdate[`${prefix}persistent`] = a.addbonus_persistent;
+		}
+		if ( typeof a.addbonus_exclusive !== "undefined" && a.addbonus_exclusive === "1" ) {
+			bupdate[`${prefix}exclusive`] = a.addbonus_exclusive;
+		}
+		if ( typeof a.addbonus_tag !== "undefined" ) {
+			bupdate[`${prefix}tag`] = a.addbonus_tag;
+		}
+		log(bupdate);
+		setAttrs(bupdate);
+	});
+});
+
+on("clicked:addpenalty", function() {
+	getAttrs(["addpenalty_value", "addpenalty_persistent", "addpenalty_exclusive", "addpenalty_tag"], function(a) {
+		var id = generateActuallyUniqueRowID();
+		var prefix = `repeating_penalties_${id}_`;
+		var bupdate = {
+			"addpenalty_value": 1,
+			"addpenalty_persistent": 0,
+			"addpenalty_exclusive": 0,
+			"addpenalty_tag": ""
+		};
+		bupdate[`${prefix}value`] = 1;
+		bupdate[`${prefix}persistent`] = 0;
+		bupdate[`${prefix}exclusive`] = 0;
+		bupdate[`${prefix}tag`] = "";
+		if ( typeof a.addpenalty_value !== "undefined" ) {
+			bupdate[`${prefix}value`] = a.addpenalty_value;
+		}
+		if ( typeof a.addpenalty_persistent !== "undefined" && a.addpenalty_persistent === "1" ) {
+			bupdate[`${prefix}persistent`] = a.addpenalty_persistent;
+		}
+		if ( typeof a.addpenalty_exclusive !== "undefined" && a.addpenalty_exclusive === "1" ) {
+			bupdate[`${prefix}exclusive`] = a.addpenalty_exclusive;
+		}
+		if ( typeof a.addpenalty_tag !== "undefined" ) {
+			bupdate[`${prefix}tag`] = a.addpenalty_tag;
+		}
+		log(bupdate);
+		setAttrs(bupdate);
+	});
+});
+
+on("clicked:repeating_bonuses:dismiss clicked:repeating_penalties:dismiss", function(e) {
+	var rowid = (e.sourceAttribute).slice(0,-8); // Strips off the '_dismiss'
+	getAttrs([rowid+"_hpf"], function(a) {
+		var hpf = a[rowid+"_hpf"];
+		if ( typeof hpf !== "undefined" && hpf !== "" ) {
+			var s = {}; s[hpf] = "0";
+			setAttrs(s);
+		}
+		removeRepeatingRow(rowid);
+	});
+});
+
+on("clicked:repeating_bonuses:decrease clicked:repeating_penalties:decrease", function(e) {
+	var prefix = (e.sourceAttribute).slice(0,-8); // Strips off the 'decrease'
+	var id = `${prefix}value`;
+	getAttrs([id], function(a) {
+		var value = a[id];
+		if ( typeof value !== "undefined" && Number(value) > 1  ) { // Only decrease numbers above one
+			value = Number(value) - 1;
+			var s = {};
+			s[id] = value;
+			setAttrs(s);
+		}
+	});
+});
+
+on("clicked:repeating_bonuses:increase clicked:repeating_penalties:increase", function(e) {
+	var prefix = (e.sourceAttribute).slice(0,-8); // Strips off the 'increase'
+	var id = `${prefix}value`;
+	log(prefix);
+	getAttrs([id], function(a) {
+		log(a);
+		var value = a[id];
+		if ( typeof value !== "undefined" && Number(value) > 0 ) {
+			value = Number(value) + 1;
+			var s = {};
+			s[id] = value;
+			setAttrs(s);
+		} else {
+			log("will not increase");
+			log(Number(value));
+		}
+	});
+});
+
+on("clicked:edit_powers clicked:edit_qualities clicked:edit_status clicked:edit_health clicked:edit_penalties clicked:edit_bonuses clicked:edit_principles clicked:edit_modes clicked:edit_minions clicked:edit_abilities_green clicked:edit_abilities_yellow clicked:edit_abilities_red clicked:edit_abilities_out clicked:repeating_abilitiesgreen:actionicona clicked:repeating_abilitiesgreen:actioniconb clicked:repeating_abilitiesgreen:actioniconh clicked:repeating_abilitiesgreen:actionicono clicked:repeating_abilitiesgreen:actionicond clicked:repeating_abilitiesgreen:actioniconr clicked:repeating_abilitiesyellow:actionicona clicked:repeating_abilitiesyellow:actioniconb clicked:repeating_abilitiesyellow:actioniconh clicked:repeating_abilitiesyellow:actionicono clicked:repeating_abilitiesyellow:actionicond clicked:repeating_abilitiesyellow:actioniconr clicked:repeating_abilitiesred:actionicona clicked:repeating_abilitiesred:actioniconb clicked:repeating_abilitiesred:actioniconh clicked:repeating_abilitiesred:actionicono clicked:repeating_abilitiesred:actionicond clicked:repeating_abilitiesred:actioniconr clicked:repeating_abilitiesout:actionicona clicked:repeating_abilitiesout:actioniconb clicked:repeating_abilitiesout:actioniconh clicked:repeating_abilitiesout:actionicono clicked:repeating_abilitiesout:actionicond clicked:repeating_abilitiesout:actioniconr", function(e) {
+	log(e);
+	var id = "";
+	if ( typeof e.sourceAttribute !== "undefined" && e.sourceAttribute !== "" ) {
+		id = e.sourceAttribute;
+	} else {
+		id = (e.htmlAttributes.name).substring(4); // Strips off the 'act_'
+	}
+	log("Toggle Handler: " + id);
+	getAttrs([id], function(a) {
+		if ( a[id] === "1" ) {
+			a[id] = "0";
+		} else {
+			a[id] = "1";
+		}
+		log(a);
+		setAttrs(a);
+	});
+});
+
+on("change:hpr1a change:hpr1b change:hpr1c change:hpr1d change:hpr2a change:hpr2b change:hpr2c change:hpr2d change:hpr3a change:hpr3b change:hpr3c change:hpr3d change:hpr4a change:hpr4b change:hpr4c change:hpr4d", function(e) {
+	log(e);
+	var id = e.sourceAttribute;
+	var value = e.newValue;
+
+	getSectionIDs("bonuses", function(b) {
+		var bfields = [];
+		for(var i=0; i < b.length; i++ ) {
+			bfields[i] = "repeating_bonuses_" + b[i] + "_hpf";
+		}
+		getAttrs(bfields, function(a) {
+			var matchid = ""; var bindex = 0;
+			for(var i=0; i < bfields.length; i++ ) {
+				bfid = bfields[i];
+				if ( a[bfid] == id ) {
+					matchid = bfid;
+					bindex = i;
+				}
+			}
+			if ( matchid === "" ) {
+				// then there is NO established bonus record tied to the 
+				// hero point bonus field that was clicked
+				if ( value !== "0" ) {
+					// then a bonus record should be created tied to the
+					// hero point bonus field that was clicked
+					var ba = {};
+					var nid = generateActuallyUniqueRowID();
+					var np = "repeating_bonuses_"+nid+"_";
+					ba[np+"hpf"] = id;
+					ba[np+"persistent"] = 0;
+					ba[np+"exclusive"] = 0;
+					ba[np+"tag"] = "hero point reward";
+					ba[np+"value"] = value;
+					setAttrs(ba);
+				}
+			} else {
+				// then there IS an established bonus record tied to the
+				// hero point bonus field that was clicked
+				if ( value == "0" ) {
+					// then the existing bonus record should be removed,
+					// because the field that was clicked was set to unmarked
+					removeRepeatingRow("repeating_bonuses_"+b[bindex]);
+				}
+			}
+		});
+	});
+});
 
 </script>
 
@@ -423,182 +597,399 @@ on("change:health sheet:opened change:scene_status", function() {
 
 <div class="sheet-dicecols">
 
-	<div class="sheet-dicecol">
-		<div class="sheet-dicecol-head">Rolls</div>
-		<div class="sheet-rollcols">
-			<div class="sheet-rollblock">
-				<span name="attr_selected_die_pool_text"></span>
-				<button type="action" name="act_roll3pool">
-					<input type="hidden" name="attr_selected_die_power" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
-					<input type="hidden" name="attr_selected_die_quality" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
-					<input type="hidden" name="attr_selected_die_status" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
-				</button>
+	<div class="sheet-dicecol-unadorned">
+
+		<div class="sheet-dicecols">
+
+			<div class="sheet-dicecol">
+				<div class="sheet-dicecol-head">Rolls</div>
+				<div class="sheet-rollcols">
+					<div class="sheet-rollblock">
+						<span name="attr_selected_die_pool_text"></span>
+						<button type="action" name="act_roll3pool">
+							<input type="hidden" name="attr_selected_die_power" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+							<input type="hidden" name="attr_selected_die_quality" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+							<input type="hidden" name="attr_selected_die_status" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+						</button>
+					</div>
+					<div class="sheet-rollblock">
+						<span name="attr_selected_die_power_text"></span>
+						<button type="action" value="power" name="act_rolldie">
+							<input type="hidden" name="attr_selected_die_power" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+						</button>
+					</div>
+					<div class="sheet-rollblock">
+						<span name="attr_selected_die_quality_text"></span>
+						<button type="action" value="quality" name="act_rolldie">
+							<input type="hidden" name="attr_selected_die_quality" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+						</button>
+					</div>
+					<div class="sheet-rollblock">
+						<span name="attr_selected_die_status_text"></span>
+						<button type="action" value="status" name="act_rolldie">
+							<input type="hidden" name="attr_selected_die_status" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+						</button>
+					</div>
+				</div>
+				<div class="sheet-rollcols">
+					<div class="sheet-rollblock">
+						<span>Individual Dice</span>
+						<div>
+							<button type="action" value="4" name="act_rolldie">
+								<input type="hidden" value="4" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+							</button>
+							<button type="action" value="6" name="act_rolldie">
+								<input type="hidden" value="6" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+							</button>
+							<button type="action" value="8" name="act_rolldie">
+								<input type="hidden" value="8" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+							</button>
+							<button type="action" value="10" name="act_rolldie">
+								<input type="hidden" value="10" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+							</button>
+							<button type="action" value="12" name="act_rolldie">
+								<input type="hidden" value="12" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+							</button>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="sheet-rollblock">
-				<span name="attr_selected_die_power_text"></span>
-				<button type="action" value="power" name="act_rolldie">
-					<input type="hidden" name="attr_selected_die_power" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
-				</button>
-			</div>
-			<div class="sheet-rollblock">
-				<span name="attr_selected_die_quality_text"></span>
-				<button type="action" value="quality" name="act_rolldie">
-					<input type="hidden" name="attr_selected_die_quality" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
-				</button>
-			</div>
-			<div class="sheet-rollblock">
-				<span name="attr_selected_die_status_text"></span>
-				<button type="action" value="status" name="act_rolldie">
-					<input type="hidden" name="attr_selected_die_status" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
-				</button>
-			</div>
+
 		</div>
-		<div class="sheet-rollcols">
-			<div class="sheet-rollblock"><div>
-				<button type="action" value="4" name="act_rolldie">
-					<input type="hidden" value="4" class="sheet-inlinedie"><span class="sheet-diepic"></span>
-				</button>
-				<button type="action" value="6" name="act_rolldie">
-					<input type="hidden" value="6" class="sheet-inlinedie"><span class="sheet-diepic"></span>
-				</button>
-				<button type="action" value="8" name="act_rolldie">
-					<input type="hidden" value="8" class="sheet-inlinedie"><span class="sheet-diepic"></span>
-				</button>
-				<button type="action" value="10" name="act_rolldie">
-					<input type="hidden" value="10" class="sheet-inlinedie"><span class="sheet-diepic"></span>
-				</button>
-				<button type="action" value="12" name="act_rolldie">
-					<input type="hidden" value="12" class="sheet-inlinedie"><span class="sheet-diepic"></span>
-				</button>
-			</div></div>
+
+
+		<div class="sheet-dicecols">
+
+			<input type="hidden" name="attr_edit_powers" value="0" class="sheet-hide-on-one">
+			<div class="sheet-dicecol sheet-halfsies">
+				<div class="sheet-dicecol-head sheet-lefty">
+					<button type="action" name="act_edit_powers" class="sheet-button-header-edit"></button>
+					Powers
+				</div>
+				<fieldset class="repeating_heropowers">
+					<input type="hidden" name="attr_name" value="">
+					<div class="sheet-dicerow">
+						<input type="hidden" name="attr_hero_die_selector" value="" class="sheet-dieselected">
+						<input type="hidden" name="attr_die" value="" class="sheet-dieval">
+						<div class="sheet-die">
+							<input type="checkbox" name="attr_hero_die_selector" value="1" class="sheet-dieboxer">
+							<div class="sheet-diepic"></div>
+						</div>
+						<div class="sheet-dielabel">
+							<span name="attr_name"></span>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+
+			<input type="hidden" name="attr_edit_powers" value="0" class="sheet-hide-on-zero">
+			<div class="sheet-dicecol sheet-editcol sheet-halfsies">
+				<div class="sheet-dicecol-head sheet-lefty">
+					<button type="action" name="act_edit_powers" class="sheet-button-header-close"></button>
+					Powers
+				</div>
+				<fieldset class="repeating_heropowers">
+					<input type="hidden" name="attr_name" value="">
+					<div class="sheet-dicerow">
+						<input type="hidden" name="attr_hero_die_selector" value="">
+						<select name="attr_die">
+							<option value="">[Choose]</option>
+							<option value="12">d12</option>
+							<option value="10">d10</option>
+							<option value="8">d8</option>
+							<option value="6">d6</option>
+							<option value="4">d4</option>
+						</select>
+						<input type="text" name="attr_name" value="">
+					</div>
+				</fieldset>
+			</div>
+
+			<input type="hidden" name="attr_edit_qualities" value="0" class="sheet-hide-on-one">
+			<div class="sheet-dicecol sheet-halfsies">
+				<div class="sheet-dicecol-head sheet-lefty">
+					<button type="action" name="act_edit_qualities" class="sheet-button-header-edit"></button>
+					Qualities
+				</div>
+				<fieldset class="repeating_heroqualities">
+					<input type="hidden" name="attr_name" value="">
+					<div class="sheet-dicerow">
+						<input type="hidden" name="attr_hero_die_selector" value="" class="sheet-dieselected">
+						<input type="hidden" name="attr_die" value="" class="sheet-dieval">
+						<div class="sheet-die">
+							<input type="checkbox" name="attr_hero_die_selector" value="1" class="sheet-dieboxer">
+							<div class="sheet-diepic"></div>
+						</div>
+						<div class="sheet-dielabel">
+							<span name="attr_name"></span>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+				
+			<input type="hidden" name="attr_edit_qualities" value="0" class="sheet-hide-on-zero">
+			<div class="sheet-dicecol sheet-editcol sheet-halfsies">
+				<div class="sheet-dicecol-head sheet-lefty">
+					<button type="action" name="act_edit_qualities" class="sheet-button-header-close"></button>
+					Qualities
+				</div>
+				<fieldset class="repeating_heroqualities">
+					<input type="hidden" name="attr_name" value="">
+					<div class="sheet-dicerow">
+						<input type="hidden" name="attr_hero_die_selector" value="">
+						<select name="attr_die">
+							<option value="">[Choose]</option>
+							<option value="12">d12</option>
+							<option value="10">d10</option>
+							<option value="8">d8</option>
+							<option value="6">d6</option>
+							<option value="4">d4</option>
+						</select>
+						<input type="text" name="attr_name" value="">
+					</div>
+				</fieldset>
+			</div>
+			
+			<input type="hidden" name="attr_edit_status" value="0" class="sheet-hide-on-one">
+			<div class="sheet-dicecol sheet-noflexgrow">
+				<div class="sheet-dicecol-head sheet-lefty">
+					<button type="action" name="act_edit_status" class="sheet-button-header-edit"></button>
+					Status
+				</div>
+				<div class="sheet-dicerow">
+					<input type="hidden" name="attr_hero_die_selector_status_green" value="" class="sheet-dieselected">
+					<input type="hidden" name="attr_hero_status_die_green" value="8" class="sheet-dieval">
+					<div class="sheet-die">
+						<input type="checkbox" name="attr_hero_die_selector_status_green" value="1" class="sheet-dieboxer">
+						<div class="sheet-diepic"></div>
+					</div>
+					<div class="sheet-dielabel sheet-status-green">
+						Green
+					</div>
+				</div>
+				<div class="sheet-dicerow">
+					<input type="hidden" name="attr_hero_die_selector_status_yellow" value="" class="sheet-dieselected">
+					<input type="hidden" name="attr_hero_status_die_yellow" value="8" class="sheet-dieval">
+					<div class="sheet-die">
+						<input type="checkbox" name="attr_hero_die_selector_status_yellow" value="1" class="sheet-dieboxer">
+						<div class="sheet-diepic"></div>
+					</div>
+					<div class="sheet-dielabel sheet-status-yellow">
+						Yellow
+					</div>
+				</div>
+				<div class="sheet-dicerow">
+					<input type="hidden" name="attr_hero_die_selector_status_red" value="" class="sheet-dieselected">
+					<input type="hidden" name="attr_hero_status_die_red" value="8" class="sheet-dieval">
+					<div class="sheet-die">
+						<input type="checkbox" name="attr_hero_die_selector_status_red" value="1" class="sheet-dieboxer">
+						<div class="sheet-diepic"></div>
+					</div>
+					<div class="sheet-dielabel sheet-status-red">
+						Red
+					</div>
+				</div>
+				<div class="sheet-smalldata-row sheet-padding">
+					<div class="sheet-smalldata sheet-centered">
+						<span>Current Scene Status</span>
+						<select name="attr_scene_status" class="sheet-120">
+							<option value="green" selected>Green</option>
+							<option value="yellow">Yellow</option>
+							<option value="red">Red</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<input type="hidden" name="attr_edit_status" value="0" class="sheet-hide-on-zero">
+			<div class="sheet-dicecol sheet-editcol">
+				<div class="sheet-dicecol-head sheet-lefty">
+					<button type="action" name="act_edit_status" class="sheet-button-header-close"></button>
+					Status
+				</div>
+				<div class="sheet-dicerow">
+					<input type="hidden" name="attr_hero_status_die_green" value="">
+					<select name="attr_hero_status_die_green">
+						<option value="">[Choose]</option>
+						<option value="12">d12</option>
+						<option value="10">d10</option>
+						<option value="8">d8</option>
+						<option value="6">d6</option>
+						<option value="4">d4</option>
+					</select>
+					<div class="sheet-dielabel sheet-status-green">Green</div>
+				</div>
+				<div class="sheet-dicerow">
+					<input type="hidden" name="attr_hero_status_die_yellow" value="">
+					<select name="attr_hero_status_die_yellow">
+						<option value="">[Choose]</option>
+						<option value="12">d12</option>
+						<option value="10">d10</option>
+						<option value="8">d8</option>
+						<option value="6">d6</option>
+						<option value="4">d4</option>
+					</select>
+					<div class="sheet-dielabel sheet-status-yellow">Yellow</div>
+				</div>
+				<div class="sheet-dicerow">
+					<input type="hidden" name="attr_hero_status_die_red" value="">
+					<select name="attr_hero_status_die_red">
+						<option value="">[Choose]</option>
+						<option value="12">d12</option>
+						<option value="10">d10</option>
+						<option value="8">d8</option>
+						<option value="6">d6</option>
+						<option value="4">d4</option>
+					</select>
+					<div class="sheet-dielabel sheet-status-red">Red</div>
+				</div>
+			</div>
+
 		</div>
+
 	</div>
 
-	<div class="sheet-dicecol sheet-noflexgrow sheet-centered">
-		<div class="sheet-dicecol-head">Current Health</div>
+	<div class="sheet-dicecol sheet-noflexgrow sheet-centered sheet-healthbox">
+		<div class="sheet-dicecol-head sheet-lefty">
+			<input type="hidden" name="attr_edit_health" value="1" class="sheet-hide-on-zero"><button type="action" name="act_edit_health" class="sheet-button-header-close"></button>
+			<input type="hidden" name="attr_edit_health" value="1" class="sheet-hide-on-one"><button type="action" name="act_edit_health" class="sheet-button-header-edit"></button>
+			Health
+		</div>
 		<div class="sheet-centered">
-			<input type="hidden" name="attr_healthcolor" value="green" class="sheet-colorizer">
-			<input type="number" name="attr_health" value="17" min="0" class="sheet-bignum">
+
+			<input type="hidden" name="attr_edit_health" value="1" class="sheet-hide-on-zero">
+			<div class="sheet-smalldata-row sheet-padding">
+				<div class="sheet-smalldata sheet-centered">
+					<input type="number" name="attr_health_max" value="17" min="0">
+					<span>Max Health</span>
+				</div>
+			</div>
+
+			<div class="sheet-centered">
+				<input type="hidden" name="attr_healthcolor" value="green" class="sheet-colorizer">
+				<input type="number" name="attr_health" value="17" min="0" class="sheet-bignum">
+			</div>
 		</div>
 		<div class="sheet-smalldata-row sheet-padding">
-			<input type="hidden" value="green" class="sheet-colorizer">
 			<div class="sheet-smalldata sheet-centered">
-				<span>Green</span>
+				<input type="hidden" value="green" class="sheet-colorizer"><span>Green</span>
 				<span>
+				</span>
+				<span class="sheet-pow-green">
 					<input type="hidden" name="attr_health_max" value="17">
 					<input type="hidden" name="attr_health_green_bottom" value="14">
 					<span name="attr_health_max"></span>-<span name="attr_health_green_bottom"></span>
 				</span>
 			</div>
-			<input type="hidden" value="yellow" class="sheet-colorizer">
+		</div>
+		<div class="sheet-smalldata-row sheet-padding">
 			<div class="sheet-smalldata sheet-centered">
-				<span>Yellow</span>
-				<span>
-					<input type="hidden" name="attr_health_yellow_top" value="13">
+				<input type="hidden" value="yellow" class="sheet-colorizer"><span>Yellow</span>
+				<span class="sheet-pow-yellow"><input type="hidden" name="attr_health_yellow_top" value="13">
 					<input type="hidden" name="attr_health_yellow_bottom" value="7">
 					<span name="attr_health_yellow_top"></span>-<span name="attr_health_yellow_bottom"></span>
 				</span>
 			</div>
-			<input type="hidden" value="red" class="sheet-colorizer">
+		</div>
+		<div class="sheet-smalldata-row sheet-padding">
 			<div class="sheet-smalldata sheet-centered">
-				<span>Red</span>
-				<span>
-					<input type="hidden" name="attr_health_red_top" value="6">
+				<input type="hidden" value="red" class="sheet-colorizer"><span>Red</span>
+				<span class="sheet-pow-red"><input type="hidden" name="attr_health_red_top" value="6">
 					<span name="attr_health_red_top"></span>-1
 				</span>
 			</div>
 		</div>
 	</div>
-
+	
 </div>
 
 <div class="sheet-dicecols">
 
-	<div class="sheet-dicecol">
-		<div class="sheet-dicecol-head">Powers</div>
-		
-		<fieldset class="repeating_heropowers">
-			<input type="hidden" name="attr_name" value="">
-			<div class="sheet-dicerow">
-				<input type="hidden" name="attr_hero_die_selector" value="" class="sheet-dieselected">
-				<input type="hidden" name="attr_die" value="" class="sheet-dieval">
-				<div class="sheet-die">
-					<input type="checkbox" name="attr_hero_die_selector" value="on" class="sheet-dieboxer">
-					<div class="sheet-diepic"></div>
-				</div>
-				<div class="sheet-dielabel">
-					<span name="attr_name"></span>
-				</div>
-			</div>
-		</fieldset>
-
-	</div>
-
-	<div class="sheet-dicecol">
-		<div class="sheet-dicecol-head">Qualities</div>
-		
-		<fieldset class="repeating_heroqualities">
-			<input type="hidden" name="attr_name" value="">
-			<div class="sheet-dicerow">
-				<input type="hidden" name="attr_hero_die_selector" value="" class="sheet-dieselected">
-				<input type="hidden" name="attr_die" value="" class="sheet-dieval">
-				<div class="sheet-die">
-					<input type="checkbox" name="attr_hero_die_selector" value="on" class="sheet-dieboxer">
-					<div class="sheet-diepic"></div>
-				</div>
-				<div class="sheet-dielabel">
-					<span name="attr_name"></span>
-				</div>
-			</div>
-		</fieldset>
-
-	</div>
-
-	<div class="sheet-dicecol sheet-noflexgrow">
-
-		<div class="sheet-dicecol-head">Status</div>
-		<div class="sheet-dicerow">
-			<input type="hidden" name="attr_hero_die_selector_status_green" value="" class="sheet-dieselected">
-			<input type="hidden" name="attr_hero_status_die_green" value="8" class="sheet-dieval">
-			<div class="sheet-die">
-				<input type="checkbox" name="attr_hero_die_selector_status_green" value="on" class="sheet-dieboxer">
-				<div class="sheet-diepic"></div>
-			</div>
-			<div class="sheet-dielabel sheet-status-green">
-				Green
-			</div>
+	<div class="sheet-dicecol sheet-halfsies">
+		<div class="sheet-dicecol-head sheet-lefty">
+			<input type="hidden" name="attr_edit_bonuses" value="0" class="sheet-hide-on-zero"><button type="action" name="act_edit_bonuses" class="sheet-button-header-close"></button>
+			<input type="hidden" name="attr_edit_bonuses" value="0" class="sheet-hide-on-one"><button type="action" name="act_edit_bonuses" class="sheet-button-header-edit"></button>
+			Bonuses
 		</div>
-		<div class="sheet-dicerow">
-			<input type="hidden" name="attr_hero_die_selector_status_yellow" value="" class="sheet-dieselected">
-			<input type="hidden" name="attr_hero_status_die_yellow" value="8" class="sheet-dieval">
-			<div class="sheet-die">
-				<input type="checkbox" name="attr_hero_die_selector_status_yellow" value="on" class="sheet-dieboxer">
-				<div class="sheet-diepic"></div>
-			</div>
-			<div class="sheet-dielabel sheet-status-yellow">
-				Yellow
-			</div>
-		</div>
-		<div class="sheet-dicerow">
-			<input type="hidden" name="attr_hero_die_selector_status_red" value="" class="sheet-dieselected">
-			<input type="hidden" name="attr_hero_status_die_red" value="8" class="sheet-dieval">
-			<div class="sheet-die">
-				<input type="checkbox" name="attr_hero_die_selector_status_red" value="on" class="sheet-dieboxer">
-				<div class="sheet-diepic"></div>
-			</div>
-			<div class="sheet-dielabel sheet-status-red">
-				Red
-			</div>
-		</div>
-		<div class="sheet-smalldata-row sheet-padding">
-			<div class="sheet-smalldata">
-				<span>Current Scene Status</span>
-				<select name="attr_scene_status">
-					<option value="green" selected>Green</option>
-					<option value="yellow">Yellow</option>
-					<option value="red">Red</option>
+		<div class="sheet-padding">
+			<input type="hidden" name="attr_edit_bonuses" value="0" class="sheet-hide-on-zero">
+			<div class="sheet-modline">
+				<button type="action" value="12" name="act_addbonus">Add</button>
+				<select name="attr_addbonus_value">
+					<option value="1">+1 (on a 1-3)</option>
+					<option value="2">+2 (on a 4-7)</option>
+					<option value="3">+3 (on a 8-11)</option>
+					<option value="4">+4 (on a 12+)</option>
 				</select>
+				<span><input type="checkbox" value="1" class="sheet-oval-marker" name="attr_addbonus_persistent"><span class="sheet-oval-icon"></span>&nbsp;Persistent</span>
+				<span><input type="checkbox" value="1" class="sheet-oval-marker" name="attr_addbonus_exclusive"><span class="sheet-oval-icon"></span>&nbsp;Exclusive</span>
+				<input type="text" name="attr_addbonus_tag" class="sheet-noflexgrow">
 			</div>
+		</div>
+		<div class="sheet-padding sheet-modgrid">
+			<fieldset class="repeating_bonuses">
+				<input type="hidden" name="attr_value" value="1">
+				<input type="hidden" name="attr_tag" value="">
+				<input type="hidden" name="attr_hpf" value="">
+				<div class="sheet-modifier">
+					<div class="sheet-centered sheet-modnum">
+						+<span name="attr_value"></span>
+					</div>
+					<div class="sheet-smalldata sheet-centered">
+						<input type="hidden" name="attr_persistent" value="1" class="sheet-hide-on-zero"><span>persistent</span>
+						<input type="hidden" name="attr_exclusive" value="1" class="sheet-hide-on-zero"><span>exclusive</span>
+						<span name="attr_tag"></span>
+						<div class="sheet-modcontrol sheet-centered">
+							<button type="action" name="act_increase" class="sheet-button-increase"></button>
+							<input type="hidden" name="attr_value" class="sheet-hide-on-one"><button type="action" name="act_decrease" class="sheet-button-decrease"></button>
+							<button type="action" name="act_dismiss" class="sheet-button-delete"></button>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+	<div class="sheet-dicecol sheet-halfsies">
+		<div class="sheet-dicecol-head sheet-lefty">
+			<input type="hidden" name="attr_edit_penalties" value="0" class="sheet-hide-on-zero"><button type="action" name="act_edit_penalties" class="sheet-button-header-close"></button>
+			<input type="hidden" name="attr_edit_penalties" value="0" class="sheet-hide-on-one"><button type="action" name="act_edit_penalties" class="sheet-button-header-edit"></button>
+			Penalties
+		</div>
+		<div class="sheet-padding">
+			<input type="hidden" name="attr_edit_penalties" value="0" class="sheet-hide-on-zero">
+			<div class="sheet-modline">
+				<button type="action" value="12" name="act_addpenalty">Add</button>
+				<select name="attr_addpenalty_value">
+					<option value="1">-1 (on a 1-3)</option>
+					<option value="2">-2 (on a 4-7)</option>
+					<option value="3">-3 (on a 8-11)</option>
+					<option value="4">-4 (on a 12+)</option>
+				</select>
+				<span><input type="checkbox" value="1" class="sheet-oval-marker" name="attr_addpenalty_persistent"><span class="sheet-oval-icon"></span>&nbsp;Persistent</span>
+				<span><input type="checkbox" value="1" class="sheet-oval-marker" name="attr_addpenalty_exclusive"><span class="sheet-oval-icon"></span>&nbsp;Exclusive</span>
+				<input type="text" name="attr_addpenalty_tag" class="sheet-noflexgrow">
+			</div>
+		</div>
+		<div class="sheet-padding sheet-modgrid">
+			<fieldset class="repeating_penalties">
+				<input type="hidden" name="attr_value" value="1">
+				<input type="hidden" name="attr_tag" value="">
+				<div class="sheet-modifier">
+					<div class="sheet-centered sheet-modnum">
+						-<span name="attr_value"></span>
+					</div>
+					<div class="sheet-smalldata sheet-centered">
+						<input type="hidden" name="attr_persistent" value="0" class="sheet-hide-on-zero"><span>persistent</span>
+						<input type="hidden" name="attr_exclusive" value="0" class="sheet-hide-on-zero"><span>exclusive</span>
+						<span name="attr_tag"></span>
+						<div class="sheet-modcontrol sheet-centered">
+							<button type="action" name="act_increase" class="sheet-button-increase"></button>
+							<input type="hidden" name="attr_value" class="sheet-hide-on-one"><button type="action" name="act_decrease" class="sheet-button-decrease"></button>
+							<button type="action" name="act_dismiss" class="sheet-button-delete"></button>
+						</div>
+					</div>
+				</div>
+			</fieldset>
 		</div>
 	</div>
 
@@ -606,21 +997,26 @@ on("change:health sheet:opened change:scene_status", function() {
 
 <div class="sheet-dicecols">
 
-	<div class="sheet-dicecol">
-		<div class="sheet-dicecol-head">Modifiers</div>
-	</div>
-
-	<div class="sheet-dicecol">
-		<div class="sheet-dicecol-head">Hero Points</div>
-		<div>
-			Earned This Session
+	<div class="sheet-dicecol sheet-halfsies">
+		<div class="sheet-dicecol-head sheet-lefty">
+			<input type="hidden" name="attr_edit_modes" value="0" class="sheet-hide-on-zero"><button type="action" name="act_edit_modes" class="sheet-button-header-close"></button>
+			<input type="hidden" name="attr_edit_modes" value="0" class="sheet-hide-on-one"><button type="action" name="act_edit_modes" class="sheet-button-header-edit"></button>
+			Modes/Forms
 		</div>
 		<div>
-			<input type="checkbox" value="on" class="sheet-oval-marker" name="attr_shp1"><span class="sheet-oval-icon"></span>
-			<input type="checkbox" value="on" class="sheet-oval-marker" name="attr_shp2"><span class="sheet-oval-icon"></span>
-			<input type="checkbox" value="on" class="sheet-oval-marker" name="attr_shp3"><span class="sheet-oval-icon"></span>
-			<input type="checkbox" value="on" class="sheet-oval-marker" name="attr_shp4"><span class="sheet-oval-icon"></span>
-			<input type="checkbox" value="on" class="sheet-oval-marker" name="attr_shp5"><span class="sheet-oval-icon"></span>
+			Use JSON stringify to store existing die pool configurations.
+			Figure out how to preserve selected things if possible (maybe edit existing named things rather than delete them).
+			Give each mode a name, a description (this can be where descriptions, but also rules restrictions, live).
+			Store JSON stringified snapshot.
+			Give Abilities a field where they can specify that the ability is only available for the currently active mode.
+		</div>
+	</div>
+
+	<div class="sheet-dicecol sheet-halfsies">
+		<div class="sheet-dicecol-head sheet-lefty">
+			<input type="hidden" name="attr_edit_minions" value="0" class="sheet-hide-on-zero"><button type="action" name="act_edit_minions" class="sheet-button-header-close"></button>
+			<input type="hidden" name="attr_edit_minions" value="0" class="sheet-hide-on-one"><button type="action" name="act_edit_minions" class="sheet-button-header-edit"></button>
+			Minions
 		</div>
 	</div>
 
@@ -629,25 +1025,30 @@ on("change:health sheet:opened change:scene_status", function() {
 <div class="sheet-abilities">
 
 	<div class="sheet-abilities-green">
-		<div class="sheet-abilities-head">Green Abilities</div>
-		<fieldset class="repeating_abilitiesgreen">
+		<div class="sheet-abilities-head sheet-lefty">
+			<input type="hidden" name="attr_edit_abilities_green" value="1" class="sheet-hide-on-zero"><button type="action" name="act_edit_abilities_green" class="sheet-button-header-close"></button>
+			<input type="hidden" name="attr_edit_abilities_green" value="1" class="sheet-hide-on-one"><button type="action" name="act_edit_abilities_green" class="sheet-button-header-edit"></button>
+			Green Abilities
+		</div>
+		<input type="hidden" name="attr_edit_abilities_green" value="1" class="sheet-hide-on-one">
+		<div><fieldset class="repeating_abilitiesgreen">
 			<div class="sheet-abilities-row">
-				<input type="hidden" name="attr_action_icon_a" value="">
-				<input type="hidden" name="attr_action_icon_b" value="">
-				<input type="hidden" name="attr_action_icon_h" value="">
-				<input type="hidden" name="attr_action_icon_o" value="">
-				<input type="hidden" name="attr_action_icon_d" value="">
-				<input type="hidden" name="attr_action_icon_r" value="">
+				<input type="hidden" name="attr_actionicona" value="">
+				<input type="hidden" name="attr_actioniconb" value="">
+				<input type="hidden" name="attr_actioniconh" value="">
+				<input type="hidden" name="attr_actionicono" value="">
+				<input type="hidden" name="attr_actionicond" value="">
+				<input type="hidden" name="attr_actioniconr" value="">
 				<input type="hidden" name="attr_action_type" value="">
 				<input type="hidden" name="attr_action_name" value="">
 				<input type="hidden" name="attr_action_description" value="">
 				<div class="sheet-ability-icons">
-					<input type="hidden" name="attr_action_icon_a" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_a" class="sheet-icon"></span>
-					<input type="hidden" name="attr_action_icon_b" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_b" class="sheet-icon"></span>
-					<input type="hidden" name="attr_action_icon_h" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_h" class="sheet-icon"></span>
-					<input type="hidden" name="attr_action_icon_o" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_o" class="sheet-icon"></span>
-					<input type="hidden" name="attr_action_icon_d" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_d" class="sheet-icon"></span>
-					<input type="hidden" name="attr_action_icon_r" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_r" class="sheet-icon"></span>
+					<input type="hidden" name="attr_actionicona" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-a"></span>
+					<input type="hidden" name="attr_actioniconb" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-b"></span>
+					<input type="hidden" name="attr_actioniconh" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-h"></span>
+					<input type="hidden" name="attr_actionicono" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-o"></span>
+					<input type="hidden" name="attr_actionicond" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-d"></span>
+					<input type="hidden" name="attr_actioniconr" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-r"></span>
 				</div>
 				<div class="sheet-ability-type">
 					<span name="attr_action_type"></span>
@@ -657,29 +1058,64 @@ on("change:health sheet:opened change:scene_status", function() {
 					<span name="attr_action_description"></span>
 				</div>
 			</div>
-		</fieldset>
+		</fieldset></div>
+		<input type="hidden" name="attr_edit_abilities_green" value="1" class="sheet-hide-on-zero">
+		<div class="sheet-editcol"><fieldset class="repeating_abilitiesgreen">
+			<div class="sheet-abilities-row">
+				<input type="hidden" name="attr_action_type" value="">
+				<input type="hidden" name="attr_action_name" value="">
+				<input type="hidden" name="attr_action_description" value="">
+				<div class="sheet-ability-icons">
+
+					<input type="hidden" name="attr_actionicona" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actionicona" class="sheet-buttonless sheet-icon-button" value="actionicona"><span class="sheet-action-icon-a"></span></button></span>
+					<input type="hidden" name="attr_actioniconb" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actioniconb" class="sheet-buttonless sheet-icon-button" value="actioniconb"><span class="sheet-action-icon-b"></span></button></span>
+					<input type="hidden" name="attr_actioniconh" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actioniconh" class="sheet-buttonless sheet-icon-button" value="actioniconh"><span class="sheet-action-icon-h"></span></button></span>
+					<input type="hidden" name="attr_actionicono" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actionicono" class="sheet-buttonless sheet-icon-button" value="actionicono"><span class="sheet-action-icon-o"></span></button></span>
+					<input type="hidden" name="attr_actionicond" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actionicond" class="sheet-buttonless sheet-icon-button" value="actionicond"><span class="sheet-action-icon-d"></span></button></span>
+					<input type="hidden" name="attr_actioniconr" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actioniconr" class="sheet-buttonless sheet-icon-button" value="actioniconr"><span class="sheet-action-icon-r"></span></button></span>
+
+				</div>
+				<div class="sheet-ability-type">
+					<select name="attr_action_type">
+						<option value="">[Choose]</option>
+						<option value="A">Action</option>
+						<option value="I">Inherent</option>
+						<option value="R">Reaction</option>
+					</select>
+				</div>
+				<div class="sheet-ability-description">
+					<b><input type="text" name="attr_action_name" value="">:</b>
+					<textarea name="attr_action_description"></textarea>
+				</div>
+			</div>
+		</fieldset></div>
 	</div>
 
 	<div class="sheet-abilities-yellow">
-		<div class="sheet-abilities-head">Yellow Abilities</div>
-		<fieldset class="repeating_abilitiesyellow">
+		<div class="sheet-abilities-head sheet-lefty">
+			<input type="hidden" name="attr_edit_abilities_yellow" value="1" class="sheet-hide-on-zero"><button type="action" name="act_edit_abilities_yellow" class="sheet-button-header-close"></button>
+			<input type="hidden" name="attr_edit_abilities_yellow" value="1" class="sheet-hide-on-one"><button type="action" name="act_edit_abilities_yellow" class="sheet-button-header-edit"></button>
+			Yellow Abilities
+		</div>
+		<input type="hidden" name="attr_edit_abilities_yellow" value="1" class="sheet-hide-on-one">
+		<div><fieldset class="repeating_abilitiesyellow">
 			<div class="sheet-abilities-row">
-				<input type="hidden" name="attr_action_icon_a" value="">
-				<input type="hidden" name="attr_action_icon_b" value="">
-				<input type="hidden" name="attr_action_icon_h" value="">
-				<input type="hidden" name="attr_action_icon_o" value="">
-				<input type="hidden" name="attr_action_icon_d" value="">
-				<input type="hidden" name="attr_action_icon_r" value="">
+				<input type="hidden" name="attr_actionicona" value="">
+				<input type="hidden" name="attr_actioniconb" value="">
+				<input type="hidden" name="attr_actioniconh" value="">
+				<input type="hidden" name="attr_actionicono" value="">
+				<input type="hidden" name="attr_actionicond" value="">
+				<input type="hidden" name="attr_actioniconr" value="">
 				<input type="hidden" name="attr_action_type" value="">
 				<input type="hidden" name="attr_action_name" value="">
 				<input type="hidden" name="attr_action_description" value="">
 				<div class="sheet-ability-icons">
-					<input type="hidden" name="attr_action_icon_a" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_a" class="sheet-icon"></span>
-					<input type="hidden" name="attr_action_icon_b" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_b" class="sheet-icon"></span>
-					<input type="hidden" name="attr_action_icon_h" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_h" class="sheet-icon"></span>
-					<input type="hidden" name="attr_action_icon_o" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_o" class="sheet-icon"></span>
-					<input type="hidden" name="attr_action_icon_d" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_d" class="sheet-icon"></span>
-					<input type="hidden" name="attr_action_icon_r" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_r" class="sheet-icon"></span>
+					<input type="hidden" name="attr_actionicona" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-a"></span>
+					<input type="hidden" name="attr_actioniconb" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-b"></span>
+					<input type="hidden" name="attr_actioniconh" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-h"></span>
+					<input type="hidden" name="attr_actionicono" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-o"></span>
+					<input type="hidden" name="attr_actionicond" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-d"></span>
+					<input type="hidden" name="attr_actioniconr" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-r"></span>
 				</div>
 				<div class="sheet-ability-type">
 					<span name="attr_action_type"></span>
@@ -689,29 +1125,64 @@ on("change:health sheet:opened change:scene_status", function() {
 					<span name="attr_action_description"></span>
 				</div>
 			</div>
-		</fieldset>
+		</fieldset></div>
+		<input type="hidden" name="attr_edit_abilities_yellow" value="1" class="sheet-hide-on-zero">
+		<div class="sheet-editcol"><fieldset class="repeating_abilitiesyellow">
+			<div class="sheet-abilities-row">
+				<input type="hidden" name="attr_action_type" value="">
+				<input type="hidden" name="attr_action_name" value="">
+				<input type="hidden" name="attr_action_description" value="">
+				<div class="sheet-ability-icons">
+
+					<input type="hidden" name="attr_actionicona" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actionicona" class="sheet-buttonless sheet-icon-button" value="actionicona"><span class="sheet-action-icon-a"></span></button></span>
+					<input type="hidden" name="attr_actioniconb" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actioniconb" class="sheet-buttonless sheet-icon-button" value="actioniconb"><span class="sheet-action-icon-b"></span></button></span>
+					<input type="hidden" name="attr_actioniconh" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actioniconh" class="sheet-buttonless sheet-icon-button" value="actioniconh"><span class="sheet-action-icon-h"></span></button></span>
+					<input type="hidden" name="attr_actionicono" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actionicono" class="sheet-buttonless sheet-icon-button" value="actionicono"><span class="sheet-action-icon-o"></span></button></span>
+					<input type="hidden" name="attr_actionicond" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actionicond" class="sheet-buttonless sheet-icon-button" value="actionicond"><span class="sheet-action-icon-d"></span></button></span>
+					<input type="hidden" name="attr_actioniconr" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actioniconr" class="sheet-buttonless sheet-icon-button" value="actioniconr"><span class="sheet-action-icon-r"></span></button></span>
+
+				</div>
+				<div class="sheet-ability-type">
+					<select name="attr_action_type">
+						<option value="">[Choose]</option>
+						<option value="A">Action</option>
+						<option value="I">Inherent</option>
+						<option value="R">Reaction</option>
+					</select>
+				</div>
+				<div class="sheet-ability-description">
+					<b><input type="text" name="attr_action_name" value="">:</b>
+					<textarea name="attr_action_description"></textarea>
+				</div>
+			</div>
+		</fieldset></div>
 	</div>
 
 	<div class="sheet-abilities-red">
-		<div class="sheet-abilities-head">Red Abilities</div>
-		<fieldset class="repeating_abilitiesred">
+		<div class="sheet-abilities-head sheet-lefty">
+			<input type="hidden" name="attr_edit_abilities_red" value="1" class="sheet-hide-on-zero"><button type="action" name="act_edit_abilities_red" class="sheet-button-header-close"></button>
+			<input type="hidden" name="attr_edit_abilities_red" value="1" class="sheet-hide-on-one"><button type="action" name="act_edit_abilities_red" class="sheet-button-header-edit"></button>
+			Red Abilities
+		</div>
+		<input type="hidden" name="attr_edit_abilities_red" value="1" class="sheet-hide-on-one">
+		<div><fieldset class="repeating_abilitiesred">
 			<div class="sheet-abilities-row">
-				<input type="hidden" name="attr_action_icon_a" value="">
-				<input type="hidden" name="attr_action_icon_b" value="">
-				<input type="hidden" name="attr_action_icon_h" value="">
-				<input type="hidden" name="attr_action_icon_o" value="">
-				<input type="hidden" name="attr_action_icon_d" value="">
-				<input type="hidden" name="attr_action_icon_r" value="">
+				<input type="hidden" name="attr_actionicona" value="">
+				<input type="hidden" name="attr_actioniconb" value="">
+				<input type="hidden" name="attr_actioniconh" value="">
+				<input type="hidden" name="attr_actionicono" value="">
+				<input type="hidden" name="attr_actionicond" value="">
+				<input type="hidden" name="attr_actioniconr" value="">
 				<input type="hidden" name="attr_action_type" value="">
 				<input type="hidden" name="attr_action_name" value="">
 				<input type="hidden" name="attr_action_description" value="">
 				<div class="sheet-ability-icons">
-					<input type="hidden" name="attr_action_icon_a" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_a" class="sheet-icon"></span>
-					<input type="hidden" name="attr_action_icon_b" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_b" class="sheet-icon"></span>
-					<input type="hidden" name="attr_action_icon_h" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_h" class="sheet-icon"></span>
-					<input type="hidden" name="attr_action_icon_o" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_o" class="sheet-icon"></span>
-					<input type="hidden" name="attr_action_icon_d" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_d" class="sheet-icon"></span>
-					<input type="hidden" name="attr_action_icon_r" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_r" class="sheet-icon"></span>
+					<input type="hidden" name="attr_actionicona" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-a"></span>
+					<input type="hidden" name="attr_actioniconb" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-b"></span>
+					<input type="hidden" name="attr_actioniconh" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-h"></span>
+					<input type="hidden" name="attr_actionicono" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-o"></span>
+					<input type="hidden" name="attr_actionicond" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-d"></span>
+					<input type="hidden" name="attr_actioniconr" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-r"></span>
 				</div>
 				<div class="sheet-ability-type">
 					<span name="attr_action_type"></span>
@@ -721,29 +1192,64 @@ on("change:health sheet:opened change:scene_status", function() {
 					<span name="attr_action_description"></span>
 				</div>
 			</div>
-		</fieldset>
+		</fieldset></div>
+		<input type="hidden" name="attr_edit_abilities_red" value="1" class="sheet-hide-on-zero">
+		<div class="sheet-editcol"><fieldset class="repeating_abilitiesred">
+			<div class="sheet-abilities-row">
+				<input type="hidden" name="attr_action_type" value="">
+				<input type="hidden" name="attr_action_name" value="">
+				<input type="hidden" name="attr_action_description" value="">
+				<div class="sheet-ability-icons">
+
+					<input type="hidden" name="attr_actionicona" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actionicona" class="sheet-buttonless sheet-icon-button" value="actionicona"><span class="sheet-action-icon-a"></span></button></span>
+					<input type="hidden" name="attr_actioniconb" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actioniconb" class="sheet-buttonless sheet-icon-button" value="actioniconb"><span class="sheet-action-icon-b"></span></button></span>
+					<input type="hidden" name="attr_actioniconh" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actioniconh" class="sheet-buttonless sheet-icon-button" value="actioniconh"><span class="sheet-action-icon-h"></span></button></span>
+					<input type="hidden" name="attr_actionicono" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actionicono" class="sheet-buttonless sheet-icon-button" value="actionicono"><span class="sheet-action-icon-o"></span></button></span>
+					<input type="hidden" name="attr_actionicond" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actionicond" class="sheet-buttonless sheet-icon-button" value="actionicond"><span class="sheet-action-icon-d"></span></button></span>
+					<input type="hidden" name="attr_actioniconr" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actioniconr" class="sheet-buttonless sheet-icon-button" value="actioniconr"><span class="sheet-action-icon-r"></span></button></span>
+
+				</div>
+				<div class="sheet-ability-type">
+					<select name="attr_action_type">
+						<option value="">[Choose]</option>
+						<option value="A">Action</option>
+						<option value="I">Inherent</option>
+						<option value="R">Reaction</option>
+					</select>
+				</div>
+				<div class="sheet-ability-description">
+					<b><input type="text" name="attr_action_name" value="">:</b>
+					<textarea name="attr_action_description"></textarea>
+				</div>
+			</div>
+		</fieldset></div>
 	</div>
 
 	<div class="sheet-abilities-out">
-		<div class="sheet-abilities-head">Out Ability</div>
-		<fieldset class="repeating_abilitiesout">
+		<div class="sheet-abilities-head sheet-lefty">
+			<input type="hidden" name="attr_edit_abilities_out" value="1" class="sheet-hide-on-zero"><button type="action" name="act_edit_abilities_out" class="sheet-button-header-close"></button>
+			<input type="hidden" name="attr_edit_abilities_out" value="1" class="sheet-hide-on-one"><button type="action" name="act_edit_abilities_out" class="sheet-button-header-edit"></button>
+			Out Ability
+		</div>
+		<input type="hidden" name="attr_edit_abilities_out" value="1" class="sheet-hide-on-one">
+		<div><fieldset class="repeating_abilitiesout">
 			<div class="sheet-abilities-row">
-				<input type="hidden" name="attr_action_icon_a" value="">
-				<input type="hidden" name="attr_action_icon_b" value="">
-				<input type="hidden" name="attr_action_icon_h" value="">
-				<input type="hidden" name="attr_action_icon_o" value="">
-				<input type="hidden" name="attr_action_icon_d" value="">
-				<input type="hidden" name="attr_action_icon_r" value="">
+				<input type="hidden" name="attr_actionicona" value="">
+				<input type="hidden" name="attr_actioniconb" value="">
+				<input type="hidden" name="attr_actioniconh" value="">
+				<input type="hidden" name="attr_actionicono" value="">
+				<input type="hidden" name="attr_actionicond" value="">
+				<input type="hidden" name="attr_actioniconr" value="">
 				<input type="hidden" name="attr_action_type" value="">
 				<input type="hidden" name="attr_action_name" value="">
 				<input type="hidden" name="attr_action_description" value="">
 				<div class="sheet-ability-icons">
-					<input type="hidden" name="attr_action_icon_a" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_a" class="sheet-icon"></span>
-					<input type="hidden" name="attr_action_icon_b" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_b" class="sheet-icon"></span>
-					<input type="hidden" name="attr_action_icon_h" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_h" class="sheet-icon"></span>
-					<input type="hidden" name="attr_action_icon_o" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_o" class="sheet-icon"></span>
-					<input type="hidden" name="attr_action_icon_d" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_d" class="sheet-icon"></span>
-					<input type="hidden" name="attr_action_icon_r" value="0" class="sheet-hide-on-zero sheet-action-icon"><span name="attr_action_icon_r" class="sheet-icon"></span>
+					<input type="hidden" name="attr_actionicona" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-a"></span>
+					<input type="hidden" name="attr_actioniconb" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-b"></span>
+					<input type="hidden" name="attr_actioniconh" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-h"></span>
+					<input type="hidden" name="attr_actionicono" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-o"></span>
+					<input type="hidden" name="attr_actionicond" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-d"></span>
+					<input type="hidden" name="attr_actioniconr" value="0" class="sheet-hide-on-zero sheet-action-icon"><span class="sheet-action-icon-r"></span>
 				</div>
 				<div class="sheet-ability-type">
 					<span name="attr_action_type"></span>
@@ -753,7 +1259,37 @@ on("change:health sheet:opened change:scene_status", function() {
 					<span name="attr_action_description"></span>
 				</div>
 			</div>
-		</fieldset>
+		</fieldset></div>
+		<input type="hidden" name="attr_edit_abilities_out" value="1" class="sheet-hide-on-zero">
+		<div class="sheet-editcol"><fieldset class="repeating_abilitiesout">
+			<div class="sheet-abilities-row">
+				<input type="hidden" name="attr_action_type" value="">
+				<input type="hidden" name="attr_action_name" value="">
+				<input type="hidden" name="attr_action_description" value="">
+				<div class="sheet-ability-icons">
+
+					<input type="hidden" name="attr_actionicona" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actionicona" class="sheet-buttonless sheet-icon-button" value="actionicona"><span class="sheet-action-icon-a"></span></button></span>
+					<input type="hidden" name="attr_actioniconb" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actioniconb" class="sheet-buttonless sheet-icon-button" value="actioniconb"><span class="sheet-action-icon-b"></span></button></span>
+					<input type="hidden" name="attr_actioniconh" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actioniconh" class="sheet-buttonless sheet-icon-button" value="actioniconh"><span class="sheet-action-icon-h"></span></button></span>
+					<input type="hidden" name="attr_actionicono" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actionicono" class="sheet-buttonless sheet-icon-button" value="actionicono"><span class="sheet-action-icon-o"></span></button></span>
+					<input type="hidden" name="attr_actionicond" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actionicond" class="sheet-buttonless sheet-icon-button" value="actionicond"><span class="sheet-action-icon-d"></span></button></span>
+					<input type="hidden" name="attr_actioniconr" value="0" class="sheet-fade-on-zero"><span><button type="action" name="act_actioniconr" class="sheet-buttonless sheet-icon-button" value="actioniconr"><span class="sheet-action-icon-r"></span></button></span>
+
+				</div>
+				<div class="sheet-ability-type">
+					<select name="attr_action_type">
+						<option value="">[Choose]</option>
+						<option value="A">Action</option>
+						<option value="I">Inherent</option>
+						<option value="R">Reaction</option>
+					</select>
+				</div>
+				<div class="sheet-ability-description">
+					<b><input type="text" name="attr_action_name" value="">:</b>
+					<textarea name="attr_action_description"></textarea>
+				</div>
+			</div>
+		</fieldset></div>
 	</div>
 
 </div>
@@ -771,28 +1307,56 @@ on("change:health sheet:opened change:scene_status", function() {
 <div class="sheet-dicecols">
 
 	<div class="sheet-dicecol sheet-halfsies">
-		<div class="sheet-dicecol-head">Principle of <span name="attr_principle1_of"></span></div>
-		<div class="sheet-padding">
-			<i><span name="attr_principle1_rp"></span></i>
+		<div class="sheet-dicecol-head sheet-lefty">
+			<input type="hidden" name="attr_edit_principles" value="0" class="sheet-hide-on-zero"><button type="action" name="act_edit_principles" class="sheet-button-header-close"></button>
+			<input type="hidden" name="attr_edit_principles" value="0" class="sheet-hide-on-one"><button type="action" name="act_edit_principles" class="sheet-button-header-edit"></button>
+			Principle of 
+			<input type="hidden" name="attr_edit_principles" value="0" class="sheet-hide-on-one"><span name="attr_principle1_of"></span>
+			<input type="hidden" name="attr_edit_principles" value="0" class="sheet-hide-on-zero"><input type="text" name="attr_principle1_of"></span>
 		</div>
 		<div class="sheet-padding">
-			<b>Minor Twist:</b> <span name="attr_principle1_twist_minor"></span>
+			<input type="hidden" name="attr_edit_principles" value="0" class="sheet-hide-on-zero"><b>During Roleplay:</b>
+			<i>
+				<input type="hidden" name="attr_edit_principles" value="0" class="sheet-hide-on-one"><span name="attr_principle1_rp"></span>
+				<input type="hidden" name="attr_edit_principles" value="0" class="sheet-hide-on-zero"><textarea name="attr_principle1_rp" class="sheet-principle"></textarea>
+			</i>
 		</div>
 		<div class="sheet-padding">
-			<b>Major Twist:</b> <span name="attr_principle1_twist_major"></span>
+			<b>Minor Twist:</b> 
+			<input type="hidden" name="attr_edit_principles" value="0" class="sheet-hide-on-one"><span name="attr_principle1_twist_minor"></span>
+			<input type="hidden" name="attr_edit_principles" value="0" class="sheet-hide-on-zero"><textarea name="attr_principle1_twist_minor" class="sheet-principle"></textarea>
+		</div>
+		<div class="sheet-padding">
+			<b>Major Twist:</b>
+			<input type="hidden" name="attr_edit_principles" value="0" class="sheet-hide-on-one"><span name="attr_principle1_twist_major"></span>
+			<input type="hidden" name="attr_edit_principles" value="0" class="sheet-hide-on-zero"><textarea name="attr_principle1_twist_major" class="sheet-principle"></textarea>
 		</div>
 	</div>
 
 	<div class="sheet-dicecol sheet-halfsies">
-		<div class="sheet-dicecol-head">Principle of <span name="attr_principle2_of"></span></div>
-		<div class="sheet-padding">
-			<i><span name="attr_principle2_rp"></span></i>
+		<div class="sheet-dicecol-head sheet-lefty">
+			<input type="hidden" name="attr_edit_principles" value="0" class="sheet-hide-on-zero"><button type="action" name="act_edit_principles" class="sheet-button-header-close"></button>
+			<input type="hidden" name="attr_edit_principles" value="0" class="sheet-hide-on-one"><button type="action" name="act_edit_principles" class="sheet-button-header-edit"></button>
+			Principle of 
+			<input type="hidden" name="attr_edit_principles" value="0" class="sheet-hide-on-one"><span name="attr_principle2_of"></span>
+			<input type="hidden" name="attr_edit_principles" value="0" class="sheet-hide-on-zero"><input type="text" name="attr_principle2_of"></span>
 		</div>
 		<div class="sheet-padding">
-			<b>Minor Twist:</b> <span name="attr_principle2_twist_minor"></span>
-		</div class="sheet-padding">
+			<input type="hidden" name="attr_edit_principles" value="0" class="sheet-hide-on-zero"><b>During Roleplay:</b>
+			<i>
+				<input type="hidden" name="attr_edit_principles" value="0" class="sheet-hide-on-one"><span name="attr_principle2_rp"></span>
+				<input type="hidden" name="attr_edit_principles" value="0" class="sheet-hide-on-zero"><textarea name="attr_principle2_rp" class="sheet-principle"></textarea>
+			</i>
+		</div>
 		<div class="sheet-padding">
-			<b>Major Twist:</b> <span name="attr_principle2_twist_major"></span>
+			<b>Minor Twist:</b> 
+			<input type="hidden" name="attr_edit_principles" value="0" class="sheet-hide-on-one"><span name="attr_principle2_twist_minor"></span>
+			<input type="hidden" name="attr_edit_principles" value="0" class="sheet-hide-on-zero"><textarea name="attr_principle2_twist_minor" class="sheet-principle"></textarea>
+		</div>
+		<div class="sheet-padding">
+			<b>Major Twist:</b>
+			<input type="hidden" name="attr_edit_principles" value="0" class="sheet-hide-on-one"><span name="attr_principle2_twist_major"></span>
+			<input type="hidden" name="attr_edit_principles" value="0" class="sheet-hide-on-zero"><textarea name="attr_principle2_twist_major" class="sheet-principle"></textarea>
 		</div>
 	</div>
 
@@ -800,12 +1364,100 @@ on("change:health sheet:opened change:scene_status", function() {
 
 <div class="sheet-dicecols">
 
-	<div class="sheet-dicecol">
-		<div class="sheet-dicecol-head">Back Issues</div>
+	<div class="sheet-dicecol sheet-noflexgrow">
+		<div class="sheet-dicecol-head">Hero Points</div>
+		<div class="sheet-padding sheet-centered">
+			<input type="checkbox" value="1" class="sheet-oval-marker" name="attr_shp1"><span class="sheet-oval-icon"></span>
+			<input type="checkbox" value="1" class="sheet-oval-marker" name="attr_shp2"><span class="sheet-oval-icon"></span>
+			<input type="checkbox" value="1" class="sheet-oval-marker" name="attr_shp3"><span class="sheet-oval-icon"></span>
+			<input type="checkbox" value="1" class="sheet-oval-marker" name="attr_shp4"><span class="sheet-oval-icon"></span>
+			<input type="checkbox" value="1" class="sheet-oval-marker" name="attr_shp5"><span class="sheet-oval-icon"></span>
+		</div>
+		<div class="sheet-dicecol-head">Rewards</div>
+		<div class="sheet-padding">
+			<div class="sheet-centered">
+				<span class="sheet-inline-label">+1</span>
+				<input type="checkbox" value="1" class="sheet-oval-marker" name="attr_hpr1a"><span class="sheet-oval-icon"></span>
+				<input type="checkbox" value="1" class="sheet-oval-marker" name="attr_hpr1b"><span class="sheet-oval-icon"></span>
+				<input type="checkbox" value="1" class="sheet-oval-marker" name="attr_hpr1c"><span class="sheet-oval-icon"></span>
+				<input type="checkbox" value="1" class="sheet-oval-marker" name="attr_hpr1d"><span class="sheet-oval-icon"></span>
+			</div>
+			<div class="sheet-centered">
+				<span class="sheet-inline-label">+2</span>
+				<input type="checkbox" value="2" class="sheet-oval-marker" name="attr_hpr2a"><span class="sheet-oval-icon"></span>
+				<input type="checkbox" value="2" class="sheet-oval-marker" name="attr_hpr2b"><span class="sheet-oval-icon"></span>
+				<input type="checkbox" value="2" class="sheet-oval-marker" name="attr_hpr2c"><span class="sheet-oval-icon"></span>
+				<input type="checkbox" value="2" class="sheet-oval-marker" name="attr_hpr2d"><span class="sheet-oval-icon"></span>
+			</div>
+			<div class="sheet-centered">
+				<span class="sheet-inline-label">+3</span>
+				<input type="checkbox" value="3" class="sheet-oval-marker" name="attr_hpr3a"><span class="sheet-oval-icon"></span>
+				<input type="checkbox" value="3" class="sheet-oval-marker" name="attr_hpr3b"><span class="sheet-oval-icon"></span>
+				<input type="checkbox" value="3" class="sheet-oval-marker" name="attr_hpr3c"><span class="sheet-oval-icon"></span>
+				<input type="checkbox" value="3" class="sheet-oval-marker" name="attr_hpr3d"><span class="sheet-oval-icon"></span>
+			</div>
+			<div class="sheet-centered">
+				<span class="sheet-inline-label">+4</span>
+				<input type="checkbox" value="4" class="sheet-oval-marker" name="attr_hpr4a"><span class="sheet-oval-icon"></span>
+				<input type="checkbox" value="4" class="sheet-oval-marker" name="attr_hpr4b"><span class="sheet-oval-icon"></span>
+				<input type="checkbox" value="4" class="sheet-oval-marker" name="attr_hpr4c"><span class="sheet-oval-icon"></span>
+				<input type="checkbox" value="4" class="sheet-oval-marker" name="attr_hpr4d"><span class="sheet-oval-icon"></span>
+			</div>
+		</div>
 	</div>
 
-	<div class="sheet-dicecol">
+	<div class="sheet-dicecol sheet-halfsies">
+		<div class="sheet-dicecol-head">Back Issues</div>
+		<div class="sheet-smalldata sheet-padding">
+			<input type="text" name="attr_backissue1" value="">
+			<input type="text" name="attr_backissue2" value="">
+			<input type="text" name="attr_backissue3" value="">
+			<input type="text" name="attr_backissue4" value="">
+			<input type="text" name="attr_backissue5" value="">
+			<input type="text" name="attr_backissue6" value="">
+		</div>
+	</div>
+
+	<div class="sheet-dicecol sheet-halfsies">
 		<div class="sheet-dicecol-head">Collections</div>
+		<div class="sheet-padding">
+			<div class="sheet-collection-row">
+				<span>
+					<input type="checkbox" value="used" class="sheet-oval-marker" name="attr_collection1_used"><span class="sheet-oval-icon"></span>
+				</span>
+				<input type="text" name="attr_collection1" value="">
+			</div>
+			<div class="sheet-collection-row">
+				<span>
+					<input type="checkbox" value="used" class="sheet-oval-marker" name="attr_collection2_used"><span class="sheet-oval-icon"></span>
+				</span>
+				<input type="text" name="attr_collection2" value="">
+			</div>
+			<div class="sheet-collection-row">
+				<span>
+					<input type="checkbox" value="used" class="sheet-oval-marker" name="attr_collection3_used"><span class="sheet-oval-icon"></span>
+				</span>
+				<input type="text" name="attr_collection3" value="">
+			</div>
+			<div class="sheet-collection-row">
+				<span>
+					<input type="checkbox" value="used" class="sheet-oval-marker" name="attr_collection4_used"><span class="sheet-oval-icon"></span>
+				</span>
+				<input type="text" name="attr_collection4" value="">
+			</div>
+			<div class="sheet-collection-row">
+				<span>
+					<input type="checkbox" value="used" class="sheet-oval-marker" name="attr_collection5_used"><span class="sheet-oval-icon"></span>
+				</span>
+				<input type="text" name="attr_collection5" value="">
+			</div>
+			<div class="sheet-collection-row">
+				<span>
+					<input type="checkbox" value="used" class="sheet-oval-marker" name="attr_collection6_used"><span class="sheet-oval-icon"></span>
+				</span>
+				<input type="text" name="attr_collection6" value="">
+			</div>
+		</div>
 	</div>
 
 </div>
@@ -879,185 +1531,4 @@ on("change:health sheet:opened change:scene_status", function() {
 </div>
 
 
-</div>
-
-
-<h3>Quick Edit Area</h3>
-
-		<div class="sheet-smalldata-row sheet-padding">
-			<div class="sheet-smalldata sheet-centered">
-				<input type="number" name="attr_health_max" value="17" min="0">
-				<span>Max Health</span>
-			</div>
-		</div>
-
-
-<h4>Status</h4>
-
-<input name="attr_hero_status_die_green" value="8" type="text">
-<input name="attr_hero_status_die_yellow" value="8" type="text">
-<input name="attr_hero_status_die_red" value="8" type="text">
-
-<h4>Powers</h4>
-
-<fieldset class="repeating_heropowers">
-<div>
-	<input type="text" name="attr_name" value="">
-	<input type="text" name="attr_die" value="8">
-</div>
-</fieldset>
-
-<h4>Qualities</h4>
-
-<fieldset class="repeating_heroqualities">
-<div>
-	<input type="text" name="attr_name" value="">
-	<input type="text" name="attr_die" value="8">
-</div>
-</fieldset>
-
-<h4>Principles</h4>
-<div>
-	Principle of <input type="text" name="attr_principle1_of" value="">
-</div>
-<div>
-	During Roleplay <input type="text" name="attr_principle1_rp" value="">
-</div>
-<div>
-	Minor Twist <input type="text" name="attr_principle1_twist_minor" value="">
-</div>
-<div>
-	Major Twist <input type="text" name="attr_principle1_twist_major" value="">
-</div>
-
-<div>
-	Principle of <input type="text" name="attr_principle2_of" value="">
-</div>
-<div>
-	During Roleplay <input type="text" name="attr_principle2_rp" value="">
-</div>
-<div>
-	Minor Twist <input type="text" name="attr_principle2_twist_minor" value="">
-</div>
-<div>
-	Major Twist <input type="text" name="attr_principle2_twist_major" value="">
-</div>
-
-<h4>Abilities</h4>
-
-<h5>Green</h5>
-
-<fieldset class="repeating_abilitiesgreen">
-<div>
-	<div>Action Icons</div>
-	<div>
-		<input type="checkbox" name="attr_action_icon_a" value="A"> A
-		<input type="checkbox" name="attr_action_icon_b" value="B"> B
-		<input type="checkbox" name="attr_action_icon_h" value="H"> H
-		<input type="checkbox" name="attr_action_icon_o" value="O"> O
-		<input type="checkbox" name="attr_action_icon_d" value="D"> D
-		<input type="checkbox" name="attr_action_icon_r" value="R"> R
-	</div>
-	<div>Action Type</div>
-	<div>
-		<select name="attr_action_type">
-			<option value="A" selected>Action</option>
-			<option value="I">Inherent</option>
-			<option value="R">Reaction</option>
-		</select>
-	</div>
-	<div>
-		Name: <input type="text" name="attr_action_name" value="">
-	</div>
-	<div>
-		Description: <textarea name="attr_action_description"></textarea>
-	</div>
-</div>
-</fieldset>
-<h5>Yellow</h5>
-
-<fieldset class="repeating_abilitiesyellow">
-<div>
-	<div>Action Icons</div>
-	<div>
-		<input type="checkbox" name="attr_action_icon_a" value="A"> A
-		<input type="checkbox" name="attr_action_icon_b" value="B"> B
-		<input type="checkbox" name="attr_action_icon_h" value="H"> H
-		<input type="checkbox" name="attr_action_icon_o" value="O"> O
-		<input type="checkbox" name="attr_action_icon_d" value="D"> D
-		<input type="checkbox" name="attr_action_icon_r" value="R"> R
-	</div>
-	<div>Action Type</div>
-	<div>
-		<select name="attr_action_type">
-			<option value="A" selected>Action</option>
-			<option value="I">Inherent</option>
-			<option value="R">Reaction</option>
-		</select>
-	</div>
-	<div>
-		Name: <input type="text" name="attr_action_name" value="">
-	</div>
-	<div>
-		Description: <textarea name="attr_action_description"></textarea>
-	</div>
-</div>
-</fieldset>
-<h5>Red</h5>
-
-<fieldset class="repeating_abilitiesred">
-<div>
-	<div>Action Icons</div>
-	<div>
-		<input type="checkbox" name="attr_action_icon_a" value="A"> A
-		<input type="checkbox" name="attr_action_icon_b" value="B"> B
-		<input type="checkbox" name="attr_action_icon_h" value="H"> H
-		<input type="checkbox" name="attr_action_icon_o" value="O"> O
-		<input type="checkbox" name="attr_action_icon_d" value="D"> D
-		<input type="checkbox" name="attr_action_icon_r" value="R"> R
-	</div>
-	<div>Action Type</div>
-	<div>
-		<select name="attr_action_type">
-			<option value="A" selected>Action</option>
-			<option value="I">Inherent</option>
-			<option value="R">Reaction</option>
-		</select>
-	</div>
-	<div>
-		Name: <input type="text" name="attr_action_name" value="">
-	</div>
-	<div>
-		Description: <textarea name="attr_action_description"></textarea>
-	</div>
-</div>
-</fieldset>
-
-<h5>Out</h5>
-<fieldset class="repeating_abilitiesout">
-<div>
-	<div>Action Icons</div>
-	<div>
-		<input type="checkbox" name="attr_action_icon_a" value="A"> A
-		<input type="checkbox" name="attr_action_icon_b" value="B"> B
-		<input type="checkbox" name="attr_action_icon_h" value="H"> H
-		<input type="checkbox" name="attr_action_icon_o" value="O"> O
-		<input type="checkbox" name="attr_action_icon_d" value="D"> D
-		<input type="checkbox" name="attr_action_icon_r" value="R"> R
-	</div>
-	<div>Action Type</div>
-	<div>
-		<select name="attr_action_type">
-			<option value="A" selected>Action</option>
-			<option value="I">Inherent</option>
-			<option value="R">Reaction</option>
-		</select>
-	</div>
-	<div>
-		Name: <input type="text" name="attr_action_name" value="">
-	</div>
-	<div>
-		Description: <textarea name="attr_action_description"></textarea>
-	</div>
-</div>
-</fieldset>
+</div> <!-- sheet-whole -->

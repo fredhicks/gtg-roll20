@@ -1,9 +1,10 @@
-/* https://raw.githubusercontent.com/fredhicks/gtg-roll20/3649537870570feedb797eed6491ad01e32654bf/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d8.svg
+/* https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d8.svg
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 
 .sheet-whole {
+	min-width: 715px;
 }
 
 .sheet-padding {
@@ -68,6 +69,27 @@ input.sheet-bignum {
 	width: 100%;
 }
 
+.sheet-collection-row {
+	clear: both;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: stretch;
+	align-content: stretch;
+}
+
+.sheet-collection-row > span {
+	min-width: 30px;
+}
+
+.sheet-collection-row input[type=text] {
+	font-size: 12pt;
+	border: none;
+	border-bottom: 0.5px solid black;
+	flex-grow: 1;
+}
+
 .sheet-dicecols {
 	clear: both;
 	display: flex;
@@ -78,6 +100,7 @@ input.sheet-bignum {
 	align-content: stretch;
 }
 
+.sheet-dicecol-unadorned,
 .sheet-dicecol {
 	clear: both;
 	display: flex;
@@ -85,12 +108,15 @@ input.sheet-bignum {
 	align-items: stretch;
 	align-content: stretch;
 	justify-content: flex-start;
-	min-width: 240px;
+	min-width: 180px;
+	flex-grow: 2;
+}
+
+.sheet-dicecol {
 	border: 1px solid black;
 	box-shadow: 3px 3px #004499;
 	margin-right: 9px;
 	margin-bottom: 9px;
-	flex-grow: 2;
 }
 
 .sheet-slowflexgrow {
@@ -110,6 +136,19 @@ input.sheet-bignum {
 	display: none;
 }
 
+.sheet-editcol .repcontrol {
+	display: initial;
+}
+
+.sheet-fade-on-zero + * {
+	opacity: 1.0;
+}
+
+.sheet-fade-on-zero[value="0"] + * {
+	opacity: 0.5;
+}
+
+.sheet-hide-on-one[value="1"] + *,
 .sheet-hide-on-zero[value="0"] + * {
 	display: none;
 }
@@ -120,10 +159,17 @@ input.sheet-bignum {
 	font-size: 18pt;
 	font-weight: bold;
 	padding: 1px;
+	padding-left: 7px;
+	padding-right: 7px;
 	margin-bottom: 6px;
 	text-align: center;
 	background-color: #004499;
 	color: white;
+}
+
+.sheet-abilities-head.sheet-lefty,
+.sheet-lefty {
+	text-align: left;
 }
 
 .sheet-dicerow {
@@ -135,6 +181,16 @@ input.sheet-bignum {
 	align-items: stretch;
 	align-content: stretch;
 	line-height: 1.0;
+}
+
+.sheet-dicerow select {
+	width: 80px;
+	height: 28px;
+}
+
+.sheet-dicerow input[type=text] {
+	width: calc(100% - 90px);
+	height: 28px;
 }
 
 .sheet-die {
@@ -154,10 +210,14 @@ input.sheet-bignum {
 
 .sheet-dielabel {
 	flex-grow: 1;
-	font-size: 18pt;
+	font-size: 15pt;
 	color: black;
 	padding-bottom: 0px;
 	padding-left: 6px;
+}
+
+.sheet-120 {
+	width: 120px;
 }
 
 input.sheet-dieselected[value=""] ~ .sheet-die,
@@ -167,8 +227,8 @@ input.sheet-dieselected[value=""] ~ .sheet-dielabel
 	font-weight: normal;
 }
 
-input.sheet-dieselected[value="on"] ~ .sheet-die,
-input.sheet-dieselected[value="on"] ~ .sheet-dielabel
+input.sheet-dieselected[value="1"] ~ .sheet-die,
+input.sheet-dieselected[value="1"] ~ .sheet-dielabel
 {
 	background-color: #ddeeff;
 	font-weight: bold;
@@ -177,32 +237,32 @@ input.sheet-dieselected[value="on"] ~ .sheet-dielabel
 input.sheet-dieval ~ .sheet-die > .sheet-diepic {
 	width: 30px;
 	height: 30px;
-	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/3649537870570feedb797eed6491ad01e32654bf/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d4.svg);
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d4.svg);
 }
 
 input.sheet-dieval[value="4"] ~ .sheet-die > .sheet-diepic {
-	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/3649537870570feedb797eed6491ad01e32654bf/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d4.svg);
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d4.svg);
 }
 
 input.sheet-dieval[value="6"] ~ .sheet-die > .sheet-diepic {
-	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/3649537870570feedb797eed6491ad01e32654bf/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d6.svg);
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d6.svg);
 }
 
 input.sheet-dieval[value="8"] ~ .sheet-die > .sheet-diepic {
-	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/3649537870570feedb797eed6491ad01e32654bf/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d8.svg);
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d8.svg);
 }
 
 input.sheet-dieval[value="10"] ~ .sheet-die > .sheet-diepic {
-	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/3649537870570feedb797eed6491ad01e32654bf/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d10.svg);
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d10.svg);
 }
 
 input.sheet-dieval[value="12"] ~ .sheet-die > .sheet-diepic {
-	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/3649537870570feedb797eed6491ad01e32654bf/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d12.svg);
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d12.svg);
 }
 
 input[type="checkbox"].sheet-dieboxer {
 	opacity: 0.0;
-	width: 240px;
+	width: 180px;
 	height: 24px;
 	position: relative;
 	top: 8px; /* -12px; */
@@ -219,8 +279,17 @@ input[type="checkbox"].sheet-dieboxer {
 	z-index: 1;
 }
 
+.sheet-inline-label {
+	font-size: 13pt;
+	font-weight: bold;
+}
+
+.sheet-inline-label ~ input[type="checkbox"].sheet-oval-marker + .sheet-oval-icon::before {
+	margin-top: 6px;
+}
+
 input[type="checkbox"].sheet-oval-marker {
-	opacity: 0.25;
+	opacity: 0.0;
 	width: 25px;
 	height: 14px;
 	position: relative;
@@ -246,7 +315,7 @@ input[type="checkbox"].sheet-oval-marker + span.sheet-oval-icon::before {
 }
 
 input[type="checkbox"].sheet-oval-marker:checked + span.sheet-oval-icon::before {
-	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/967ee04845183ba2d2c7676f7f8e47def54ef816/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-oval-marked.svg);
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-oval-marked.svg);
 }
 
 
@@ -270,22 +339,30 @@ input[type="checkbox"].sheet-oval-marker:checked + span.sheet-oval-icon::before 
 	color: #cc0000;
 }
 
-
-
-.sheet-buttonless {
-	border: none;
-	background: none;
-	color: black;
-	font-weight: normal;
-	text-align: left;
-	padding: 0px;
-	vertical-align: top;
+.sheet-pow-green, .sheet-pow-yellow, .sheet-pow-red {
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 14px;
+	font-weight: bold;
+	padding-top: 12px;
+	width: 108px;
+	height: 30px;
 }
 
-.sheet-buttonless:hover, 
-.sheet-buttonless:hover span {
-	background-color: #ddeeff;
-	font-weight: bold;
+.sheet-pow-green {
+	color: white;
+	background-image: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-pow-green.svg);
+}
+
+.sheet-pow-yellow {
+	color: black;
+	background-image: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-pow-yellow.svg);
+}
+
+.sheet-pow-red {
+	color: white;
+	background-image: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-pow-red.svg);
 }
 
 .sheet-rollcols {
@@ -294,7 +371,7 @@ input[type="checkbox"].sheet-oval-marker:checked + span.sheet-oval-icon::before 
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: space-between;
-	align-items: flex-start;
+	align-items: flex-end;
 	align-content: stretch;
 }
 
@@ -312,6 +389,8 @@ input[type="checkbox"].sheet-oval-marker:checked + span.sheet-oval-icon::before 
 	align-content: stretch;
 }
 
+.sheet-editcol .repcontrol .repcontrol_add,
+.sheet-editcol .repcontrol .repcontrol_edit,
 .sheet-rollblock button {
 	border: 1px solid #004499;
 	background: #ddeeff;
@@ -320,14 +399,33 @@ input[type="checkbox"].sheet-oval-marker:checked + span.sheet-oval-icon::before 
 	text-align: left;
 	padding: 2px;
 	padding-bottom: 0px;
-	margin-bottom: 6px;
+	margin: 6px;
 	vertical-align: middle;
 }
 
+.sheet-editcol .repcontrol .repcontrol_add:hover,
+.sheet-editcol .repcontrol .repcontrol_add:hover span,
+.sheet-editcol .repcontrol .repcontrol_edit:hover,
+.sheet-editcol .repcontrol .repcontrol_edit:hover span,
 .sheet-rollblock button:hover, 
 .sheet-rollblock button:hover span {
 	background: #004499;
 	font-weight: bold;
+}
+
+.sheet-editcol .repcontrol .repcontrol_add:hover,
+.sheet-editcol .repcontrol .repcontrol_add:hover span,
+.sheet-editcol .repcontrol .repcontrol_edit:hover,
+.sheet-editcol .repcontrol .repcontrol_edit:hover span {
+	color: white;
+	text-shadow: none;
+}
+
+.sheet-rollblock > span {
+	padding-left: 3px;
+	padding-right: 3px;
+	text-align: center;
+	line-height: 1;
 }
 
 .ui-dialog .charsheet button:before {
@@ -337,31 +435,41 @@ input[type="checkbox"].sheet-oval-marker:checked + span.sheet-oval-icon::before 
 input.sheet-inlinedie + .sheet-diepic {
 	width: 30px;
 	height: 30px;
-	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/3649537870570feedb797eed6491ad01e32654bf/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d4.svg);
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d4.svg);
 }
 
 input.sheet-inlinedie[value="4"] + .sheet-diepic {
-	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/3649537870570feedb797eed6491ad01e32654bf/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d4.svg);
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d4.svg);
 }
 
 input.sheet-inlinedie[value="6"] + .sheet-diepic {
-	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/3649537870570feedb797eed6491ad01e32654bf/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d6.svg);
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d6.svg);
 }
 
 input.sheet-inlinedie[value="8"] + .sheet-diepic {
-	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/3649537870570feedb797eed6491ad01e32654bf/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d8.svg);
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d8.svg);
 }
 
 input.sheet-inlinedie[value="10"] + .sheet-diepic {
-	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/3649537870570feedb797eed6491ad01e32654bf/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d10.svg);
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d10.svg);
 }
 
 input.sheet-inlinedie[value="12"] + .sheet-diepic {
-	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/3649537870570feedb797eed6491ad01e32654bf/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d12.svg);
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d12.svg);
+}
+
+.sheet-healthbox {
+	min-width: 130px;
+	flex-basis: 130px;
+}
+
+.sheet-healthbox input.sheet-bignum[type=number] {
+	width: 120px;
+	border-bottom: .5px solid black;
 }
 
 .sheet-abilities {
-	font-size: 13pt;
+	font-size: 12pt;
 }
 
 .sheet-abilities-out,
@@ -387,7 +495,8 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 	font-size: 18pt;
 	font-weight: bold;
 	padding: 1px;
-	margin-bottom: 6px;
+	padding-left: 7px;
+	padding-right: 7px;
 	text-align: center;
 	background-color: black;
 	color: white;
@@ -406,7 +515,7 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 .sheet-abilities-row .sheet-ability-icons {
 	flex-grow: 0;
 	flex-shrink: 0;
-	flex-basis: 60px;
+	flex-basis: 75px;
 	text-align: center;
 	line-height: 1;
 }
@@ -414,7 +523,7 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 .sheet-abilities-row .sheet-ability-type {
 	flex-grow: 0;
 	flex-shrink: 0;
-	flex-basis: 60px;
+	flex-basis: 45px;
 	text-align: center;
 }
 
@@ -423,6 +532,16 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 	flex-shrink: 0;
 	flex-basis: 50%;
 	line-height: 1.4;
+}
+
+.sheet-abilities-row select {
+	width: 40px;
+	height: 28px;
+}
+
+.sheet-abilities-row textarea {
+	width: calc(100% - 15px);
+	height: 60px;
 }
 
 .sheet-abilities-green {
@@ -462,30 +581,226 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 	background-color: #000000;
 }
 
+.sheet-action-icon-a,
+.sheet-action-icon-b,
+.sheet-action-icon-h,
+.sheet-action-icon-o,
+.sheet-action-icon-d,
+.sheet-action-icon-r {
+	display: inline-block;
+	height: 16pt;
+	width: 16pt;
+}
+
+button.sheet-icon-button,
 .sheet-icon {
 	height: 16pt;
+	width: 16pt;
 }
 
+.sheet-action-icon-a,
 .sheet-action-icon[value="A"] + .sheet-icon {
-	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/3649537870570feedb797eed6491ad01e32654bf/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-action-attack.svg);
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-action-attack.svg);
 }
 
+.sheet-action-icon-b,
 .sheet-action-icon[value="B"] + .sheet-icon {
-	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/3649537870570feedb797eed6491ad01e32654bf/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-action-boost.svg);
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-action-boost.svg);
 }
 
+.sheet-action-icon-h,
 .sheet-action-icon[value="H"] + .sheet-icon {
-	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/3649537870570feedb797eed6491ad01e32654bf/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-action-hinder.svg);
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-action-hinder.svg);
 }
 
+.sheet-action-icon-o,
 .sheet-action-icon[value="O"] + .sheet-icon {
-	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/3649537870570feedb797eed6491ad01e32654bf/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-action-overcome.svg);
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-action-overcome.svg);
 }
 
+.sheet-action-icon-d,
 .sheet-action-icon[value="D"] + .sheet-icon {
-	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/3649537870570feedb797eed6491ad01e32654bf/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-action-defend.svg);
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-action-defend.svg);
 }
 
+.sheet-action-icon-r,
 .sheet-action-icon[value="R"] + .sheet-icon {
-	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/3649537870570feedb797eed6491ad01e32654bf/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-action-recover.svg);
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-action-recover.svg);
+}
+
+
+.sheet-buttonless {
+	border: none;
+	background: none;
+	color: black;
+	font-weight: normal;
+	text-align: left;
+	padding: 0px;
+	vertical-align: top;
+}
+
+.sheet-buttonless:hover, 
+.sheet-buttonless:hover span {
+	background-color: #ddeeff;
+	font-weight: bold;
+}
+
+.ui-dialog .charsheet button.sheet-button-delete:before {
+	font-family: 'Pictos';
+	font-size: 16px;
+	content: '#';
+}
+
+.ui-dialog .charsheet button.sheet-button-increase:before {
+	font-family: 'Pictos';
+	font-size: 16px;
+	content: '{';
+}
+
+.ui-dialog .charsheet button.sheet-button-decrease:before {
+	font-family: 'Pictos';
+	font-size: 16px;
+	content: '}';
+}
+
+.sheet-button-decrease,
+.sheet-button-increase,
+.sheet-button-delete {
+	border: none;
+	background: none;
+	color: #666666;
+	font-weight: normal;
+	text-align: left;
+	padding: 0px;
+	vertical-align: top;
+}
+
+.sheet-button-delete:hover, 
+.sheet-button-delete:hover span {
+	color: red;
+}
+
+.sheet-button-decrease:hover, 
+.sheet-button-decrease:hover span,
+.sheet-button-increase:hover, 
+.sheet-button-increase:hover span {
+	color: black;
+}
+
+.ui-dialog .charsheet button.sheet-button-header-edit:before {
+	font-family: 'Pictos';
+	font-size: 24px;
+	content: 'p';
+}
+
+.ui-dialog .charsheet button.sheet-button-header-close:before {
+	font-family: 'Pictos';
+	font-size: 24px;
+	content: 'D';
+}
+
+.sheet-button-header-edit,
+.sheet-button-header-close {
+	border: none;
+	background: none;
+	font-weight: normal;
+	text-align: left;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	padding-right: 0px;
+	vertical-align: top;
+	float: right;
+}
+
+.sheet-button-header-edit,
+.sheet-button-header-close {
+	color: white;
+	opacity: 0.75;
+}
+
+.sheet-button-header-edit:hover, 
+.sheet-button-header-edit:hover span,
+.sheet-button-header-close:hover, 
+.sheet-button-header-close:hover span {
+	opacity: 1.0;
+}
+
+.sheet-modline {
+	clear: both;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: baseline;
+	align-content: stretch;
+	margin-bottom: 6px;
+}
+
+.sheet-modline select {
+	width: 4em;
+}
+
+.sheet-modline input[type=text] {
+	width: 25%;
+}
+
+/* .sheet-modgrid button, */
+.sheet-modline button {
+	border: 1px solid #004499;
+	background: #ddeeff;
+	color: black;
+	font-weight: bold;
+	text-align: left;
+	padding: 2px;
+	padding-bottom: 0px;
+	margin-bottom: 6px;
+	vertical-align: middle;
+}
+
+/* .sheet-modgrid button:hover, 
+.sheet-modgrid button:hover span, */
+.sheet-modline button:hover, 
+.sheet-modline button:hover span {
+	background: #004499;
+	font-weight: bold;
+	color: white;
+}
+
+.sheet-modgrid .repcontainer[data-groupname=repeating_bonuses] .repitem,
+.sheet-modgrid .repcontainer[data-groupname=repeating_penalties] .repitem {
+	display: inline-block;
+	width: 9em;
+	margin-left: 3px;
+	margin-right: 3px;
+	margin-bottom: 6px;
+	vertical-align: top;
+}
+
+.sheet-modnum {
+	font-weight: bold;
+	font-size: 28px;
+	font-family: "Bangers", Arial, sans-serif;
+	letter-spacing: 1pt;
+	height: 36px;
+	color: white;
+	background-image: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-pow-black.svg);
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	text-shadow: 0px 0px 2px black;
+}
+
+/* .sheet-healthbox .sheet-healthcontrol, */
+.sheet-modifier .sheet-modcontrol {
+	display: none;
+}
+
+/* .sheet-healthbox:hover .sheet-healthcontrol, */
+.sheet-modifier:hover .sheet-modcontrol {
+	display: initial;
+}
+
+textarea.sheet-principle {
+	width: calc(100% - 9px);
+	height: 60px;
 }
