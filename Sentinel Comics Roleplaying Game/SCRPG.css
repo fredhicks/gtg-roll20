@@ -1,10 +1,7 @@
-/* https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d8.svg
-*/
-
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 
 .sheet-whole {
-	min-width: 715px;
+	min-width: 775px;
 }
 
 .sheet-padding {
@@ -21,7 +18,7 @@ input.sheet-bignum,
 input.sheet-bigname {
 	font-family: "Bangers", Arial, sans-serif;
 	letter-spacing: 1pt;
-	font-size: 36pt;
+	font-size: 30pt;
 	color: black;
 	border: none;
 }
@@ -69,6 +66,15 @@ input.sheet-bignum {
 	width: 100%;
 }
 
+.sheet-smalldata textarea {
+	font-size: 12pt;
+	border: none;
+	border-top: 0.5px solid black;
+	border-bottom: 0.5px solid black;
+	flex-grow: 1;
+	width: calc(100% - 9px);
+}
+
 .sheet-collection-row {
 	clear: both;
 	display: flex;
@@ -87,17 +93,26 @@ input.sheet-bignum {
 	font-size: 12pt;
 	border: none;
 	border-bottom: 0.5px solid black;
-	flex-grow: 1;
+	flex-grow: 0;
+	max-width: 145px;
 }
 
+.sheet-dicecols-rows,
 .sheet-dicecols {
 	clear: both;
 	display: flex;
 	flex-direction: row;
-	flex-wrap: nowrap;
 	justify-content: space-between;
 	align-items: stretch;
 	align-content: stretch;
+}
+
+.sheet-dicecols {
+	flex-wrap: nowrap;
+}
+
+.sheet-dicecols-rows {
+	flex-wrap: wrap;
 }
 
 .sheet-dicecol-unadorned,
@@ -124,11 +139,16 @@ input.sheet-bignum {
 }
 
 .sheet-halfsies {
-	width: 50%;
+	width: calc(50% - 12px);
+	flex-basis: calc(50% - 12px);
 }
 
 .sheet-noflexgrow {
 	flex-grow: 0;
+}
+
+textarea.sheet-modest {
+	height: 60px;
 }
 
 .sheet-abilities .repcontrol,
@@ -148,6 +168,9 @@ input.sheet-bignum {
 	opacity: 0.5;
 }
 
+.sheet-hide-on-empty[value=""] + *,
+.sheet-hide-on-4[value="4"] + *,
+.sheet-hide-on-12[value="12"] + *,
 .sheet-hide-on-one[value="1"] + *,
 .sheet-hide-on-zero[value="0"] + * {
 	display: none;
@@ -202,12 +225,6 @@ input.sheet-bignum {
 	max-width: 30px;
 }
 
-/*
-.sheet-dicerow > div {
-	border: 1px solid red;
-}
-*/
-
 .sheet-dielabel {
 	flex-grow: 1;
 	font-size: 15pt;
@@ -234,29 +251,31 @@ input.sheet-dieselected[value="1"] ~ .sheet-dielabel
 	font-weight: bold;
 }
 
-input.sheet-dieval ~ .sheet-die > .sheet-diepic {
+/* here's a problem: if I change the "d" in "dval" to "die", all rolltemplate formatting stops working; man, wtf? */
+
+input.sheet-dval ~ .sheet-die > .sheet-diepic {
 	width: 30px;
 	height: 30px;
 	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d4.svg);
 }
 
-input.sheet-dieval[value="4"] ~ .sheet-die > .sheet-diepic {
+input.sheet-dval[value="4"] ~ .sheet-die > .sheet-diepic {
 	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d4.svg);
 }
 
-input.sheet-dieval[value="6"] ~ .sheet-die > .sheet-diepic {
+input.sheet-dval[value="6"] ~ .sheet-die > .sheet-diepic {
 	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d6.svg);
 }
 
-input.sheet-dieval[value="8"] ~ .sheet-die > .sheet-diepic {
+input.sheet-dval[value="8"] ~ .sheet-die > .sheet-diepic {
 	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d8.svg);
 }
 
-input.sheet-dieval[value="10"] ~ .sheet-die > .sheet-diepic {
+input.sheet-dval[value="10"] ~ .sheet-die > .sheet-diepic {
 	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d10.svg);
 }
 
-input.sheet-dieval[value="12"] ~ .sheet-die > .sheet-diepic {
+input.sheet-dval[value="12"] ~ .sheet-die > .sheet-diepic {
 	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d12.svg);
 }
 
@@ -534,7 +553,7 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 	line-height: 1.4;
 }
 
-.sheet-abilities-row select {
+.sheet-ability-type select {
 	width: 40px;
 	height: 28px;
 }
@@ -549,6 +568,15 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 	box-shadow: 3px 3px #009900;
 }
 
+.sheet-ability-green {
+	background-color: #eeffee;
+}
+
+.sheet-ability-green button[type=action] {
+	color: white;
+	background-color: #009900;
+}
+
 .sheet-abilities-green .sheet-abilities-head {
 	background-color: #009900;
 }
@@ -556,6 +584,15 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 .sheet-abilities-yellow {
 	background-color: #ffffee;
 	box-shadow: 3px 3px #ffcc00;
+}
+
+.sheet-ability-yellow {
+	background-color: #ffffee;
+}
+
+.sheet-ability-yellow button[type=action] {
+	color: black;
+	background-color: #ffcc00;
 }
 
 .sheet-abilities-yellow .sheet-abilities-head {
@@ -568,6 +605,15 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 	box-shadow: 3px 3px #cc0000;
 }
 
+.sheet-ability-red {
+	background-color: #ffeeee;
+}
+
+.sheet-ability-red button[type=action] {
+	color: white;
+	background-color: #cc0000;
+}
+
 .sheet-abilities-red .sheet-abilities-head {
 	background-color: #cc0000;
 }
@@ -577,10 +623,37 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 	box-shadow: 3px 3px #000000;
 }
 
+.sheet-ability-out {
+	background-color: #eeeeee;
+}
+
+.sheet-ability-out button[type=action] {
+	color: white;
+	background-color: #000000;
+}
+
 .sheet-abilities-out .sheet-abilities-head {
 	background-color: #000000;
 }
 
+.sheet-rolltemplate-minionroll .sheet-action-icon-a,
+.sheet-rolltemplate-minionroll .sheet-action-icon-b,
+.sheet-rolltemplate-minionroll .sheet-action-icon-h,
+.sheet-rolltemplate-minionroll .sheet-action-icon-o,
+.sheet-rolltemplate-minionroll .sheet-action-icon-d,
+.sheet-rolltemplate-minionroll .sheet-action-icon-r,
+.sheet-rolltemplate-simple .sheet-action-icon-a,
+.sheet-rolltemplate-simple .sheet-action-icon-b,
+.sheet-rolltemplate-simple .sheet-action-icon-h,
+.sheet-rolltemplate-simple .sheet-action-icon-o,
+.sheet-rolltemplate-simple .sheet-action-icon-d,
+.sheet-rolltemplate-simple .sheet-action-icon-r,
+.sheet-rolltemplate-3pool .sheet-action-icon-a,
+.sheet-rolltemplate-3pool .sheet-action-icon-b,
+.sheet-rolltemplate-3pool .sheet-action-icon-h,
+.sheet-rolltemplate-3pool .sheet-action-icon-o,
+.sheet-rolltemplate-3pool .sheet-action-icon-d,
+.sheet-rolltemplate-3pool .sheet-action-icon-r,
 .sheet-action-icon-a,
 .sheet-action-icon-b,
 .sheet-action-icon-h,
@@ -592,37 +665,77 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 	width: 16pt;
 }
 
+.sheet-rolltemplate-minionroll .sheet-action-icon-a,
+.sheet-rolltemplate-minionroll .sheet-action-icon-b,
+.sheet-rolltemplate-minionroll .sheet-action-icon-h,
+.sheet-rolltemplate-minionroll .sheet-action-icon-o,
+.sheet-rolltemplate-minionroll .sheet-action-icon-d,
+.sheet-rolltemplate-minionroll .sheet-action-icon-r,
+.sheet-rolltemplate-simple .sheet-action-icon-a,
+.sheet-rolltemplate-simple .sheet-action-icon-b,
+.sheet-rolltemplate-simple .sheet-action-icon-h,
+.sheet-rolltemplate-simple .sheet-action-icon-o,
+.sheet-rolltemplate-simple .sheet-action-icon-d,
+.sheet-rolltemplate-simple .sheet-action-icon-r,
+.sheet-rolltemplate-3pool .sheet-action-icon-a,
+.sheet-rolltemplate-3pool .sheet-action-icon-b,
+.sheet-rolltemplate-3pool .sheet-action-icon-h,
+.sheet-rolltemplate-3pool .sheet-action-icon-o,
+.sheet-rolltemplate-3pool .sheet-action-icon-d,
+.sheet-rolltemplate-3pool .sheet-action-icon-r {
+	margin-bottom: -4pt;
+}
+
+
 button.sheet-icon-button,
 .sheet-icon {
 	height: 16pt;
 	width: 16pt;
 }
 
+.sheet-rolltemplate-minionroll .sheet-action-icon-a,
+.sheet-rolltemplate-3pool .sheet-action-icon-a,
+.sheet-rolltemplate-simple .sheet-action-icon-a,
 .sheet-action-icon-a,
 .sheet-action-icon[value="A"] + .sheet-icon {
 	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-action-attack.svg);
 }
 
+.sheet-rolltemplate-minionroll .sheet-action-icon-b,
+.sheet-rolltemplate-3pool .sheet-action-icon-b,
+.sheet-rolltemplate-simple .sheet-action-icon-b,
 .sheet-action-icon-b,
 .sheet-action-icon[value="B"] + .sheet-icon {
 	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-action-boost.svg);
 }
 
+.sheet-rolltemplate-minionroll .sheet-action-icon-h,
+.sheet-rolltemplate-3pool .sheet-action-icon-h,
+.sheet-rolltemplate-simple .sheet-action-icon-h,
 .sheet-action-icon-h,
 .sheet-action-icon[value="H"] + .sheet-icon {
 	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-action-hinder.svg);
 }
 
+.sheet-rolltemplate-minionroll .sheet-action-icon-o,
+.sheet-rolltemplate-3pool .sheet-action-icon-o,
+.sheet-rolltemplate-simple .sheet-action-icon-o,
 .sheet-action-icon-o,
 .sheet-action-icon[value="O"] + .sheet-icon {
 	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-action-overcome.svg);
 }
 
+.sheet-rolltemplate-minionroll .sheet-action-icon-d,
+.sheet-rolltemplate-3pool .sheet-action-icon-d,
+.sheet-rolltemplate-simple .sheet-action-icon-d,
 .sheet-action-icon-d,
 .sheet-action-icon[value="D"] + .sheet-icon {
 	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-action-defend.svg);
 }
 
+.sheet-rolltemplate-minionroll .sheet-action-icon-r,
+.sheet-rolltemplate-3pool .sheet-action-icon-r,
+.sheet-rolltemplate-simple .sheet-action-icon-r,
 .sheet-action-icon-r,
 .sheet-action-icon[value="R"] + .sheet-icon {
 	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-action-recover.svg);
@@ -668,23 +781,41 @@ button.sheet-icon-button,
 .sheet-button-delete {
 	border: none;
 	background: none;
-	color: #666666;
+	opacity: 0.5;
 	font-weight: normal;
 	text-align: left;
 	padding: 0px;
 	vertical-align: top;
 }
 
-.sheet-button-delete:hover, 
-.sheet-button-delete:hover span {
+.sheet-button-delete, 
+.sheet-button-delete span {
 	color: red;
 }
 
+.sheet-button-delete:hover, 
+.sheet-button-delete:hover span {
+	opacity: 1.0;
+}
+
+.sheet-button-decrease, 
+.sheet-button-decrease span {
+	color: #0066ff;
+}
+
 .sheet-button-decrease:hover, 
-.sheet-button-decrease:hover span,
+.sheet-button-decrease:hover span {
+	opacity: 1.0;
+}
+
+.sheet-button-increase, 
+.sheet-button-increase span {
+	color: #009900;
+}
+
 .sheet-button-increase:hover, 
 .sheet-button-increase:hover span {
-	color: black;
+	opacity: 1.0;
 }
 
 .ui-dialog .charsheet button.sheet-button-header-edit:before {
@@ -699,6 +830,20 @@ button.sheet-icon-button,
 	content: 'D';
 }
 
+.ui-dialog .charsheet button.sheet-button-header-collapse:before {
+	font-family: 'Pictos';
+	font-size: 24px;
+	content: 'J';
+}
+
+.ui-dialog .charsheet button.sheet-button-header-expand:before {
+	font-family: 'Pictos';
+	font-size: 24px;
+	content: '`';
+}
+
+.sheet-button-header-expand,
+.sheet-button-header-collapse,
 .sheet-button-header-edit,
 .sheet-button-header-close {
 	border: none;
@@ -707,17 +852,33 @@ button.sheet-icon-button,
 	text-align: left;
 	padding-top: 7px;
 	padding-bottom: 7px;
-	padding-right: 0px;
 	vertical-align: top;
+}
+
+.sheet-button-header-edit,
+.sheet-button-header-close {
+	padding-right: 0px;
 	float: right;
 }
 
+.sheet-button-header-expand,
+.sheet-button-header-collapse {
+	padding-left: 0px;
+	float: left;
+}
+
+.sheet-button-header-expand,
+.sheet-button-header-collapse,
 .sheet-button-header-edit,
 .sheet-button-header-close {
 	color: white;
 	opacity: 0.75;
 }
 
+.sheet-button-header-expand:hover, 
+.sheet-button-header-expand:hover span,
+.sheet-button-header-collapse:hover, 
+.sheet-button-header-collapse:hover span,
 .sheet-button-header-edit:hover, 
 .sheet-button-header-edit:hover span,
 .sheet-button-header-close:hover, 
@@ -729,7 +890,7 @@ button.sheet-icon-button,
 	clear: both;
 	display: flex;
 	flex-direction: row;
-	flex-wrap: nowrap;
+	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: baseline;
 	align-content: stretch;
@@ -744,7 +905,39 @@ button.sheet-icon-button,
 	width: 25%;
 }
 
+.sheet-mode-editor .repcontrol {
+	display: initial;
+}
+
+.sheet-mode-editor .itemcontrol button.repcontrol_del,
+.sheet-mode-editor .repcontrol button.repcontrol_add {
+	display: none;
+}
+
+.sheet-mode-edit {
+	clear: both;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: baseline;
+	align-content: stretch;
+	margin-top: 9px;
+	padding-top: 6px;
+	border-top: 1px solid black;
+}
+
+.sheet-mode-edit input[type=text] {
+	width: calc(50% - 6px);
+}
+
+.sheet-mode-edit textarea {
+	width: calc(50% - 6px);
+	height: 60px;
+}
+
 /* .sheet-modgrid button, */
+.sheet-mode-editor button,
 .sheet-modline button {
 	border: 1px solid #004499;
 	background: #ddeeff;
@@ -759,6 +952,8 @@ button.sheet-icon-button,
 
 /* .sheet-modgrid button:hover, 
 .sheet-modgrid button:hover span, */
+.sheet-mode-editor button:hover,
+.sheet-mode-editor button:hover span,
 .sheet-modline button:hover, 
 .sheet-modline button:hover span {
 	background: #004499;
@@ -803,4 +998,244 @@ button.sheet-icon-button,
 textarea.sheet-principle {
 	width: calc(100% - 9px);
 	height: 60px;
+}
+
+.sheet-minions div.sheet-dicerow {
+	margin-bottom: 6px;
+}
+
+.sheet-controlcell {
+	display: none;
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-basis: 50px;
+}
+
+.sheet-dicerow:hover .sheet-controlcell {
+	display: initial;
+}
+
+.sheet-rolltemplate-minionroll div.sheet-template-container,
+.sheet-rolltemplate-simple div.sheet-template-container,
+.sheet-rolltemplate-3pool div.sheet-template-container {
+	border: 1px solid black;
+	background: white;
+	box-shadow: 3px 3px #004499;
+	margin-right: 9px;
+	margin-bottom: 9px;
+}
+
+.sheet-rolltemplate-simple .sheet-template-body {
+	padding: 6px;
+}
+
+.sheet-rolltemplate-minionroll .sheet-template-head,
+.sheet-rolltemplate-3pool .sheet-template-head,
+.sheet-rolltemplate-simple .sheet-template-head {
+	font-family: "Bangers", Arial, sans-serif;
+	line-height: 1.0;
+	letter-spacing: 1pt;
+	font-size: 18pt;
+	font-weight: bold;
+	padding: 3px;
+	padding-left: 7px;
+	padding-right: 7px;
+	margin-bottom: 6px;
+	text-align: center;
+	background-color: #004499;
+	color: white;
+}
+
+.sheet-rolltemplate-simple .sheet-diepic4,
+.sheet-rolltemplate-minionroll .sheet-diepic4,
+.sheet-rolltemplate-3pool .sheet-diepic4,
+.sheet-rolltemplate-simple .sheet-diepic6,
+.sheet-rolltemplate-minionroll .sheet-diepic6,
+.sheet-rolltemplate-3pool .sheet-diepic6,
+.sheet-rolltemplate-simple .sheet-diepic8,
+.sheet-rolltemplate-minionroll .sheet-diepic8,
+.sheet-rolltemplate-3pool .sheet-diepic8,
+.sheet-rolltemplate-simple .sheet-diepic10,
+.sheet-rolltemplate-3pool .sheet-diepic10,
+.sheet-rolltemplate-minionroll .sheet-diepic10,
+.sheet-rolltemplate-simple .sheet-diepic12,
+.sheet-rolltemplate-minionroll .sheet-diepic12,
+.sheet-rolltemplate-3pool .sheet-diepic12 {
+	width: 30px;
+	height: 30px;
+}
+
+.sheet-rolltemplate-minionroll .sheet-bigdie .sheet-diepic4,
+.sheet-rolltemplate-simple .sheet-bigdie .sheet-diepic4,
+.sheet-rolltemplate-3pool .sheet-bigdie  .sheet-diepic4,
+.sheet-rolltemplate-minionroll .sheet-bigdie  .sheet-diepic6,
+.sheet-rolltemplate-simple .sheet-bigdie  .sheet-diepic6,
+.sheet-rolltemplate-3pool .sheet-bigdie  .sheet-diepic6,
+.sheet-rolltemplate-minionroll .sheet-bigdie  .sheet-diepic8,
+.sheet-rolltemplate-simple .sheet-bigdie  .sheet-diepic8,
+.sheet-rolltemplate-3pool .sheet-bigdie  .sheet-diepic8,
+.sheet-rolltemplate-minionroll .sheet-bigdie  .sheet-diepic10,
+.sheet-rolltemplate-simple .sheet-bigdie  .sheet-diepic10,
+.sheet-rolltemplate-3pool .sheet-bigdie  .sheet-diepic10,
+.sheet-rolltemplate-minionroll .sheet-bigdie  .sheet-diepic12,
+.sheet-rolltemplate-simple .sheet-bigdie  .sheet-diepic12,
+.sheet-rolltemplate-3pool .sheet-bigdie  .sheet-diepic12 {
+	width: 30px;
+	height: 30px;
+	margin-bottom: -6px;
+}
+
+.sheet-rolltemplate-minionroll .sheet-bigdie,
+.sheet-rolltemplate-simple .sheet-bigdie,
+.sheet-rolltemplate-3pool .sheet-bigdie {
+	text-align: center;
+	vertical-align: center;
+}
+
+.sheet-rolltemplate-minionroll .sheet-bigdie .sheet-bigresult, 
+.sheet-rolltemplate-simple .sheet-bigdie .sheet-bigresult, 
+.sheet-rolltemplate-3pool .sheet-bigdie .sheet-bigresult 
+{
+	font-size: 21px;
+	font-weight: bold;
+}
+
+.sheet-rolltemplate-minionroll .sheet-bigdie .sheet-driller,
+.sheet-rolltemplate-3pool .sheet-bigdie .sheet-driller {
+	position: relative;
+	display: inline-block;
+}
+
+.sheet-rolltemplate-minionroll .sheet-bigdie .sheet-driller .sheet-drilldown,
+.sheet-rolltemplate-3pool .sheet-bigdie .sheet-driller .sheet-drilldown,
+.sheet-rolltemplate-simple .sheet-bigdie .sheet-driller .sheet-drilldown {
+	visibility: hidden;
+	position: absolute;
+	width: 150px;
+	top: calc(100% - 30px); 
+	left: 50%; 
+	margin-left: -75px;
+	z-index: 1;
+	padding: 3px;
+	border: 0.5px solid black;
+	background-color: #ffffdd;
+	box-shadow: 2px 2px 4px black;
+}
+
+.sheet-rolltemplate-minionroll .sheet-bigdie .sheet-driller .sheet-righthanded,
+.sheet-rolltemplate-3pool .sheet-bigdie .sheet-driller .sheet-righthanded {
+	margin-left: -110px;
+}
+
+.sheet-rolltemplate-minionroll .sheet-bigdie .sheet-driller .sheet-lefthanded,
+.sheet-rolltemplate-3pool .sheet-bigdie .sheet-driller .sheet-lefthanded {
+	margin-left: -40px;
+}
+
+.sheet-rolltemplate-minionroll .sheet-bigthree,
+.sheet-rolltemplate-3pool .sheet-bigthree {
+	clear: both;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: start;
+	align-content: stretch;
+}
+
+.sheet-rolltemplate-minionroll .sheet-bigthree .sheet-bigdie,
+.sheet-rolltemplate-3pool .sheet-bigthree .sheet-bigdie {
+	width: calc(33% - 6px);
+	flex-basis: calc(33% - 6px);
+}
+
+.sheet-rolltemplate-minionroll .sheet-bigdie .sheet-driller .sheet-drilldown > div,
+.sheet-rolltemplate-3pool .sheet-bigdie .sheet-driller .sheet-drilldown > div,
+.sheet-rolltemplate-simple .sheet-bigdie .sheet-driller .sheet-drilldown > div {
+	clear: both;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: start;
+	align-content: stretch;
+}
+
+.sheet-rolltemplate-minionroll .sheet-bigdie .sheet-driller .sheet-drilldown > div > span,
+.sheet-rolltemplate-3pool .sheet-bigdie .sheet-driller .sheet-drilldown > div > span,
+.sheet-rolltemplate-simple .sheet-bigdie .sheet-driller .sheet-drilldown > div > span {
+	padding-right: 6px;
+	flex-basis: 24px; /* 44px; */
+	flex-grow: 0;
+	flex-shrink: 0;
+}
+
+.sheet-rolltemplate-minionroll .sheet-bigdie .sheet-driller .sheet-drilldown > div > span.sheet-wider,
+.sheet-rolltemplate-3pool .sheet-bigdie .sheet-driller .sheet-drilldown > div > span.sheet-wider,
+.sheet-rolltemplate-simple .sheet-bigdie .sheet-driller .sheet-drilldown > div > span.sheet-wider {
+	flex-basis: 88px;
+	flex-grow: 1;
+}
+
+.sheet-rolltemplate-minionroll .sheet-bigdie .sheet-driller .sheet-drilldown > div > span.sheet-action-icon-o,
+.sheet-rolltemplate-3pool .sheet-bigdie .sheet-driller .sheet-drilldown > div > span.sheet-action-icon-o,
+.sheet-rolltemplate-simple .sheet-bigdie .sheet-driller .sheet-drilldown > div > span.sheet-action-icon-o {
+	flex-basis: 20pt;
+}
+
+.sheet-rolltemplate-minionroll .sheet-bigdie:hover .sheet-driller .sheet-drilldown,
+.sheet-rolltemplate-3pool .sheet-bigdie:hover .sheet-driller .sheet-drilldown,
+.sheet-rolltemplate-simple .sheet-bigdie:hover .sheet-driller .sheet-drilldown {
+	visibility: visible;
+}
+
+.sheet-rolltemplate-simple .sheet-diecaption,
+.sheet-rolltemplate-minionroll .sheet-diecaption,
+.sheet-rolltemplate-3pool .sheet-diecaption {
+	font-size: 12px;
+	font-weight: bold;
+	margin-bottom: 3px;
+}
+
+.sheet-rolltemplate-simple .sheet-diepic4,
+.sheet-rolltemplate-minionroll .sheet-diepic4,
+.sheet-rolltemplate-3pool .sheet-diepic4 {
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d4.svg);
+}
+
+.sheet-rolltemplate-simple .sheet-diepic6,
+.sheet-rolltemplate-minionroll .sheet-diepic6,
+.sheet-rolltemplate-3pool .sheet-diepic6 {
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d6.svg);
+}
+
+.sheet-rolltemplate-simple .sheet-diepic8,
+.sheet-rolltemplate-minionroll .sheet-diepic8,
+.sheet-rolltemplate-3pool .sheet-diepic8 {
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d8.svg);
+}
+
+.sheet-rolltemplate-simple .sheet-diepic10,
+.sheet-rolltemplate-minionroll .sheet-diepic10,
+.sheet-rolltemplate-3pool .sheet-diepic10 {
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d10.svg);
+}
+
+.sheet-rolltemplate-simple .sheet-diepic12,
+.sheet-rolltemplate-minionroll .sheet-diepic12,
+.sheet-rolltemplate-3pool .sheet-diepic12 {
+	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-icon-d12.svg);
+}
+
+.sheet-rolltemplate-minionroll .sheet-drilldown-header,
+.sheet-rolltemplate-3pool .sheet-drilldown-header {
+	padding-left: 60px; /* because CSS can't be arsed to obey text-align: center */
+	width: 90px; /* not including the 50px padding */
+	text-transform: uppercase;
+	font-size: 10pt;
+	font-weight: bold;
+	color: #eeeeee;
+	background: black;
+	padding-top: 2px;
+	padding-bottom: 2px;
 }
