@@ -1247,3 +1247,79 @@ textarea.sheet-principle {
 .sheet-hoverpopper:hover + .sheet-hoverpop {
 	display: inline-block;
 }
+
+.sheet-countup ~ .sheet-counter {
+	display: none;
+}
+
+.sheet-countup[value="10"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="10"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="10"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="10"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="10"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="10"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="10"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="10"] + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="10"] + .sheet-counter + .sheet-counter,
+.sheet-countup[value="10"] + .sheet-counter,
+.sheet-countup[value="9"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="9"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="9"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="9"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="9"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="9"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="9"] + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="9"] + .sheet-counter + .sheet-counter,
+.sheet-countup[value="9"] + .sheet-counter,
+.sheet-countup[value="8"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="8"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="8"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="8"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="8"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="8"] + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="8"] + .sheet-counter + .sheet-counter,
+.sheet-countup[value="8"] + .sheet-counter,
+.sheet-countup[value="7"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="7"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="7"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="7"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="7"] + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="7"] + .sheet-counter + .sheet-counter,
+.sheet-countup[value="7"] + .sheet-counter,
+.sheet-countup[value="6"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="6"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="6"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="6"] + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="6"] + .sheet-counter + .sheet-counter,
+.sheet-countup[value="6"] + .sheet-counter,
+.sheet-countup[value="5"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="5"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="5"] + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="5"] + .sheet-counter + .sheet-counter,
+.sheet-countup[value="5"] + .sheet-counter,
+.sheet-countup[value="4"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="4"] + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="4"] + .sheet-counter + .sheet-counter,
+.sheet-countup[value="4"] + .sheet-counter,
+.sheet-countup[value="3"] + .sheet-counter + .sheet-counter + .sheet-counter,
+.sheet-countup[value="3"] + .sheet-counter + .sheet-counter,
+.sheet-countup[value="3"] + .sheet-counter,
+.sheet-countup[value="2"] + .sheet-counter + .sheet-counter,
+.sheet-countup[value="2"] + .sheet-counter,
+.sheet-countup[value="1"] + .sheet-counter {
+	display: initial;
+}
+
+.sheet-challenge-component {
+	clear: both;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: start;
+	align-items: start;
+	align-content: stretch;
+}
+
+.sheet-challenge-component div:first-child {
+	white-space: nowrap;
+}
