@@ -1,14 +1,6 @@
 <input type="hidden" name="attr_sheet-version" value="1.0">
 
 <script type="text/worker">
-	on("clicked:sheetchoice", function(e) {
-		// htmlAttributes: {type: "action", name: "act_sheetchoice", value: "hero"}
-		var type = e.htmlAttributes.value;
-		var fid = `sheet_${type}`;
-		var s = { "sheet_choose": 0 };
-		s[fid] = 1;
-		setAttrs(s);
-	});
 </script>
 
 <input type="hidden" name="attr_sheet_choose" value="1" class="sheet-hide-on-zero"><div class="sheet-whole">
@@ -17,10 +9,178 @@
 	</div>
 	<button type="action" name="act_sheetchoice" value="hero">Hero</button>
 	<button type="action" name="act_sheetchoice" value="villain">Villain</button>
-	<button type="action" name="act_sheetchoice" value="minion">Environment</button>
+	<button type="action" name="act_sheetchoice" value="environment">Environment</button>
 	<button type="action" name="act_sheetchoice" value="minion">Minion Squad</button>
 	<button type="action" name="act_sheetchoice" value="challenge">Challenge</button>
-	<button type="action" name="act_sheetchoice" value="scene">Scene Tracker</button>
+	<button type="action" name="act_sheetchoice" value="scene">Scene and Turn Tracker</button>
+</div>
+
+<input type="hidden" name="attr_sheet_villain" value="0" class="sheet-hide-on-zero">
+<div class="sheet-whole">
+[Villain Sheet, Eventually]
+</div>
+
+<input type="hidden" name="attr_sheet_minion" value="0" class="sheet-hide-on-zero">
+<div class="sheet-whole">
+	<div>
+		<input type="text" name="attr_character_name" value="" class="sheet-bigname">
+	</div>
+	<div class="sheet-dicecols">
+		<div class="sheet-dicecol sheet-halfsies">
+			<div class="sheet-dicecol-head sheet-lefty">
+				Squad Library
+			</div>
+			<fieldset class="repeating_squadlibrary"><div class="sheet-modline">
+				<div>
+					<button type="action" name="act_copytosquad">Add to Team</button>
+					<input type="hidden" name="attr_squadmember_team" value="A"><select name="attr_squadmember_team">
+						<option value="A">A • Alpha</option><option value="B">B • Beta</option><option value="Γ">Γ • Gamma</option><option value="Δ">Δ • Delta</option><option value="E">E • Epsilon</option><option value="Ω">Ω • Omega</option>
+					</select>
+					<button type="action" name="act_delete">Delete</button>
+					<span class="sheet-hoverpopper"><b><input type="hidden" name="attr_squadmember_name"><span name="attr_squadmember_name"></span></b></span>
+					<div class="sheet-hoverpop sheet-padding" style="margin-bottom: 6px; border: 0.5px solid black; background: #eeeeee;">
+						<input type="hidden" name="attr_squadmember_description" class="sheet-hide-on-empty" value=""><div><b>Description</b><br/><span name="attr_squadmember_description"></span></div>
+						<input type="hidden" name="attr_squadmember_ability" class="sheet-hide-on-empty" value=""><div><b>Ability</b><br/><span name="attr_squadmember_ability"></span></div>
+						<input type="hidden" name="attr_squadmember_ability2" class="sheet-hide-on-empty" value=""><div><span name="attr_squadmember_ability2"></span></div>
+						<input type="hidden" name="attr_squadmember_tactics" class="sheet-hide-on-empty" value=""><div><b>Tactics</b><br/><span name="attr_squadmember_description"></span></div>
+					</div>
+				</div>
+			</div></fieldset>
+			<div class="sheet-dicecol-head sheet-lefty">
+				<input type="hidden" name="attr_add_squadmember" value="0" class="sheet-hide-on-zero"><button type="action" name="act_add_squadmember" class="sheet-button-header-close"></button> 
+				<input type="hidden" name="attr_add_squadmember" value="0" class="sheet-hide-on-one"><button type="action" name="act_add_squadmember" class="sheet-button-header-edit"></button>
+				Add Minions
+			</div>
+			<input type="hidden" name="attr_add_squadmember" value="0" class="sheet-hide-on-zero"><div class="sheet-padding">
+				<div class="sheet-modline">
+					<button type="action" name="act_squadmember_create">Add to Squad Library</button>
+					<button type="action" name="act_squadmember_clear">Clear Fields</button>
+				</div>
+				<div>
+					<b>Type</b>
+					<input type="hidden" name="attr_squadmember_type" value="minion">
+					<select name="attr_squadmember_type">
+						<option value="minion">Minion</option>
+						<option value="lieutenant">Lieutenant</option>
+					</select>
+				</div>
+				<div>
+					<b>Die Size</b>
+					<select name="attr_squadmember_die" style="width: 160px;">
+						<option value="12">d12</option>
+						<option value="10">d10</option>
+						<option value="8">d8</option>
+						<option value="6">d6</option>
+						<option value="4" selected>d4</option>
+					</select>
+				</div>
+				<div>
+					<b>Name</b>
+					<input type="text" value="" name="attr_squadmember_name" style="width: 160px;">
+				</div>
+				<div>
+					<b>Team</b>
+					<select name="attr_squadmember_team">
+						<option value="A">A • Alpha</option><option value="B">B • Beta</option><option value="Γ">Γ • Gamma</option><option value="Δ">Δ • Delta</option><option value="E">E • Epsilon</option><option value="Ω">Ω • Omega</option>
+					</select>
+				</div>
+				<div class="sheet-modline">
+					<b>Description</b>
+					<textarea name="attr_squadmember_description" class="sheet-modest"></textarea>
+				</div>
+				<div class="sheet-modline">
+					<b>Ability</b>
+					<textarea name="attr_squadmember_ability" class="sheet-modest"></textarea>
+				</div>
+				<div class="sheet-modline">
+					<b>Second Ability</b>
+					<textarea name="attr_squadmember_ability2" class="sheet-modest"></textarea>
+				</div>
+				<div class="sheet-modline">
+					<b>Tactics</b>
+					<textarea name="attr_squadmember_tactics" class="sheet-modest"></textarea>
+				</div>
+				<div class="sheet-modline">
+					<button type="action" name="act_squadmember_create">Add to Squad Library</button>
+				</div>
+			</div>
+		</div>
+		<div class="sheet-dicecol sheet-halfsies">
+			<div class="sheet-dicecol-head sheet-lefty">
+				Minion Squad
+			</div>
+			<div class="sheet-padding sheet-minions">
+				<div class="sheet-dicerow">
+					<div class="sheet-rollblock"><div class="sheet-padding sheet-centered">
+						<button type="action" name="act_rollsquad" value="all"> <b>ALL</b> </button>
+						<button type="action" name="act_rollsquad" value="A"><b>A</b></button>
+						<button type="action" name="act_rollsquad" value="B"><b>B</b></button>
+						<button type="action" name="act_rollsquad" value="Γ"><b>Γ</b></button>
+						<button type="action" name="act_rollsquad" value="Δ"><b>Δ</b></button>
+						<button type="action" name="act_rollsquad" value="E"><b>E</b></button>
+						<button type="action" name="act_rollsquad" value="Ω"><b>Ω</b></button>
+					</div></div>
+				</div>
+				<fieldset class="repeating_squadmembers">
+					<div class="sheet-dicerow">
+						<div class="sheet-die sheet-rollblock sheet-padding" style="margin-right: 6px;">
+							<div>
+								<button type="action" name="act_rolldie">
+									<input type="hidden" class="sheet-inlinedie" name="attr_squadmember_die"><span class="sheet-diepic"></span>
+								</button>
+							</div>
+						</div>
+						<div class="sheet-noflexgrow">
+							<div class="sheet-controlcell">
+								<input type="hidden" name="attr_squadmember_die" class="sheet-hide-on-12"><button type="action" name="act_upgrade" class="sheet-button-increase"></button>
+								<input type="hidden" name="attr_squadmember_die" class="sheet-hide-on-4"><button type="action" name="act_downgrade" class="sheet-button-decrease"></button>
+								<button type="action" name="act_dismiss" class="sheet-button-delete"></button>
+							</div>
+						</div>
+						<div class="sheet-noflexgrow" style="font-size: 120%;">
+							<div><input type="hidden" name="attr_squadmember_team" value=""><b><span name="attr_squadmember_team"></span>&nbsp;</b></div>
+						</div>
+						<div class="sheet-slowflexgrow">
+							<div class="sheet-hoverpopper">
+								<div>
+									<div><input type="hidden" name="attr_squadmember_name" value=""><b><span name="attr_squadmember_name"></span></b> <input type="hidden" name="attr_squadmember_type" value="">(<span name="attr_squadmember_type"></span>)</div>
+								</div>
+								<div class="sheet-padding">
+									<input type="hidden" name="attr_squadmember_ability" value=""><span name="attr_squadmember_ability"></span>
+								</div>
+								<div class="sheet-padding">
+									<input type="hidden" name="attr_squadmember_ability2" value=""><span name="attr_squadmember_ability2"></span>
+								</div>
+							</div>
+							<div class="sheet-hoverpop sheet-padding" style="margin-bottom: 6px; border: 0.5px solid black; background: #eeeeee;">
+								<div class="sheet-padding">
+									<input type="hidden" name="attr_squadmember_description" value=""><span name="attr_squadmember_description"></span>
+								</div>
+								<div class="sheet-padding">
+									<input type="hidden" name="attr_squadmember_tactics" value=""><span name="attr_squadmember_tactics"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+</div>
+
+<input type="hidden" name="attr_sheet_environment" value="0" class="sheet-hide-on-zero">
+<div class="sheet-whole">
+[Environment, Eventually]
+</div>
+
+<input type="hidden" name="attr_sheet_challenge" value="0" class="sheet-hide-on-zero">
+<div class="sheet-whole">
+[Challenge, Eventually]
+</div>
+
+<input type="hidden" name="attr_sheet_scene" value="0" class="sheet-hide-on-zero">
+<div class="sheet-whole">
+[Scene and Turn Tracker, Eventually]
 </div>
 
 <input type="hidden" name="attr_sheet_hero" value="0" class="sheet-hide-on-zero">
@@ -3372,7 +3532,7 @@ on("clicked:repeating_bonuses:increase clicked:repeating_penalties:increase", fu
 	});
 });
 
-on("clicked:toggle_abilitieslibrary clicked:toggle_green clicked:toggle_yellow clicked:toggle_red clicked:toggle_out clicked:toggle_health clicked:toggle_rewards clicked:toggle_bonuses clicked:toggle_penalties clicked:toggle_modes clicked:toggle_minions clicked:edit_powers clicked:edit_qualities clicked:edit_status clicked:edit_health clicked:edit_penalties clicked:edit_bonuses clicked:edit_principles clicked:edit_modes clicked:add_minion clicked:edit_abilities_green clicked:edit_abilities_yellow clicked:edit_abilities_red clicked:edit_abilities_out clicked:repeating_abilitiesgreen:actionicona clicked:repeating_abilitiesgreen:actioniconb clicked:repeating_abilitiesgreen:actioniconh clicked:repeating_abilitiesgreen:actionicono clicked:repeating_abilitiesgreen:actionicond clicked:repeating_abilitiesgreen:actioniconr clicked:repeating_abilitiesyellow:actionicona clicked:repeating_abilitiesyellow:actioniconb clicked:repeating_abilitiesyellow:actioniconh clicked:repeating_abilitiesyellow:actionicono clicked:repeating_abilitiesyellow:actionicond clicked:repeating_abilitiesyellow:actioniconr clicked:repeating_abilitiesred:actionicona clicked:repeating_abilitiesred:actioniconb clicked:repeating_abilitiesred:actioniconh clicked:repeating_abilitiesred:actionicono clicked:repeating_abilitiesred:actionicond clicked:repeating_abilitiesred:actioniconr clicked:repeating_abilitiesout:actionicona clicked:repeating_abilitiesout:actioniconb clicked:repeating_abilitiesout:actioniconh clicked:repeating_abilitiesout:actionicono clicked:repeating_abilitiesout:actionicond clicked:repeating_abilitiesout:actioniconr clicked:minionactionicona clicked:minionactioniconb clicked:minionactioniconh clicked:minionactionicono clicked:minionactionicond clicked:minionactioniconr", function(e) {
+on("clicked:add_squadmember clicked:toggle_abilitieslibrary clicked:toggle_green clicked:toggle_yellow clicked:toggle_red clicked:toggle_out clicked:toggle_health clicked:toggle_rewards clicked:toggle_bonuses clicked:toggle_penalties clicked:toggle_modes clicked:toggle_minions clicked:edit_powers clicked:edit_qualities clicked:edit_status clicked:edit_health clicked:edit_penalties clicked:edit_bonuses clicked:edit_principles clicked:edit_modes clicked:add_minion clicked:edit_abilities_green clicked:edit_abilities_yellow clicked:edit_abilities_red clicked:edit_abilities_out clicked:repeating_abilitiesgreen:actionicona clicked:repeating_abilitiesgreen:actioniconb clicked:repeating_abilitiesgreen:actioniconh clicked:repeating_abilitiesgreen:actionicono clicked:repeating_abilitiesgreen:actionicond clicked:repeating_abilitiesgreen:actioniconr clicked:repeating_abilitiesyellow:actionicona clicked:repeating_abilitiesyellow:actioniconb clicked:repeating_abilitiesyellow:actioniconh clicked:repeating_abilitiesyellow:actionicono clicked:repeating_abilitiesyellow:actionicond clicked:repeating_abilitiesyellow:actioniconr clicked:repeating_abilitiesred:actionicona clicked:repeating_abilitiesred:actioniconb clicked:repeating_abilitiesred:actioniconh clicked:repeating_abilitiesred:actionicono clicked:repeating_abilitiesred:actionicond clicked:repeating_abilitiesred:actioniconr clicked:repeating_abilitiesout:actionicona clicked:repeating_abilitiesout:actioniconb clicked:repeating_abilitiesout:actioniconh clicked:repeating_abilitiesout:actionicono clicked:repeating_abilitiesout:actionicond clicked:repeating_abilitiesout:actioniconr clicked:minionactionicona clicked:minionactioniconb clicked:minionactioniconh clicked:minionactionicono clicked:minionactionicond clicked:minionactioniconr", function(e) {
 	log(e);
 	var id = "";
 	if ( typeof e.sourceAttribute !== "undefined" && e.sourceAttribute !== "" ) {
@@ -4833,6 +4993,219 @@ on("change:quickadd_principle1 change:quickadd_principle2", function(e) {
 		log(s);
 		setAttrs(s);
 	}
+});
+
+on("clicked:sheetchoice", function(e) {
+	// htmlAttributes: {type: "action", name: "act_sheetchoice", value: "hero"}
+	var type = e.htmlAttributes.value;
+	var fid = `sheet_${type}`;
+	var s = { "sheet_choose": 0 };
+	s[fid] = 1;
+	setAttrs(s);
+});
+
+on("clicked:squadmember_clear", function() {
+	var s = {
+		"squadmember_type": "minion",
+		"squadmember_name": "",
+		"squadmember_die": "6",
+		"squadmember_team": "",
+		"squadmember_ability": "",
+		"squadmember_ability2": "",
+		"squadmember_tactics": "",
+		"squadmember_description": ""
+	};
+	setAttrs(s);
+});
+
+on("clicked:squadmember_create", function() {
+	log("create squadmember library entry");
+	var load = [
+		"squadmember_type",
+		"squadmember_name",
+		"squadmember_die",
+		"squadmember_team",
+		"squadmember_ability",
+		"squadmember_ability2",
+		"squadmember_tactics",
+		"squadmember_description"
+	];
+	getAttrs(load, function(a) {
+		if ( a.squadmember_name == "" ) {
+			a.squadmember_name = "Minion";
+			if ( a.squadmember_type == "lieutenant" ) { a.squadmember_name = "Lieutenant"; }
+		}
+		getSectionIDs("repeating_squadlibrary", function(lib) {
+			var libf = [];
+			for ( var i=0; i < lib.length; i++ ) {
+				for ( var j=0; j < load.length; j++ ) {
+					libf[libf.length] = "repeating_squadlibrary_" + lib[i] + "_" + load[j];
+				}
+			}
+			getAttrs(libf, function(library) {
+				var matched = false;
+				for ( var i=0; i < lib.length; i++ ) {
+					matched = true;
+					for ( var j=0; j < load.length; j++ ) {
+						var fkey = "repeating_squadlibrary_" + lib[i] + "_" + load[j];
+						if ( library[fkey] !== a[load[j]] ) {
+							matched = false; break;
+						}
+					}
+				}
+				log(matched);
+				if ( ! matched ) {
+					log("proceeding with storing minion")
+					// then we should store it
+					var libid = generateActuallyUniqueRowID();
+					var sa = {};
+					for(var i = 0; i < load.length; i++) {
+						var key = "repeating_squadlibrary_" + libid + "_" + load[i];
+						if ( typeof a[load[i]] !== "undefined") { sa[key] = a[load[i]]; }
+					}
+					setAttrs(sa); log(sa);
+				}
+			});
+		});
+	});
+});
+
+on("clicked:repeating_squadlibrary:copytosquad", function(e) {
+	log("copy squadmember to squad from library");
+	// { "sourceAttribute": "repeating_squadlibrary_-MkwVXd3pSa2C78SQz7h_copytosquad", "triggerName": "clicked:repeating_squadlibrary_-mkwvxd3psa2c78sqz7h_copytosquad", "htmlAttributes": { "type": "action", "name": "act_copytosquad" }
+	var rowid = e.sourceAttribute.slice(0,-12); // Strips off the '_copytosquad';
+	var rowpre = rowid + "_";
+	var fnames = [
+		"squadmember_type",
+		"squadmember_name",
+		"squadmember_die",
+		"squadmember_team",
+		"squadmember_ability",
+		"squadmember_ability2",
+		"squadmember_tactics",
+		"squadmember_description"
+	];
+	var load = [];
+	for(var i = 0; i < fnames.length; i++) {
+		load[load.length] = rowpre + fnames[i];
+	}
+	getAttrs(load, function(a) {
+		var newid = generateActuallyUniqueRowID();
+		var newpre = "repeating_squadmembers_" + newid + "_";
+		var squadmember = {};
+		for(var i = 0; i < fnames.length; i++) {
+			var newkey = newpre + fnames[i];
+			if ( typeof a[load[i]] !== "undefined") { 
+				squadmember[newkey] = a[load[i]]; 
+			}
+		}
+		setAttrs(squadmember); log(squadmember);
+	});
+});
+
+on("clicked:repeating_squadlibrary:delete", function(e) {
+	var rowid = (e.sourceAttribute).slice(0,-7); // Strips off the '_delete'
+	removeRepeatingRow(rowid);
+});
+
+on("clicked:repeating_squadmembers:dismiss", function(e) {
+	var rowid = (e.sourceAttribute).slice(0,-8); // Strips off the '_dismiss'
+	log(`remove ${rowid}`);
+	removeRepeatingRow(rowid);
+});
+
+on("clicked:repeating_squadmembers:upgrade", function(e) {
+	var prefix = (e.sourceAttribute).slice(0,-7); // Strips off the 'upgrade'
+	var id = `${prefix}squadmember_die`;
+	log(prefix);
+	getAttrs([id], function(a) {
+		log(a);
+		var value = a[id];
+		if ( typeof value !== "undefined" && Number(value) > 0 && Number(value) < 12 ) {
+			value = Number(value) + 2;
+			var s = {};
+			s[id] = value;
+			setAttrs(s);
+		} else {
+			log("will not upgrade");
+			log(Number(value));
+		}
+	});
+});
+
+on("clicked:repeating_squadmembers:downgrade", function(e) {
+	var prefix = (e.sourceAttribute).slice(0,-9); // Strips off the 'downgrade'
+	var id = `${prefix}squadmember_die`;
+	log(prefix);
+	getAttrs([id], function(a) {
+		log(a);
+		var value = a[id];
+		if ( typeof value !== "undefined" && Number(value) > 4 ) {
+			value = Number(value) - 2;
+			var s = {};
+			s[id] = value;
+			setAttrs(s);
+		} else {
+			log("will not downgrade");
+			log(Number(value));
+		}
+	});
+});
+
+
+on("clicked:rollsquad", function(e) {
+	var team = e.htmlAttributes.value;
+	getSectionIDs("repeating_squadmembers", function(mids) {
+		var load = [];
+		for(var i=0; i < mids.length ; i++) {
+			load[load.length] = `repeating_squadmembers_${mids[i]}_squadmember_die`;
+			load[load.length] = `repeating_squadmembers_${mids[i]}_squadmember_name`;
+			load[load.length] = `repeating_squadmembers_${mids[i]}_squadmember_team`;
+		}
+		getAttrs(load, function(a) {
+			var count = 0;
+			var tally = 0;
+			var rtext = "&{template:minionroll} {{name=@{character_name}}}";
+			for(var i=0; i < mids.length ; i++) {
+				var die = `repeating_squadmembers_${mids[i]}_squadmember_die`;
+				var name  = `repeating_squadmembers_${mids[i]}_squadmember_name`;
+				var tf  = `repeating_squadmembers_${mids[i]}_squadmember_team`;
+				if ( team !== "all" ) {
+					if ( typeof a[tf] !== "undefined" && a[tf] !== team ) {
+						continue; // skip stuff that isn't part of the chosen team grouping
+					}
+				}
+				var result = rollD(a[die]);
+				count = count + 1;
+				rtext = rtext + ` {{die${count}=${a[die]}}} {{diename${count}=${a[name]}}} {{dieresult${count}=${result.result}}} ` + mapResult(result.result,`dieresult${count}`);
+				tally = tally + result.result;
+			}
+			rtext = rtext + ` {{tally=${tally}}}`;
+			log(rtext);
+			startRoll(rtext, function(roll) {
+				finishRoll( roll.rollId );
+			});			
+		});
+	});
+});
+
+on("clicked:repeating_squadmembers:rolldie", function(e) {
+	log(e);
+	var squadmemberid = (e.sourceAttribute).slice(0,-8); // strips off _rolldie
+	var dieid = `${squadmemberid}_squadmember_die`;
+	var nameid = `${squadmemberid}_squadmember_name`;
+	var load = [ dieid, nameid ];
+	log(load);
+	getAttrs(load, function(a) {
+		var die = a[dieid];
+		var tf = a[nameid];
+		log(a);
+		var result = rollD(die);
+		var rtext = `&{template:simple} {{name=@{character_name}}} {{die=${die}}} {{diename=${tf}}} {{dieresult=${result.result}}}` + mapResult(result.result,"dieresult");
+		startRoll(rtext, function(roll) {
+			finishRoll( roll.rollId );
+		});			
+	});
 });
 
 </script>

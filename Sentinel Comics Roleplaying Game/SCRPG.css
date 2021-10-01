@@ -1239,3 +1239,11 @@ textarea.sheet-principle {
 	padding-top: 2px;
 	padding-bottom: 2px;
 }
+
+.sheet-hoverpopper + .sheet-hoverpop {
+	display: none;
+}
+
+.sheet-hoverpopper:hover + .sheet-hoverpop {
+	display: inline-block;
+}
