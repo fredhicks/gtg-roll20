@@ -1,4 +1,29 @@
 <input type="hidden" name="attr_sheet-version" value="1.0">
+
+<script type="text/worker">
+	on("clicked:sheetchoice", function(e) {
+		// htmlAttributes: {type: "action", name: "act_sheetchoice", value: "hero"}
+		var type = e.htmlAttributes.value;
+		var fid = `sheet_${type}`;
+		var s = { "sheet_choose": 0 };
+		s[fid] = 1;
+		setAttrs(s);
+	});
+</script>
+
+<input type="hidden" name="attr_sheet_choose" value="1" class="sheet-hide-on-zero"><div class="sheet-whole">
+	<div>
+		<b>Which kind of sheet is this?</b>
+	</div>
+	<button type="action" name="act_sheetchoice" value="hero">Hero</button>
+	<button type="action" name="act_sheetchoice" value="villain">Villain</button>
+	<button type="action" name="act_sheetchoice" value="minion">Environment</button>
+	<button type="action" name="act_sheetchoice" value="minion">Minion Squad</button>
+	<button type="action" name="act_sheetchoice" value="challenge">Challenge</button>
+	<button type="action" name="act_sheetchoice" value="scene">Scene Tracker</button>
+</div>
+
+<input type="hidden" name="attr_sheet_hero" value="0" class="sheet-hide-on-zero">
 <div class="sheet-whole">
 
 	<input type="hidden" name="attr_selected_current_mode_content" value="">
@@ -1394,6 +1419,75 @@
 						<input type="hidden" name="attr_edit_principles" value="1" class="sheet-hide-on-one"><span name="attr_principle1_of"></span>
 						<input type="hidden" name="attr_edit_principles" value="1" class="sheet-hide-on-zero"><input type="text" name="attr_principle1_of"></span>
 					</div>
+					<input type="hidden" name="attr_edit_principles" value="1" class="sheet-hide-on-zero"><div class="sheet-padding">
+						<select name="attr_quickadd_principle1">
+							<option value="">Pick a Principle...</option>
+							<option value="principle_esoteric1">Esoteric: Destiny</option>
+							<option value="principle_esoteric2">Esoteric: Energy/Element</option>
+							<option value="principle_esoteric3">Esoteric: Exorcism</option>
+							<option value="principle_esoteric4">Esoteric: Fauna</option>
+							<option value="principle_esoteric5">Esoteric: Flora</option>
+							<option value="principle_esoteric6">Esoteric: Future</option>
+							<option value="principle_esoteric7">Esoteric: Immortality</option>
+							<option value="principle_esoteric8">Esoteric: Inner Demon</option>
+							<option value="principle_esoteric9">Esoteric: Magic</option>
+							<option value="principle_esoteric10">Esoteric: The Sea</option>
+							<option value="principle_esoteric11">Esoteric: Space</option>
+							<option value="principle_esoteric12">Esoteric: Time Traveler</option>
+							<option value="principle_esoteric13">Esoteric: Undead</option>
+							<option value="principle_expertise1">Expertise: Clockwork</option>
+							<option value="principle_expertise2">Expertise: Gearhead</option>
+							<option value="principle_expertise3">Expertise: History</option>
+							<option value="principle_expertise4">Expertise: Indestructible</option>
+							<option value="principle_expertise5">Expertise: Lab</option>
+							<option value="principle_expertise6">Expertise: Mastery</option>
+							<option value="principle_expertise7">Expertise: Mentor</option>
+							<option value="principle_expertise8">Expertise: Powerless</option>
+							<option value="principle_expertise9">Expertise: Science</option>
+							<option value="principle_expertise10">Expertise: Speed</option>
+							<option value="principle_expertise11">Expertise: Stealth</option>
+							<option value="principle_expertise12">Expertise: Strength</option>
+							<option value="principle_expertise13">Expertise: Tactician</option>
+							<option value="principle_expertise14">Expertise: Whispers</option>
+							<option value="principle_ideals1">Ideals: Chaos</option>
+							<option value="principle_ideals2">Ideals: Compassion</option>
+							<option value="principle_ideals3">Ideals: Defender</option>
+							<option value="principle_ideals4">Ideals: Dependence</option>
+							<option value="principle_ideals5">Ideals: Equality</option>
+							<option value="principle_ideals6">Ideals: Great Power</option>
+							<option value="principle_ideals7">Ideals: Hero</option>
+							<option value="principle_ideals8">Ideals: Honor</option>
+							<option value="principle_ideals9">Ideals: Justice</option>
+							<option value="principle_ideals10">Ideals: Liberty</option>
+							<option value="principle_ideals11">Ideals: Order</option>
+							<option value="principle_ideals12">Ideals: Self Preservation</option>
+							<option value="principle_ideals13">Ideals: Zealot</option>
+							<option value="principle_identity1">Identity: Ambition</option>
+							<option value="principle_identity2">Identity: Amnesia</option>
+							<option value="principle_identity3">Identity: Detachment</option>
+							<option value="principle_identity4">Identity: Discovery</option>
+							<option value="principle_identity5">Identity: Levity</option>
+							<option value="principle_identity6">Identity: Loner</option>
+							<option value="principle_identity7">Identity: Nomad</option>
+							<option value="principle_identity8">Identity: Peace</option>
+							<option value="principle_identity9">Identity: Rage</option>
+							<option value="principle_identity10">Identity: Savagery</option>
+							<option value="principle_identity11">Identity: Split</option>
+							<option value="principle_identity12">Identity: Spotless Mind</option>
+							<option value="principle_responsibility1">Responsibility: Business</option>
+							<option value="principle_responsibility2">Responsibility: Debtor</option>
+							<option value="principle_responsibility3">Responsibility: Detective</option>
+							<option value="principle_responsibility4">Responsibility: Double Agent</option>
+							<option value="principle_responsibility5">Responsibility: Everyman</option>
+							<option value="principle_responsibility6">Responsibility: Family</option>
+							<option value="principle_responsibility7">Responsibility: Mask</option>
+							<option value="principle_responsibility8">Responsibility: Sidekick</option>
+							<option value="principle_responsibility9">Responsibility: Team</option>
+							<option value="principle_responsibility10">Responsibility: Underworld</option>
+							<option value="principle_responsibility11">Responsibility: Veteran</option>
+							<option value="principle_responsibility12">Responsibility: Youth</option>
+						</select>
+					</div>
 					<div class="sheet-padding">
 						<input type="hidden" name="attr_edit_principles" value="1" class="sheet-hide-on-zero"><b>During Roleplay:</b>
 						<i>
@@ -1420,6 +1514,75 @@
 						Principle of 
 						<input type="hidden" name="attr_edit_principles" value="1" class="sheet-hide-on-one"><span name="attr_principle2_of"></span>
 						<input type="hidden" name="attr_edit_principles" value="1" class="sheet-hide-on-zero"><input type="text" name="attr_principle2_of"></span>
+					</div>
+					<input type="hidden" name="attr_edit_principles" value="1" class="sheet-hide-on-zero"><div class="sheet-padding">
+						<select name="attr_quickadd_principle2">
+							<option value="">Pick a Principle...</option>
+							<option value="principle_esoteric1">Esoteric: Destiny</option>
+							<option value="principle_esoteric2">Esoteric: Energy/Element</option>
+							<option value="principle_esoteric3">Esoteric: Exorcism</option>
+							<option value="principle_esoteric4">Esoteric: Fauna</option>
+							<option value="principle_esoteric5">Esoteric: Flora</option>
+							<option value="principle_esoteric6">Esoteric: Future</option>
+							<option value="principle_esoteric7">Esoteric: Immortality</option>
+							<option value="principle_esoteric8">Esoteric: Inner Demon</option>
+							<option value="principle_esoteric9">Esoteric: Magic</option>
+							<option value="principle_esoteric10">Esoteric: The Sea</option>
+							<option value="principle_esoteric11">Esoteric: Space</option>
+							<option value="principle_esoteric12">Esoteric: Time Traveler</option>
+							<option value="principle_esoteric13">Esoteric: Undead</option>
+							<option value="principle_expertise1">Expertise: Clockwork</option>
+							<option value="principle_expertise2">Expertise: Gearhead</option>
+							<option value="principle_expertise3">Expertise: History</option>
+							<option value="principle_expertise4">Expertise: Indestructible</option>
+							<option value="principle_expertise5">Expertise: Lab</option>
+							<option value="principle_expertise6">Expertise: Mastery</option>
+							<option value="principle_expertise7">Expertise: Mentor</option>
+							<option value="principle_expertise8">Expertise: Powerless</option>
+							<option value="principle_expertise9">Expertise: Science</option>
+							<option value="principle_expertise10">Expertise: Speed</option>
+							<option value="principle_expertise11">Expertise: Stealth</option>
+							<option value="principle_expertise12">Expertise: Strength</option>
+							<option value="principle_expertise13">Expertise: Tactician</option>
+							<option value="principle_expertise14">Expertise: Whispers</option>
+							<option value="principle_ideals1">Ideals: Chaos</option>
+							<option value="principle_ideals2">Ideals: Compassion</option>
+							<option value="principle_ideals3">Ideals: Defender</option>
+							<option value="principle_ideals4">Ideals: Dependence</option>
+							<option value="principle_ideals5">Ideals: Equality</option>
+							<option value="principle_ideals6">Ideals: Great Power</option>
+							<option value="principle_ideals7">Ideals: Hero</option>
+							<option value="principle_ideals8">Ideals: Honor</option>
+							<option value="principle_ideals9">Ideals: Justice</option>
+							<option value="principle_ideals10">Ideals: Liberty</option>
+							<option value="principle_ideals11">Ideals: Order</option>
+							<option value="principle_ideals12">Ideals: Self Preservation</option>
+							<option value="principle_ideals13">Ideals: Zealot</option>
+							<option value="principle_identity1">Identity: Ambition</option>
+							<option value="principle_identity2">Identity: Amnesia</option>
+							<option value="principle_identity3">Identity: Detachment</option>
+							<option value="principle_identity4">Identity: Discovery</option>
+							<option value="principle_identity5">Identity: Levity</option>
+							<option value="principle_identity6">Identity: Loner</option>
+							<option value="principle_identity7">Identity: Nomad</option>
+							<option value="principle_identity8">Identity: Peace</option>
+							<option value="principle_identity9">Identity: Rage</option>
+							<option value="principle_identity10">Identity: Savagery</option>
+							<option value="principle_identity11">Identity: Split</option>
+							<option value="principle_identity12">Identity: Spotless Mind</option>
+							<option value="principle_responsibility1">Responsibility: Business</option>
+							<option value="principle_responsibility2">Responsibility: Debtor</option>
+							<option value="principle_responsibility3">Responsibility: Detective</option>
+							<option value="principle_responsibility4">Responsibility: Double Agent</option>
+							<option value="principle_responsibility5">Responsibility: Everyman</option>
+							<option value="principle_responsibility6">Responsibility: Family</option>
+							<option value="principle_responsibility7">Responsibility: Mask</option>
+							<option value="principle_responsibility8">Responsibility: Sidekick</option>
+							<option value="principle_responsibility9">Responsibility: Team</option>
+							<option value="principle_responsibility10">Responsibility: Underworld</option>
+							<option value="principle_responsibility11">Responsibility: Veteran</option>
+							<option value="principle_responsibility12">Responsibility: Youth</option>
+						</select>
 					</div>
 					<div class="sheet-padding">
 						<input type="hidden" name="attr_edit_principles" value="1" class="sheet-hide-on-zero"><b>During Roleplay:</b>
@@ -4516,6 +4679,73 @@ const ablib = {
 	"principle_responsibility12": { "color": "green", "attributes": { "action_type": "A", "action_name": "Principle of the Everyman", "action_description": "Overcome when using a bonus made by another hero and use your Max die. You and each of your allies gain a hero point.", "actionicona": "0", "actioniconb": "0", "actioniconh": "0", "actionicono": "1", "actionicond": "0", "actioniconr": "0" } }
 };
 
+const principleslib = {
+	"principle_esoteric1": { "of": "Destiny", "rp": "Signs and portents lead you towards an inevitable place in your life. You can always gain some measure of direction when needed.", "minor": "What omen of dire fortune did you just witness?", "major": "What heinous prophecy just came true?" },
+	"principle_esoteric2": { "of": "Energy/Element", "rp": "You have an affinity to or a love of [energy/element]. You can interact with that [energy/element] with ease.", "minor": "What other energy/element is currently causing your powers to go on the fritz?", "major": "What source of energy/element is currently dampening all your powers?" },
+	"principle_esoteric3": { "of": "Exorcism", "rp": "You can detect the subtle hints of the influence of other realms in an event.", "minor": "What is (literally or figuratively) coming back to haunt you?", "major": "What has been allowed to enter this world?" },
+	"principle_esoteric4": { "of": "Fauna", "rp": "Your innate animalistic nature allows you to identify any type of non-sapient animal life and determine its origin in broad terms, such as Earth, alien, etc.", "minor": "How did your primal nature get the better of you?", "major": "What is the only way the animal within can be restrained?" },
+	"principle_esoteric5": { "of": "Flora", "rp": "You can identify any type of plant life and determine its origin in broad terms, such as Earth, alien, etc.", "minor": "What grows out of your control?", "major": "How is nature reclaiming something important?" },
+	"principle_esoteric6": { "of": "Future", "rp": "You have visions or knowledge of things yet to come.", "minor": "What unintended ripple did your actions have?", "major": "What ripple effect now threatens the future as you know it?" },
+	"principle_esoteric7": { "of": "Immortality", "rp": "You do not age and will not be affected by mundane ailments.", "minor": "You take the long view of things. How does that cause you to be too slow?", "major": "What important attachment must you shed?" },
+	"principle_esoteric8": { "of": "Inner Demon", "rp": "You have a darkness in you that you strive to keep suppressed. You can reach out to your dark side to connect with similar forces.", "minor": "What sinister act comes from tapping into your dark side?", "major": "What havoc does your dark side inflict as you allow it to take control?" },
+	"principle_esoteric9": { "of": "Magic", "rp": "You are attuned to an otherworldly force, and can feel the mystical energies of the area.", "minor": "What weird curse is now following you around?", "major": "What mystical backlash has changed your life?" },
+	"principle_esoteric10": { "of": "The Sea", "rp": "You can speak to aquatic creatures and breathe underwater.", "minor": "What challenge does the surface world pose for you?", "major": "What disaster is incoming as the sea comes calling?" },
+	"principle_esoteric11": { "of": "Space", "rp": "You can survive in the vacuum of space without additional equipment.", "minor": "Who can hear you scream?", "major": "What caused you to drift off into the unknown?" },
+	"principle_esoteric12": { "of": "Time Traveler", "rp": "You are far from your own time and are often unsure how to act in this time. You have an innate sense for when time is not quite right in the era you’re in.", "minor": "What detail of this era did you not previously know about?", "major": "What effects are happening as you discorporate in time?" },
+	"principle_esoteric13": { "of": "Undead", "rp": "You are “living challenged.” You can still be hurt and damaged, but you can ignore many of the afflictions that bother the living.", "minor": "How did your undead nature unnerve those around you?", "major": "How are you risking your connection to the living world with what happened?" },
+	"principle_expertise1": { "of": "Clockwork", "rp": "You are good at understanding how pieces operate in tandem and can identify flaws in ordered systems.", "minor": "What tool just broke?", "major": "What faraway location are your tools now occupying?" },
+	"principle_expertise2": { "of": "Gearhead", "rp": "You always know the general state of repair or function of an item of technology, whether it’s a simple toaster or an alien orbital defense system.", "minor": "What mechanical device just shorted out?", "major": "What machine just went terribly off the rails?" },
+	"principle_expertise3": { "of": "History", "rp": "You have many contacts and references in the archaeological, historical, and anthropological fields.", "minor": "How did your old-timeyness cause an issue?", "major": "What ancient force is now making itself known in the present?" },
+	"principle_expertise4": { "of": "Indestructible", "rp": "You ignore damage from unpowered close-combat weapons and attacks, such as clubs and non-powered fists, or basic ranged attacks, such as slings and arrows.", "minor": "What goes wrong with your defenses?", "major": "Who gets hurt other than you as a result of you not being able to take damage?" },
+	"principle_expertise5": { "of": "Lab", "rp": "You have nearly unlimited access to a dedicated research area, and are at home there.", "minor": "What did you make a detour to observe and sample for later experiments?", "major": "Something’s gone very wrong at the lab; what was it?" },
+	"principle_expertise6": { "of": "Mastery", "rp": "You have thoroughly studied your own powers and are proud of your mastery of them. You understand a good deal about the metaphysics of your powers.", "minor": "How did your powers fail you in the moment?", "major": "What side effects are you suffering from your powers?" },
+	"principle_expertise7": { "of": "Mentor", "rp": "It is important to you to share your knowledge and experience with less-weathered heroes. Everyone grants you some measure of respect for your wisdom.", "minor": "Which whippersnapper just showed you up?", "major": "What has just proven that you’re too behind the times?" },
+	"principle_expertise8": { "of": "Powerless", "rp": "You value training and hard work over enhanced abilities. You understand how to get things done without powers and how to exploit flaws in powered individuals.", "minor": "What temporary injury did you just suffer?", "major": "What more serious injury did you just suffer?" },
+	"principle_expertise9": { "of": "Science", "rp": "You are up to date on and understand most modern scientific theories and research and can quote from them during conversations.", "minor": "What were the surprising effects of leveraging that scientific principle in this situation?", "major": "Oh heck! What just blew up?" },
+	"principle_expertise10": { "of": "Speed", "rp": "You’re fast, and you don’t like to waste time. You like to be on your way as quickly as possible.", "minor": "What physical drawbacks do you suffer from going too fast?", "major": "What critical detail did you speed by earlier that is now coming back to haunt you?" },
+	"principle_expertise11": { "of": "Stealth", "rp": "You always know the most efficient method to enter or leave a location.", "minor": "What evidence of your presence did you just leave behind?", "major": "What just happened that identified you as an obvious threat?" },
+	"principle_expertise12": { "of": "Strength", "rp": "You are very strong, so you must be careful to not crush delicate things. You do not need to roll to perform mundane acts of great strength.", "minor": "What just broke?", "major": "Who just broke?" },
+	"principle_expertise13": { "of": "Tactician", "rp": "You are constantly assessing the situation, making plans and backup plans, and then reassessing the situation.", "minor": "What one variable did your plan not account for?", "major": "What major threat is revealed that invalidates all your plans?" },
+	"principle_expertise14": { "of": "Whispers", "rp": "You hear a voice in your head that no one else hears. That voice tells you things, which might be true or false, but the voice certainly seems to know a lot.", "minor": "How did the voice in your head just distract you?", "major": "What is the voice demanding of you now?" },
+	"principle_ideals1": { "of": "Chaos", "rp": "You are an unpredictable free spirit. Even towering intellects can’t predict what you will do next.", "minor": "How did you fall in line in order to get something done?", "major": "What has caused you to become predictable and stale?" },
+	"principle_ideals2": { "of": "Compassion", "rp": "You are an empathetic person. You feel the suffering of others around you.", "minor": "What overwhelming injustice causes you extra pain?", "major": "How will you handle disconnecting from humanity?" },
+	"principle_ideals3": { "of": "Defender", "rp": "You will put yourself in harm’s way to defend another without a second thought.", "minor": "How do your actions put you in more danger than before?", "major": "What great sacrifice did you just make to succeed?" },
+	"principle_ideals4": { "of": "Dependence", "rp": "You are reliant on [something] and cannot normally function without it.", "minor": "How did the object of your dependence get damaged or lost?", "major": "How is your dependence preventing you from functioning as a hero?" },
+	"principle_ideals5": { "of": "Equality", "rp": "You have a keen sense of social status and can spot any situation where people are treated unfairly.", "minor": "Who is in danger that you just spotted?", "major": "What will you sacrifice to protect the downtrodden?" },
+	"principle_ideals6": { "of": "Great Power", "rp": "Your powers are so strong they can even scare you sometimes, but you work hard to control them. You can wield those powers to intimidate others.", "minor": "How do you restrain yourself from unleashing your full power?", "major": "What major damage do you inflict in the process of saving the day?" },
+	"principle_ideals7": { "of": "Hero", "rp": "Because of your abilities, you have a calling to protect others.", "minor": "Your immediate need to help someone else causes you to drop the ball in your personal life. What was it?", "major": "You’re given an ultimatum between your life as a hero and something else you value. What do you give up?" },
+	"principle_ideals8": { "of": "Honor", "rp": "You are governed by a strict code of conduct. Even under coercion, you will not compromise your ideals.", "minor": "Your honor has been challenged. How will you answer?", "major": "Will you choose your honor, or your life?" },
+	"principle_ideals9": { "of": "Justice", "rp": "You are always aware of acts of injustice in your environment and those who have committed them.", "minor": "How are you taking extra time to show yourself as a shining example of justice?", "major": "How do you unnerve your allies in the single-minded pursuit of justice?" },
+	"principle_ideals10": { "of": "Liberty", "rp": "You believe strongly in freedom and always side with the oppressed. You can never truly be mentally restrained.", "minor": "How do you become temporarily trapped?", "major": "How have you become a prisoner yourself?" },
+	"principle_ideals11": { "of": "Order", "rp": "You believe in organization and concordance. You always keep your head in the face of chaos.", "minor": "What element of disorder causes your plan to fall apart?", "major": "How is your ordered existence ruined by chaos?" },
+	"principle_ideals12": { "of": "Self Preservation", "rp": "You value your own safety more than most others in your line of work. You will never be caught fully unaware in a situation where your life is at stake.", "minor": "Who suffers because of your hesitation?", "major": "Are you willing to lay down your life to save others?" },
+	"principle_ideals13": { "of": "Zealot", "rp": "Your will is indomitable, and your beliefs govern your actions.", "minor": "Who suffered extra because of your zealous persecution?", "major": "What has your faith called on you to do that no one else will understand?" },
+	"principle_identity1": { "of": "Ambition", "rp": "There is something you want, and you strive towards achieving your goals, no matter the cost. You see paths to victory that no one else will.", "minor": "How is the pursuit of your goals getting in the way of being a hero in this situation?", "major": "What did you just pass up or miss that could have helped you achieve your biggest goal at last?" },
+	"principle_identity2": { "of": "Amnesia", "rp": "Your past is lost to you or otherwise obscured. Others have immense difficulty in keeping track of you.", "minor": "You have a flash of your former life that momentarily distracted you — what was it?", "major": "A shocking detail of your past changes the current situation — how does it affect the scene?" },
+	"principle_identity3": { "of": "Detachment", "rp": "You are detached from emotional situations and always keep your cool.", "minor": "Which hero or supporting character have you just alienated with your distant behavior?", "major": "How have you withdrawn from the current situation to cope?" },
+	"principle_identity4": { "of": "Discovery", "rp": "You are eager to learn new things at any cost. You can rattle off data about newly discovered concepts and ideas.", "minor": "What new discovery causes you to reconsider what you are doing?", "major": "What new discovery must you keep hidden at all costs?" },
+	"principle_identity5": { "of": "Levity", "rp": "You keep your positive outlook even when all hope is lost. Your spirit is nearly impossible to break.", "minor": "Who did you offend by making light at the wrong time?", "major": "What has occurred to finally break your good spirits?" },
+	"principle_identity6": { "of": "Loner", "rp": "You’re the best at what you do, as long as no one else sees you do it. You can always find your own path.", "minor": "Now that you’re separated from your team, how will you get back?", "major": "How do you alienate the rest of your team with your loner tendencies?" },
+	"principle_identity7": { "of": "Nomad", "rp": "You are far away from home, but you’re used to living on the road. You know how to get by on the run.", "minor": "What problem does your lack of attachments cause?", "major": "How have you been lost from your new home?" },
+	"principle_identity8": { "of": "Peace", "rp": "You believe that the ultimate goal of your mission is peace, and that violence is usually not the answer. While not necessarily a pacifist, you can almost always come up with a non-violent solution to problems.", "minor": "What causes you to lose your calm?", "major": "What major issue do you create with your team when you refuse to engage in violence?" },
+	"principle_identity9": { "of": "Rage", "rp": "They don’t like you when you’re angry. Your fury is intimidating to many.", "minor": "What did your anger just mess up?", "major": "Who have you thoroughly alienated with your outbursts?" },
+	"principle_identity10": { "of": "Savagery", "rp": "Your wild instincts stay with you and guide your actions. You can survive in the wild and resist the trappings of civilization.", "minor": "Who did you harm with your rampage?", "major": "What major act of collateral damage are you responsible for?" },
+	"principle_identity11": { "of": "Split", "rp": "You have two (or more) entirely separate facets to your personality. As a result you can look at a situation from many different angles.", "minor": "What perspective ended up being the wrong one for the situation?", "major": "What inner conflict has completely thrown you off?" },
+	"principle_identity12": { "of": "Spotless Mind", "rp": "You have a state of blissful ignorance. Grudges, entanglements, and commitments slide right off you.", "minor": "What slid off you previously that could have been useful right now?", "major": "What major thing did you forget and why did forgetting it make your situation much worse?" },
+	"principle_responsibility1": { "of": "Business", "rp": "You are an entrepreneur — running a business is an important part of your life and your identity. You have a base of operations that you can rely on for support.", "minor": "You’re always looking at the bigger picture. How does that cause friction in the moment with your team?", "major": "Your business interests are in danger. Where are your priorities, truly?" },
+	"principle_responsibility2": { "of": "Debtor", "rp": "You owe someone or something more than you can ever repay. You know plenty of folks willing to give out favors, but it’ll cost you later.", "minor": "What potential source of wealth looks mighty tempting right about now?", "major": "Who has come to collect?" },
+	"principle_responsibility3": { "of": "Detective", "rp": "You can always tell when an important piece of information is being left out or obscured, though you might not know exactly what it is.", "minor": "What important clue did you miss?", "major": "What major secret was just revealed that you would rather have stayed hidden?" },
+	"principle_responsibility4": { "of": "Double Agent", "rp": "You are loyal to more than one organization, possibly working at cross purposes. You always cover your tracks.", "minor": "What were you just forced to do that seemed strange to your current allies?", "major": "Will you shatter your trust with your current allies or forfeit what your other allegiance offers?" },
+	"principle_responsibility5": { "of": "Everyman", "rp": "You are just a normal person who has had power thrust upon them or are otherwise in over your head. You don’t have the same sense of lofty purpose as other heroes. When needed, you can make yourself just another face in the crowd.", "minor": "Which hero did you make look good at the expense of yourself?", "major": "How are you utterly and totally out of your league?" },
+	"principle_responsibility6": { "of": "Family", "rp": "Your family is an important part of your life. You have relatives in a wide range of fields that you can call upon.", "minor": "Which member of your family just compromised your mission?", "major": "What do you have to give up in your heroic life for the sake of your family?" },
+	"principle_responsibility7": { "of": "Mask", "rp": "It is vitally important that you hide your true identity. You have a career that allows you to slip between identities when necessary.", "minor": "What clue about your real identity did you leave behind?", "major": "Who from your civilian life is now in imminent danger?" },
+	"principle_responsibility8": { "of": "Sidekick", "rp": "You always seem to be where the trouble is; you’re never too far away when a crisis strikes the group you sidekick for.", "minor": "Which hero has to rescue you from your current predicament?", "major": "What serious lesson that you ignored is now getting you into big trouble?" },
+	"principle_responsibility9": { "of": "Team", "rp": "Your heroic team takes up a significant portion of your life and you have an official position in that team. Civilian authorities will recognize your status in the team.", "minor": "What embarrassment did you just cause as a representative of your team?", "major": "What major sanctions will you suffer as a result of your actions?" },
+	"principle_responsibility10": { "of": "Underworld", "rp": "You have a variety of contacts from the criminal underworld and organized crime.", "minor": "What shady detail causes others to distrust you?", "major": "Are you guilty of what you’re being arrested for?" },
+	"principle_responsibility11": { "of": "Veteran", "rp": "You remain clear-headed under intense combat situations.", "minor": "What affected you emotionally about the current conflict?", "major": "How are you withdrawing from the current conflict?" },
+	"principle_responsibility12": { "of": "Youth", "rp": "You have an innocent and cheerful outlook on most things, based on your upbeat personality and general lack of experience. You can slip into many situations that adults would have trouble with.", "minor": "Who has been put out by your overconfidence?", "major": "What person that you would hate to let down is now very disappointed in you?" }
+};
+
 on("change:library_category", function(e) {
 	var switchto = e.newValue;
 	if ( typeof switchto !== "undefined" ) {
@@ -4584,6 +4814,25 @@ on("clicked:repeating_abilitiesgreen:xferability clicked:repeating_abilitiesyell
 		setAttrs(s);
 		removeRepeatingRow(sourcerow);
 	});
+});
+
+on("change:quickadd_principle1 change:quickadd_principle2", function(e) {
+	log(e);
+	var trigger = e.sourceAttribute;
+	var target = trigger.substring(9); // should remove "quickadd_" from the front
+	var key = e.newValue;
+	if ( typeof key !== "undefined" && key !== "" ) {
+		var s = {};
+		s[trigger] = "";
+		var p = principleslib[key];
+		s[`${target}_of`] = p["of"];
+		s[`${target}_rp`] = p["rp"];
+		s[`${target}_twist_minor`] = p["minor"];
+		s[`${target}_twist_major`] = p["major"];
+		log(p);
+		log(s);
+		setAttrs(s);
+	}
 });
 
 </script>
