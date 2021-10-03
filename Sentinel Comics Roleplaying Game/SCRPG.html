@@ -3,6 +3,7 @@
 <script type="text/worker">
 </script>
 
+<!-- Sheet Selection -->
 <input type="hidden" name="attr_sheet_choose" value="1" class="sheet-hide-on-zero"><div class="sheet-whole">
 	<div>
 		<b>Which kind of sheet is this?</b>
@@ -15,14 +16,317 @@
 	<button type="action" name="act_sheetchoice" value="scene">Scene and Turn Tracker</button>
 </div>
 
+<!-- Villain -->
 <input type="hidden" name="attr_sheet_villain" value="0" class="sheet-hide-on-zero">
 <div class="sheet-whole">
 	<div>
 		<input type="text" name="attr_character_name" value="" class="sheet-bigname">
 	</div>
+
+	<div class="sheet-dicecols">
+
+		<div class="sheet-dicecol-unadorned">
+			<!-- div class="sheet-dicecol-head">Rolls</div -->
+			<div class="sheet-rollcols">
+				<div class="sheet-rollblock">
+					<span name="attr_selected_die_pool_text"></span>
+					<button type="action" name="act_roll3pool">
+						<input type="hidden" name="attr_selected_die_power" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+						<input type="hidden" name="attr_selected_die_quality" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+						<input type="hidden" name="attr_selected_die_status" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+					</button>
+				</div>
+				<div class="sheet-rollblock">
+					<span name="attr_selected_die_power_text"></span>
+					<button type="action" value="power" name="act_rolldie">
+						<input type="hidden" name="attr_selected_die_power" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+					</button>
+				</div>
+				<div class="sheet-rollblock">
+					<span name="attr_selected_die_quality_text"></span>
+					<button type="action" value="quality" name="act_rolldie">
+						<input type="hidden" name="attr_selected_die_quality" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+					</button>
+				</div>
+				<div class="sheet-rollblock">
+					<span name="attr_selected_die_status_text"></span>
+					<button type="action" value="status" name="act_rolldie">
+						<input type="hidden" name="attr_selected_die_status" value="" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+					</button>
+				</div>
+				<div class="sheet-rollblock">
+					<span>Individual Dice</span>
+					<div>
+						<button type="action" value="4" name="act_rolldie">
+							<input type="hidden" value="4" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+						</button>
+						<button type="action" value="6" name="act_rolldie">
+							<input type="hidden" value="6" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+						</button>
+						<button type="action" value="8" name="act_rolldie">
+							<input type="hidden" value="8" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+						</button>
+						<button type="action" value="10" name="act_rolldie">
+							<input type="hidden" value="10" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+						</button>
+						<button type="action" value="12" name="act_rolldie">
+							<input type="hidden" value="12" class="sheet-inlinedie"><span class="sheet-diepic"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="sheet-dicecols">
+
+		<input type="hidden" name="red" value="red" class="sheet-box-colorizer">
+		<input type="hidden" name="attr_edit_powers" value="1" class="sheet-hide-on-one">
+		<div class="sheet-dicecol sheet-halfsies">
+			<div class="sheet-dicecol-head sheet-lefty">
+				<button type="action" name="act_edit_powers" class="sheet-button-header-edit"></button>
+				Powers
+			</div>
+			<fieldset class="repeating_heropowers">
+				<input type="hidden" name="attr_name" value="">
+				<div class="sheet-dicerow">
+					<input type="hidden" name="attr_hero_die_selector" value="" class="sheet-dieselected">
+					<input type="hidden" name="attr_die" value="" class="sheet-dval">
+					<div class="sheet-die">
+						<input type="checkbox" name="attr_hero_die_selector" value="1" class="sheet-dieboxer">
+						<div class="sheet-diepic"></div>
+					</div>
+					<div class="sheet-dielabel">
+						<span name="attr_name"></span>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+
+		<input type="hidden" name="red" value="red" class="sheet-box-colorizer">
+		<input type="hidden" name="attr_edit_powers" value="1" class="sheet-hide-on-zero">
+		<div class="sheet-dicecol sheet-editcol sheet-halfsies">
+			<div class="sheet-dicecol-head sheet-lefty">
+				<button type="action" name="act_edit_powers" class="sheet-button-header-close"></button>
+				Powers
+			</div>
+			<fieldset class="repeating_heropowers">
+				<input type="hidden" name="attr_name" value="">
+				<div class="sheet-dicerow">
+					<input type="hidden" name="attr_hero_die_selector" value="">
+					<select name="attr_die">
+						<option value="">? [Choose]</option>
+						<option value="12">d12</option>
+						<option value="10">d10</option>
+						<option value="8">d8</option>
+						<option value="6">d6</option>
+						<option value="4">d4</option>
+					</select>
+					<input type="text" name="attr_name" value="">
+				</div>
+			</fieldset>
+			<select name="attr_quickadd_powers">
+				<option value="">Quick Add...</option>
+				<option value="Agility">Agility (Athletic)</option>
+				<option value="Speed">Speed (Athletic)</option>
+				<option value="Strength">Strength (Athletic)</option>
+				<option value="Vitality">Vitality (Athletic)</option>
+				<option value="Cold">Cold (Elemental/Energy)</option>
+				<option value="Cosmic">Cosmic (Elemental/Energy)</option>
+				<option value="Electricity">Electricity (Elemental/Energy)</option>
+				<option value="Fire">Fire (Elemental/Energy)</option>
+				<option value="Infernal">Infernal (Elemental/Energy)</option>
+				<option value="Nuclear">Nuclear (Elemental/Energy)</option>
+				<option value="Radiant">Radiant (Elemental/Energy)</option>
+				<option value="Sonic">Sonic (Elemental/Energy)</option>
+				<option value="Weather">Weather (Elemental/Energy)</option>
+				<option value="Signature Vehicle">Signature Vehicle (Hallmark)</option>
+				<option value="Signature Weaponry">Signature Weaponry (Hallmark)</option>
+				<option value="Invented Power">Invented Power (Hallmark)</option>
+				<option value="Awareness">Awareness (Intellectual)</option>
+				<option value="Deduction">Deduction (Intellectual)</option>
+				<option value="Intuition">Intuition (Intellectual)</option>
+				<option value="Lightning Calculator">Lightning Calculator (Intellectual)</option>
+				<option value="Presence">Presence (Intellectual)</option>
+				<option value="Metal">Metal (Materials)</option>
+				<option value="Plants">Plants (Materials)</option>
+				<option value="Stone">Stone (Materials)</option>
+				<option value="Toxic">Toxic (Materials)</option>
+				<option value="Transmutation">Transmutation (Materials)</option>
+				<option value="Flight">Flight (Mobility)</option>
+				<option value="Leaping">Leaping (Mobility)</option>
+				<option value="Momentum">Momentum (Mobility)</option>
+				<option value="Swimming">Swimming (Mobility)</option>
+				<option value="Swinging">Swinging (Mobility)</option>
+				<option value="Teleportation">Teleportation (Mobility)</option>
+				<option value="Wall-Crawling">Wall-Crawling (Mobility)</option>
+				<option value="Animal Control">Animal Control (Psychic)</option>
+				<option value="Illusions">Illusions (Psychic)</option>
+				<option value="Postcognition">Postcognition (Psychic)</option>
+				<option value="Precognition">Precognition (Psychic)</option>
+				<option value="Remote Viewing">Remote Viewing (Psychic)</option>
+				<option value="Suggestion">Suggestion (Psychic)</option>
+				<option value="Telekinesis">Telekinesis (Psychic)</option>
+				<option value="Telepathy">Telepathy (Psychic)</option>
+				<option value="Absorption">Absorption (Self Control)</option>
+				<option value="Density Control">Density Control (Self Control)</option>
+				<option value="Duplication">Duplication (Self Control)</option>
+				<option value="Elasticity">Elasticity (Self Control)</option>
+				<option value="Intangibility">Intangibility (Self Control)</option>
+				<option value="Invisibility">Invisibility (Self Control)</option>
+				<option value="Part Detachment">Part Detachment (Self Control)</option>
+				<option value="Shapeshifting">Shapeshifting (Self Control)</option>
+				<option value="Size-Changing">Size-Changing (Self Control)</option>
+				<option value="Gadgets">Gadgets (Technological)</option>
+				<option value="Inventions">Inventions (Technological)</option>
+				<option value="Power Suit">Power Suit (Technological)</option>
+				<option value="Robotics">Robotics (Technological)</option>
+			</select>
+		</div>
+
+		<input type="hidden" name="red" value="red" class="sheet-box-colorizer">
+		<input type="hidden" name="attr_edit_qualities" value="1" class="sheet-hide-on-one">
+		<div class="sheet-dicecol sheet-halfsies">
+			<div class="sheet-dicecol-head sheet-lefty">
+				<button type="action" name="act_edit_qualities" class="sheet-button-header-edit"></button>
+				Qualities
+			</div>
+			<fieldset class="repeating_heroqualities">
+				<input type="hidden" name="attr_name" value="">
+				<div class="sheet-dicerow">
+					<input type="hidden" name="attr_hero_die_selector" value="" class="sheet-dieselected">
+					<input type="hidden" name="attr_die" value="" class="sheet-dval">
+					<div class="sheet-die">
+						<input type="checkbox" name="attr_hero_die_selector" value="1" class="sheet-dieboxer">
+						<div class="sheet-diepic"></div>
+					</div>
+					<div class="sheet-dielabel">
+						<span name="attr_name"></span>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+
+		<input type="hidden" name="red" value="red" class="sheet-box-colorizer">
+		<input type="hidden" name="attr_edit_qualities" value="1" class="sheet-hide-on-zero">
+		<div class="sheet-dicecol sheet-editcol sheet-halfsies">
+			<div class="sheet-dicecol-head sheet-lefty">
+				<button type="action" name="act_edit_qualities" class="sheet-button-header-close"></button>
+				Qualities
+			</div>
+			<fieldset class="repeating_heroqualities">
+				<input type="hidden" name="attr_name" value="">
+				<div class="sheet-dicerow">
+					<input type="hidden" name="attr_hero_die_selector" value="">
+					<select name="attr_die">
+						<option value="">? [Choose]</option>
+						<option value="12">d12</option>
+						<option value="10">d10</option>
+						<option value="8">d8</option>
+						<option value="6">d6</option>
+						<option value="4">d4</option>
+					</select>
+					<input type="text" name="attr_name" value="">
+				</div>
+			</fieldset>
+			<select name="attr_quickadd_qualities">
+				<option value="">Quick Add...</option>
+				<option value="Criminal Underworld Info">Criminal Underworld Info (Information)</option>
+				<option value="Deep Space Knowledge">Deep Space Knowledge (Information)</option>
+				<option value="History">History (Information)</option>
+				<option value="Magical Lore">Magical Lore (Information)</option>
+				<option value="Medicine">Medicine (Information)</option>
+				<option value="Otherworldly Mythos">Otherworldly Mythos (Information)</option>
+				<option value="Science">Science (Information)</option>
+				<option value="Technology">Technology (Information)</option>
+				<option value="Alertness">Alertness (Mental)</option>
+				<option value="Conviction">Conviction (Mental)</option>
+				<option value="Creativity">Creativity (Mental)</option>
+				<option value="Investigation">Investigation (Mental)</option>
+				<option value="Self-Discipline">Self-Discipline (Mental)</option>
+				<option value="Acrobatics">Acrobatics (Physical)</option>
+				<option value="Close Combat">Close Combat (Physical)</option>
+				<option value="Finesse">Finesse (Physical)</option>
+				<option value="Fitness">Fitness (Physical)</option>
+				<option value="Ranged Combat">Ranged Combat (Physical)</option>
+				<option value="Stealth">Stealth (Physical)</option>
+				<option value="Banter">Banter (Social)</option>
+				<option value="Imposing">Imposing (Social)</option>
+				<option value="Insight">Insight (Social)</option>
+				<option value="Leadership">Leadership (Social)</option>
+				<option value="Persuasion">Persuasion (Social)</option>
+			</select>
+		</div>
+
+		<input type="hidden" name="red" value="red" class="sheet-box-colorizer">
+		<input type="hidden" name="attr_edit_status" value="1" class="sheet-hide-on-one">
+		<div class="sheet-dicecol sheet-halfsies">
+			<div class="sheet-dicecol-head sheet-lefty">
+				<button type="action" name="act_edit_status" class="sheet-button-header-edit"></button>
+				Status
+			</div>
+			<fieldset class="repeating_villainstatus">
+				<input type="hidden" name="attr_name" value="">
+				<div class="sheet-dicerow">
+					<input type="hidden" name="attr_hero_die_selector" value="" class="sheet-dieselected">
+					<input type="hidden" name="attr_die" value="" class="sheet-dval">
+					<div class="sheet-die">
+						<input type="checkbox" name="attr_hero_die_selector" value="1" class="sheet-dieboxer">
+						<div class="sheet-diepic"></div>
+					</div>
+					<div class="sheet-dielabel">
+						<span name="attr_name"></span>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+
+		<input type="hidden" name="red" value="red" class="sheet-box-colorizer">
+		<input type="hidden" name="attr_edit_status" value="1" class="sheet-hide-on-zero">
+		<div class="sheet-dicecol sheet-editcol sheet-halfsies">
+			<div class="sheet-dicecol-head sheet-lefty">
+				<button type="action" name="act_edit_status" class="sheet-button-header-close"></button>
+				Status
+			</div>
+			<fieldset class="repeating_villainstatus">
+				<input type="hidden" name="attr_name" value="">
+				<div class="sheet-dicerow">
+					<input type="hidden" name="attr_hero_die_selector" value="">
+					<select name="attr_die">
+						<option value="">? [Choose]</option>
+						<option value="12">d12</option>
+						<option value="10">d10</option>
+						<option value="8">d8</option>
+						<option value="6">d6</option>
+						<option value="4">d4</option>
+					</select>
+					<input type="text" name="attr_name" value="">
+				</div>
+			</fieldset>
+			<select name="attr_quickadd_villainstatus">
+				<option value="">Quick Add...</option>
+				<option value="Bruiser">Bruiser (Red/Yellow/Green zone)</option>
+				<option value="Domain">Domain (Environment)</option>
+				<option value="Formidable">Formidable (Not having penalties related to a weakness)</option>
+				<option value="Fragile">Fragile (Green/Yellow/Red zone)</option>
+				<option value="Guerrilla">Guerrilla (The more opponents, the better)</option>
+				<option value="Indomitable">Indomitable (Consistent status)</option>
+				<option value="Inhibitor">Inhibitor (Penalties on heroes)</option>
+				<option value="Inventor">Inventor (Inventions and Bonuses/Penalties)</option>
+				<option value="Legion">Legion (The more minions, the harder to control)</option>
+				<option value="Loner">Loner (Fewer other villains, the better)</option>
+				<option value="Overlord">Overlord (The more minions, the better)</option>
+				<option value="Predator">Predator (The fewer opponents, the better)</option>
+				<option value="Squad">Squad (The more allies, the better)</option>
+				<option value="Titan">Titan (Built-in challenge to reduce status)</option>
+			</select>
+		</div>
+
+	</div>
 [Villain Sheet, Eventually]
 </div>
 
+<!-- Minion Squad -->
 <input type="hidden" name="attr_sheet_minion" value="0" class="sheet-hide-on-zero">
 <div class="sheet-whole">
 	<div>
@@ -3888,7 +4192,7 @@
 </rolltemplate>
 
 <rolltemplate class="sheet-rolltemplate-simple">
-<div class="sheet-template-container">
+<div class="sheet-template-container {{#color}}template-color-{{color}}{{/color}}">
 	<div class="sheet-template-head">
 		{{name}}
 	</div>
@@ -3921,7 +4225,7 @@
 </div></rolltemplate>
 
 <rolltemplate class="sheet-rolltemplate-3pool">
-<div class="sheet-template-container">
+<div class="sheet-template-container {{#color}}template-color-{{color}}{{/color}}">
 	<div class="sheet-template-head">
 		{{name}}
 	</div>
@@ -4046,7 +4350,7 @@
 </div></rolltemplate>
 
 <rolltemplate class="sheet-rolltemplate-minionroll">
-<div class="sheet-template-container">
+<div class="sheet-template-container {{#color}}template-color-{{color}}{{/color}}">
 	<div class="sheet-template-head">
 		{{name}} Minions
 	</div>
@@ -4588,6 +4892,11 @@ var rollD = function(d) {
 	});
 };
 
+
+var compareNumbers = function(a, b) {
+  return a - b;
+}
+
 var roll3D = function(p,q,s) {
 	log(p);
 	var pow = rollD(p);
@@ -4595,7 +4904,7 @@ var roll3D = function(p,q,s) {
 	var sta = rollD(s);
 	log(pow); log(qua); log(sta);
 	var spread = [ pow.result, qua.result, sta.result ];
-	spread.sort();
+	spread.sort(compareNumbers);
 	var min = spread[0];
 	var mid = spread[1];
 	var max = spread[2];
@@ -4610,14 +4919,18 @@ var roll3D = function(p,q,s) {
 };
 
 on("clicked:roll3pool", function() {
-	getAttrs( [ "selected_die_status", "selected_die_power", "selected_die_quality" ], function(a) {
+	getAttrs( [ "selected_die_status", "selected_die_power", "selected_die_quality", "sheet_villain" ], function(a) {
 		log(a);
 		var results = roll3D(
 			a["selected_die_power"],
 			a["selected_die_quality"],
 			a["selected_die_status"]
 		);
-		var rtext = `&{template:3pool} {{name=@{character_name}}} {{powername=@{selected_die_power_text}}} {{powerdie=${a.selected_die_power}}} {{powerresult=${results.power.result}}} {{qualityname=@{selected_die_quality_text}}} {{qualitydie=${a.selected_die_quality}}} {{qualityresult=${results.quality.result}}} {{statusname=@{selected_die_status_text}}} {{statusdie=${a.selected_die_status}}} {{statusresult=${results.status.result}}} {{min=${results.min}}} {{mid=${results.mid}}} {{max=${results.max}}}`;
+		color = "blue";
+		if ( typeof a.sheet_villain !== "undefined" && String(a.sheet_villain) === "1" ) {
+			color = "red";
+		}
+		var rtext = `&{template:3pool} {{name=@{character_name}}} {{powername=@{selected_die_power_text}}} {{powerdie=${a.selected_die_power}}} {{powerresult=${results.power.result}}} {{qualityname=@{selected_die_quality_text}}} {{qualitydie=${a.selected_die_quality}}} {{qualityresult=${results.quality.result}}} {{statusname=@{selected_die_status_text}}} {{statusdie=${a.selected_die_status}}} {{statusresult=${results.status.result}}} {{min=${results.min}}} {{mid=${results.mid}}} {{max=${results.max}}} {{color=${color}}}`;
 		rtext = rtext + " " + mapResult(results.min,"min");
 		rtext = rtext + " " + mapResult(results.mid,"mid");
 		rtext = rtext + " " + mapResult(results.max,"max");
@@ -4641,10 +4954,11 @@ on("clicked:rolldie", function(e) {
 	var mode = e.htmlAttributes.value;
 	if ( mode === "quality" || mode === "power" || mode === "status" ) {
 		var tf = `selected_die_${mode}_text`; var df = `selected_die_${mode}`;
-		getAttrs([ tf, df ], function(a) {
+		getAttrs([ tf, df, "sheet_villain" ], function(a) {
 			var die = a[df];
 			var result = rollD(die);
-			var rtext = `&{template:simple} {{name=@{character_name}}} {{die=${die}}} {{diename=@{${tf}}}} {{dieresult=${result.result}}} ` + mapResult(result.result,"dieresult"); log(rtext);
+			var color = "blue"; if ( typeof a.sheet_villain !== "undefined" && String(a.sheet_villain) === "1" ) { color = "red"; }
+			var rtext = `&{template:simple} {{name=@{character_name}}} {{die=${die}}} {{diename=@{${tf}}}} {{dieresult=${result.result}}} {{color=${color}}}` + mapResult(result.result,"dieresult"); log(rtext);
 			startRoll(rtext, function(roll) {
 				finishRoll( roll.rollId );
 			});			
@@ -4657,18 +4971,23 @@ on("clicked:rolldie", function(e) {
 		getAttrs([ tf, df ], function(a) {
 			var die = a[df];
 			var result = rollD(die);
-			var rtext = `&{template:simple} {{name=@{character_name}}} {{die=${die}}} {{diename=@{${tf}}}} {{dieresult=${result.result}}} ` + mapResult(result.result,"dieresult"); log(rtext);
+			var rtext = `&{template:simple} {{name=@{character_name}}} {{die=${die}}} {{diename=@{${tf}}}} {{dieresult=${result.result}}} {{color=green}}` + mapResult(result.result,"dieresult"); log(rtext);
 			startRoll(rtext, function(roll) {
 				finishRoll( roll.rollId );
 			});			
 		});
 	} else {
+		getAttrs( [ "sheet_villain", "sheet_environment" ], function(a) {
+			var color = "blue"; 
+			if ( typeof a.sheet_villain !== "undefined" && String(a.sheet_villain) === "1" ) { color = "red"; }
+			if ( typeof a.sheet_environment !== "undefined" && String(a.sheet_environment) === "1" ) { color = "green"; }
 			// going to hope we safely assume this is a number: 4,6,8,10,12
-		var die = mode;
-		var result = rollD(die);
-		var rtext = `&{template:simple} {{name=@{character_name}}} {{die=${die}}} {{diename=die}} {{dieresult=${result.result}}} ` + mapResult(result.result,"dieresult"); log(rtext);
-		startRoll(rtext, function(roll) {
-			finishRoll( roll.rollId );
+			var die = mode;
+			var result = rollD(die);
+			var rtext = `&{template:simple} {{name=@{character_name}}} {{die=${die}}} {{diename=die}} {{dieresult=${result.result}}} {{color=${color}}}` + mapResult(result.result,"dieresult"); log(rtext);
+			startRoll(rtext, function(roll) {
+				finishRoll( roll.rollId );
+			});
 		});
 	}
 });
@@ -4744,6 +5063,35 @@ on("change:repeating_heroqualities:hero_die_selector", function(e) {
 	});
 });
 
+on("change:repeating_villainstatus:hero_die_selector", function(e) {
+	// var rowid = (e.sourceAttribute).slice(0,-17); // Strips off the 'hero_die_selector';
+	var selid = e.sourceAttribute;
+	getAttrs([selid], function(dval) {
+		var a = {};
+		if ( 
+			typeof dval[selid] !== "undefined" 
+			&& dval[selid] === "1" 
+		) {
+			getSectionIDs("repeating_villainstatus", function(d) {
+				for ( var i=0; i < d.length; i++ ) {
+					var thisid = "repeating_villainstatus_" + d[i] + "_hero_die_selector";
+					if ( thisid !== selid ) {
+						// Then it should not be selected, because it's 
+						// not the one that just GOT selected.
+						//
+						// Will eventually need to override this for
+						// support of Divided characters that roll two Q
+						// or two P instead of 1P&1Q, but let's cross that
+						// bridge when we come to it.
+						a[thisid] = "";
+					}
+				}
+				setAttrs(a);
+			});
+		}
+	});
+});
+
 on("change:repeating_heropowers:hero_die_selector", function(e) {
 	// var rowid = (e.sourceAttribute).slice(0,-17); // Strips off the 'hero_die_selector';
 	var selid = e.sourceAttribute;
@@ -4773,101 +5121,129 @@ on("change:repeating_heropowers:hero_die_selector", function(e) {
 	});
 });
 
-on("sheet:opened change:repeating_heropowers change:repeating_heroqualities change:hero_die_selector_status_green change:hero_die_selector_status_yellow change:hero_die_selector_status_red", function() {
-	var alist = [ "hero_die_selector_status_green", "hero_die_selector_status_yellow", "hero_die_selector_status_red" ];
-	getSectionIDs("repeating_heroqualities", function(q) {
-		for ( var i=0; i < q.length; i++ ) {
-			var thisid = "repeating_heroqualities_" + q[i] + "_hero_die_selector";
-			alist[i+3] = thisid;
+// ZOD
+
+on("sheet:opened change:repeating_heropowers change:repeating_heroqualities change:hero_die_selector_status_green change:hero_die_selector_status_yellow change:hero_die_selector_status_red change:repeating_villainstatus", function() {
+	var alist = [ "hero_die_selector_status_green", "hero_die_selector_status_yellow", "hero_die_selector_status_red", "sheet_villain" ];
+	getSectionIDs("repeating_villainstatus", function(v) {
+		for ( var i=0; i < v.length; i++ ) {
+			var thisid = "repeating_villainstatus_" + v[i] + "_hero_die_selector";
+			alist[alist.length] = thisid;
 		}
-		getSectionIDs("repeating_heropowers", function(p) {
-			for ( var i=0; i < p.length; i++ ) {
-				var thisid = "repeating_heropowers_" + p[i] + "_hero_die_selector";
-				alist[i+q.length+3] = thisid;
+		getSectionIDs("repeating_heroqualities", function(q) {
+			for ( var i=0; i < q.length; i++ ) {
+				var thisid = "repeating_heroqualities_" + q[i] + "_hero_die_selector";
+				alist[alist.length] = thisid;
 			}
-			getAttrs(alist, function(dice) {
-				var powerprefix = ""; var powername = ""; var powerdie = "";
-				var qualityprefix = ""; var qualityname = ""; var qualitydie = "";
-				var statusfield = ""; var statusname = ""; var statusdie = "";
+			getSectionIDs("repeating_heropowers", function(p) {
 				for ( var i=0; i < p.length; i++ ) {
 					var thisid = "repeating_heropowers_" + p[i] + "_hero_die_selector";
-					if ( dice[thisid] === "1" ) {
-						powerprefix = "repeating_heropowers_" + p[i] + "_";
-						break;
+					alist[alist.length] = thisid;
+				}
+				getAttrs(alist, function(dice) {
+					log(alist); log(dice);
+					var powerprefix = ""; var powername = ""; var powerdie = "";
+					var qualityprefix = ""; var qualityname = ""; var qualitydie = "";
+					var statusfield = ""; var statusname = ""; var statusdie = "";
+					var villainprefix = "";
+					for ( var i=0; i < p.length; i++ ) {
+						var thisid = "repeating_heropowers_" + p[i] + "_hero_die_selector";
+						if ( dice[thisid] === "1" ) {
+							powerprefix = "repeating_heropowers_" + p[i] + "_";
+							break;
+						}
 					}
-				}
-				for ( var i=0; i < q.length; i++ ) {
-					var thisid = "repeating_heroqualities_" + q[i] + "_hero_die_selector";
-					if ( dice[thisid] === "1" ) {
-						qualityprefix = "repeating_heroqualities_" + q[i] + "_";
-						break;
+					for ( var i=0; i < q.length; i++ ) {
+						var thisid = "repeating_heroqualities_" + q[i] + "_hero_die_selector";
+						if ( dice[thisid] === "1" ) {
+							qualityprefix = "repeating_heroqualities_" + q[i] + "_";
+							break;
+						}
 					}
-				}
-				if ( dice["hero_die_selector_status_green"] === "1" ) {
-					statusname = "Green";
-					statusfield = "hero_status_die_green";
-				} else if ( dice["hero_die_selector_status_yellow"] === "1") {
-					statusname = "Yellow";
-					statusfield = "hero_status_die_yellow";
-				} else if ( dice["hero_die_selector_status_red"] === "1") {
-					statusname = "Red";
-					statusfield = "hero_status_die_red";
-				}
+					
+					if( typeof dice.sheet_villain !== "undefined" && String(dice.sheet_villain) === "1" ) {
+						log("villain mode!")
+						for ( var i=0; i < v.length; i++ ) {
+							var thisid = "repeating_villainstatus_" + v[i] + "_hero_die_selector";
+							if ( dice[thisid] === "1" ) {
+								villainprefix = "repeating_villainstatus_" + v[i] + "_";
+								statusfield = ""; // make sure it's empty!
+								break;
+							}
+						}
+					} else {
+						if ( dice["hero_die_selector_status_green"] === "1" ) {
+							statusname = "Green";
+							statusfield = "hero_status_die_green";
+						} else if ( dice["hero_die_selector_status_yellow"] === "1") {
+							statusname = "Yellow";
+							statusfield = "hero_status_die_yellow";
+						} else if ( dice["hero_die_selector_status_red"] === "1") {
+							statusname = "Red";
+							statusfield = "hero_status_die_red";
+						}
+					}
 
-				var vlist = [];
-				if (statusfield !== "") {
-					vlist[vlist.length] = statusfield;
-				}
-				if (powerprefix !== "") {
-					vlist[vlist.length] = powerprefix + "name";
-					vlist[vlist.length] = powerprefix + "die";
-				}
-				if (qualityprefix !== "") {
-					vlist[vlist.length] = qualityprefix + "name";
-					vlist[vlist.length] = qualityprefix + "die";
-				}
-				if ( vlist.length > 0 ) {
-					getAttrs(vlist, function(v) {
-						pat = {};
-						if (powerprefix !== "") {
-							pat["selected_die_power"] = v[`${powerprefix}die`]
-							pat["selected_die_power_text"] = v[`${powerprefix}name`];
-						} else {
-							pat["selected_die_power"] = "4";
-							pat["selected_die_power_text"] = "No Power";
-						}
-						pat["selected_die_pool_text"] = pat["selected_die_power_text"];
-						if (qualityprefix !== "") {
-							pat["selected_die_quality"] = v[`${qualityprefix}die`]
-							pat["selected_die_quality_text"] = v[`${qualityprefix}name`];
-						} else {
-							pat["selected_die_quality"] = "4";
-							pat["selected_die_quality_text"] = "No Quality";
-						}
-						pat["selected_die_pool_text"] = pat["selected_die_pool_text"] + ", " + pat["selected_die_quality_text"];
-						if (statusfield !== "") {
-							pat["selected_die_status"] = v[statusfield];
-							pat["selected_die_status_text"] = statusname;
-						} else {
-							pat["selected_die_status"] = "4";
-							pat["selected_die_status_text"] = "No Status";
-						}
-						pat["selected_die_pool_text"] = pat["selected_die_pool_text"] + ", " + pat["selected_die_status_text"];
-						setAttrs(pat);
-					});
-				} else {
-					setAttrs({
-						"selected_die_pool_text": "No Power, No Quality, No Status",
-						"selected_die_status_text": "No Status",
-						"selected_die_power_text": "No Power",
-						"selected_die_quality_text": "No Quality",
-						"selected_die_status": "4",
-						"selected_die_power": "4",
-						"selected_die_quality": "4"
-					});
-				}
-			});
-		});		
+					var plist = [];
+					if (statusfield !== "") {
+						plist[plist.length] = statusfield;
+					}
+					if (villainprefix !== "") {
+						plist[plist.length] = villainprefix + "name";
+						plist[plist.length] = villainprefix + "die";
+					}
+					if (powerprefix !== "") {
+						plist[plist.length] = powerprefix + "name";
+						plist[plist.length] = powerprefix + "die";
+					}
+					if (qualityprefix !== "") {
+						plist[plist.length] = qualityprefix + "name";
+						plist[plist.length] = qualityprefix + "die";
+					}
+					if ( plist.length > 0 ) {
+						getAttrs(plist, function(p) {
+							pat = {};
+							if (powerprefix !== "") {
+								pat["selected_die_power"] = p[`${powerprefix}die`]
+								pat["selected_die_power_text"] = p[`${powerprefix}name`];
+							} else {
+								pat["selected_die_power"] = "4";
+								pat["selected_die_power_text"] = "No Power";
+							}
+							pat["selected_die_pool_text"] = pat["selected_die_power_text"];
+							if (qualityprefix !== "") {
+								pat["selected_die_quality"] = p[`${qualityprefix}die`]
+								pat["selected_die_quality_text"] = p[`${qualityprefix}name`];
+							} else {
+								pat["selected_die_quality"] = "4";
+								pat["selected_die_quality_text"] = "No Quality";
+							}
+							pat["selected_die_pool_text"] = pat["selected_die_pool_text"] + ", " + pat["selected_die_quality_text"];
+							if (statusfield !== "") {
+							} else if (villainprefix !== "") {
+								pat["selected_die_status"] = p[`${villainprefix}die`]
+								pat["selected_die_status_text"] = p[`${villainprefix}name`];
+							} else {
+								pat["selected_die_status"] = "4";
+								pat["selected_die_status_text"] = "No Status";
+							}
+							pat["selected_die_pool_text"] = pat["selected_die_pool_text"] + ", " + pat["selected_die_status_text"];
+							setAttrs(pat);
+						});
+					} else {
+						setAttrs({
+							"selected_die_pool_text": "No Power, No Quality, No Status",
+							"selected_die_status_text": "No Status",
+							"selected_die_power_text": "No Power",
+							"selected_die_quality_text": "No Quality",
+							"selected_die_status": "4",
+							"selected_die_power": "4",
+							"selected_die_quality": "4"
+						});
+					}
+				});
+			});		
+		});
 	});
 });
 
@@ -5854,7 +6230,7 @@ on("clicked:repeating_minions:rolldie", function(e) {
 		var tf = a[nameid];
 		log(a);
 		var result = rollD(die);
-		var rtext = `&{template:simple} {{name=@{character_name}}} {{die=${die}}} {{diename=${tf}}} {{dieresult=${result.result}}}` + mapResult(result.result,"dieresult");
+		var rtext = `&{template:simple} {{name=@{character_name}}} {{die=${die}}} {{diename=${tf}}} {{dieresult=${result.result}}} {{color=blue}}` + mapResult(result.result,"dieresult");
 		startRoll(rtext, function(roll) {
 			finishRoll( roll.rollId );
 		});			
@@ -5890,7 +6266,7 @@ on("clicked:rollminions", function(e) {
 				rtext = rtext + ` {{die${count}=${a[die]}}} {{diename${count}=${a[name]}}} {{dieresult${count}=${result.result}}} ` + mapResult(result.result,`dieresult${count}`);
 				tally = tally + result.result;
 			}
-			rtext = rtext + ` {{tally=${tally}}}`;
+			rtext = rtext + ` {{tally=${tally}}} {{color=blue}}`;
 			log(rtext);
 			startRoll(rtext, function(roll) {
 				finishRoll( roll.rollId );
@@ -5946,6 +6322,41 @@ on("change:quickadd_status", function(e) {
 	if ( typeof addthis !== "undefined" && addthis !== "" ) {
 		var s = personalitydice[addthis];
 		s[whichtype] = "";
+		setAttrs(s);
+	}
+});
+
+const vstatuses = {
+	"Bruiser": [ ["Green",6], ["Yellow",8], ["Red",10] ],
+	"Domain": [ ["3+ environment threats and challenges",10], ["1-2 environment threats and challenges",8], ["0 environment threats and challenges",6] ],
+	"Formidable": [ ["Any Penalties and No Bonuses",4], ["Some Penalties and Some Bonuses",8], ["No Penalties",12] ],
+	"Fragile": [ ["Green",10], ["Yellow",8], ["Red",6] ],
+	"Guerrilla": [ ["4+ engaged opponents",10], ["2-3 engaged opponents",8], ["0-1 engaged opponents",6] ],
+	"Indomitable": [ ["Always",8] ],
+	"Inhibitor": [ ["3+ heroes with at least one penalty",10], ["1-2 heroes with at least one penalty",8], ["0 heroes with at least one penalty",6] ],
+	"Inventor": [ ["4+ Inventions (mods)",12], ["2-3 Inventions (mods)",10], ["1 Invention (mods)",8], ["0 Inventions (mods)",6] ],
+	"Legion": [ ["9+ minions",4], ["5-8 minions",6], ["3-4 minions",8], ["1-2 minions",10], ["0 minions",12], ],
+	"Loner": [ ["0 other villains",10], ["1-2 other villains",8], ["3+ other villains",6] ],
+	"Overlord": [ ["9+ minions",12], ["5-8 minions",10], ["3-4 minions",8], ["1-2 minions",6], ["0 minions",4], ],
+	"Predator": [ ["0-1 engaged opponents",10], ["2-3 engaged opponents",8], ["4+ engaged opponents",6] ],
+	"Squad": [ ["0 other villains",6], ["1-2 other villains",8], ["3+ other villains",10] ],
+	"Titan": [ ["Challenge unmarked",12], ["Vulnerability exposed",10], ["Weakness exploited",8] ]
+};
+
+on("change:quickadd_villainstatus", function(e) {
+	log(e);
+	var addthis = vstatuses[e.newValue];
+	if ( typeof addthis !== "undefined" ) {
+		var s = {};
+		var prefix = "repeating_villainstatus_";
+		for(var i = 0; i < addthis.length; i++ ) {
+			var rowid = generateActuallyUniqueRowID();
+			var nameid = prefix + rowid + "_name";
+			var dieid = prefix + rowid + "_die";
+			s[nameid] = addthis[i][0];
+			s[dieid] = addthis[i][1];
+		}
+		s.quickadd_villainstatus = "";
 		setAttrs(s);
 	}
 });
@@ -6669,7 +7080,7 @@ on("clicked:repeating_squadmembers:downgrade", function(e) {
 on("clicked:rollsquad", function(e) {
 	var team = e.htmlAttributes.value;
 	getSectionIDs("repeating_squadmembers", function(mids) {
-		var load = [];
+		var load = [ "sheet_villain", "sheet_environment" ];
 		for(var i=0; i < mids.length ; i++) {
 			load[load.length] = `repeating_squadmembers_${mids[i]}_squadmember_die`;
 			load[load.length] = `repeating_squadmembers_${mids[i]}_squadmember_name`;
@@ -6693,7 +7104,10 @@ on("clicked:rollsquad", function(e) {
 				rtext = rtext + ` {{die${count}=${a[die]}}} {{diename${count}=${a[name]}}} {{dieresult${count}=${result.result}}} ` + mapResult(result.result,`dieresult${count}`);
 				tally = tally + result.result;
 			}
-			rtext = rtext + ` {{tally=${tally}}}`;
+			var color = "yellow";
+			if ( typeof a.sheet_villain !== "undefined" && String(a.sheet_villain) === "1" ) { color = "red"; }
+			if ( typeof a.sheet_environment !== "undefined" && String(a.sheet_environment) === "1" ) { color = "green"; }
+			rtext = rtext + ` {{tally=${tally}}} {{color=${color}}}`;
 			log(rtext);
 			startRoll(rtext, function(roll) {
 				finishRoll( roll.rollId );
@@ -6707,14 +7121,17 @@ on("clicked:repeating_squadmembers:rolldie", function(e) {
 	var squadmemberid = (e.sourceAttribute).slice(0,-8); // strips off _rolldie
 	var dieid = `${squadmemberid}_squadmember_die`;
 	var nameid = `${squadmemberid}_squadmember_name`;
-	var load = [ dieid, nameid ];
+	var load = [ dieid, nameid, "sheet_villain", "sheet_environment" ];
 	log(load);
 	getAttrs(load, function(a) {
 		var die = a[dieid];
 		var tf = a[nameid];
 		log(a);
 		var result = rollD(die);
-		var rtext = `&{template:simple} {{name=@{character_name}}} {{die=${die}}} {{diename=${tf}}} {{dieresult=${result.result}}}` + mapResult(result.result,"dieresult");
+		var color = "yellow";
+		if ( typeof a.sheet_villain !== "undefined" && String(a.sheet_villain) === "1" ) { color = "red"; }
+		if ( typeof a.sheet_environment !== "undefined" && String(a.sheet_environment) === "1" ) { color = "green"; }
+		var rtext = `&{template:simple} {{name=@{character_name}}} {{die=${die}}} {{diename=${tf}}} {{dieresult=${result.result}}} {{color=${color}}}` + mapResult(result.result,"dieresult");
 		startRoll(rtext, function(roll) {
 			finishRoll( roll.rollId );
 		});			
@@ -6729,7 +7146,7 @@ on("clicked:rollenvpool", function() {
 			a["environment_die2"],
 			a["environment_die3"]
 		);
-		var rtext = `&{template:3pool} {{name=@{character_name}}} {{powername=@{environment_name1}}} {{powerdie=${a.environment_die1}}} {{powerresult=${results.power.result}}} {{qualityname=@{environment_name2}}} {{qualitydie=${a.environment_die2}}} {{qualityresult=${results.quality.result}}} {{statusname=@{environment_name3}}} {{statusdie=${a.environment_die3}}} {{statusresult=${results.status.result}}} {{min=${results.min}}} {{mid=${results.mid}}} {{max=${results.max}}}`;
+		var rtext = `&{template:3pool} {{name=@{character_name}}} {{powername=@{environment_name1}}} {{powerdie=${a.environment_die1}}} {{powerresult=${results.power.result}}} {{qualityname=@{environment_name2}}} {{qualitydie=${a.environment_die2}}} {{qualityresult=${results.quality.result}}} {{statusname=@{environment_name3}}} {{statusdie=${a.environment_die3}}} {{statusresult=${results.status.result}}} {{min=${results.min}}} {{mid=${results.mid}}} {{max=${results.max}}} {{color=green}}`;
 		rtext = rtext + " " + mapResult(results.min,"min");
 		rtext = rtext + " " + mapResult(results.mid,"mid");
 		rtext = rtext + " " + mapResult(results.max,"max");

@@ -252,6 +252,22 @@ input.sheet-dieselected[value="1"] ~ .sheet-dielabel
 	font-weight: bold;
 }
 
+
+.sheet-box-colorizer[value="red"] + input + .sheet-dicecol input.sheet-dieselected[value=""] ~ .sheet-die,
+.sheet-box-colorizer[value="red"] + input + .sheet-dicecol input.sheet-dieselected[value=""] ~ .sheet-dielabel
+{
+	background-color: #ffeeee;
+	font-weight: normal;
+}
+
+.sheet-box-colorizer[value="red"] + input + .sheet-dicecol input.sheet-dieselected[value="1"] ~ .sheet-die,
+.sheet-box-colorizer[value="red"] + input + .sheet-dicecol input.sheet-dieselected[value="1"] ~ .sheet-dielabel
+{
+	background-color: #dd0000;
+	color: white;
+	font-weight: bold;
+}
+
 /* here's a problem: if I change the "d" in "dval" to "die", all rolltemplate formatting stops working; man, wtf? */
 
 input.sheet-dval ~ .sheet-die > .sheet-diepic {
@@ -373,7 +389,7 @@ input[type="checkbox"].sheet-oval-marker:checked + span.sheet-oval-icon::before 
 }
 
 .sheet-translucent {
-	opacity: 0.35;
+	opacity: 0.5;
 }
 
 /* This is button formatting */
@@ -594,18 +610,21 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 	height: 60px;
 }
 
+.sheet-box-colorizer[value="green"] + input + .sheet-dicecol,
 .sheet-box-colorizer[value="green"] + .sheet-dicecol,
 .sheet-abilities-green {
 	background-color: #eeffee;
 	box-shadow: 3px 3px #009900;
 }
 
+.sheet-box-colorizer[value="yellow"] + input + .sheet-dicecol,
 .sheet-box-colorizer[value="yellow"] + .sheet-dicecol,
 .sheet-abilities-yellow {
 	background-color: #ffffee;
 	box-shadow: 3px 3px #ffcc00;
 }
 
+.sheet-box-colorizer[value="red"] + input + .sheet-dicecol,
 .sheet-box-colorizer[value="red"] + .sheet-dicecol,
 .sheet-abilities-red {
 	background-color: #ffeeee;
@@ -621,6 +640,7 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 	background-color: #009900;
 }
 
+.sheet-box-colorizer[value="green"] + input + .sheet-dicecol .sheet-dicecol-head,
 .sheet-box-colorizer[value="green"] + .sheet-dicecol .sheet-dicecol-head,
 .sheet-abilities-green .sheet-abilities-head {
 	background-color: #009900;
@@ -635,6 +655,7 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 	background-color: #ffcc00;
 }
 
+.sheet-box-colorizer[value="yellow"] + input + .sheet-dicecol .sheet-dicecol-head,
 .sheet-box-colorizer[value="yellow"] + .sheet-dicecol .sheet-dicecol-head,
 .sheet-abilities-yellow .sheet-abilities-head {
 	background-color: #ffcc00;
@@ -645,6 +666,7 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 	background-color: #ffeeee;
 }
 
+.sheet-box-colorizer[value="red"] + input + .sheet-dicecol .sheet-dicecol-head,
 .sheet-box-colorizer[value="red"] + .sheet-dicecol .sheet-dicecol-head,
 .sheet-ability-red button[type=action] {
 	color: white;
@@ -655,6 +677,7 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 	background-color: #cc0000;
 }
 
+.sheet-box-colorizer[value="out"] + input + .sheet-dicecol,
 .sheet-box-colorizer[value="out"] + .sheet-dicecol,
 .sheet-abilities-out {
 	background-color: #eeeeee;
@@ -670,6 +693,7 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 	background-color: #000000;
 }
 
+.sheet-box-colorizer[value="out"] + input + .sheet-dicecol .sheet-dicecol-head,
 .sheet-box-colorizer[value="out"] + .sheet-dicecol .sheet-dicecol-head,
 .sheet-abilities-out .sheet-abilities-head {
 	background-color: #000000;
@@ -1069,21 +1093,33 @@ textarea.sheet-principle {
 	padding: 3px;
 }
 
+.sheet-rolltemplate-3pool div.sheet-template-color-green,
+.sheet-rolltemplate-minionroll div.sheet-template-color-green,
+.sheet-rolltemplate-simple div.sheet-template-color-green,
 .sheet-rolltemplate-announcement div.sheet-template-color-green {
 	background-color: #eeffee;
 	box-shadow: 3px 3px #009900;
 }
 
+.sheet-rolltemplate-3pool div.sheet-template-color-yellow,
+.sheet-rolltemplate-minionroll div.sheet-template-color-yellow,
+.sheet-rolltemplate-simple div.sheet-template-color-yellow,
 .sheet-rolltemplate-announcement div.sheet-template-color-yellow {
 	background-color: #ffffee;
 	box-shadow: 3px 3px #ffcc00;
 }
 
+.sheet-rolltemplate-3pool div.sheet-template-color-red,
+.sheet-rolltemplate-minionroll div.sheet-template-color-red,
+.sheet-rolltemplate-simple div.sheet-template-color-red,
 .sheet-rolltemplate-announcement div.sheet-template-color-red {
 	background-color: #ffeeee;
 	box-shadow: 3px 3px #cc0000;
 }
 
+.sheet-rolltemplate-3pool div.sheet-template-color-out,
+.sheet-rolltemplate-minionroll div.sheet-template-color-out,
+.sheet-rolltemplate-simple div.sheet-template-color-out,
 .sheet-rolltemplate-announcement div.sheet-template-color-out {
 	background-color: #eeeeee;
 	box-shadow: 3px 3px #000000;
@@ -1109,6 +1145,32 @@ textarea.sheet-principle {
 	background-color: #004499;
 	color: white;
 }
+
+.sheet-rolltemplate-3pool div.sheet-template-color-green .sheet-template-head,
+.sheet-rolltemplate-minionroll div.sheet-template-color-green .sheet-template-head,
+.sheet-rolltemplate-simple div.sheet-template-color-green .sheet-template-head {
+	background-color: #009900;
+}
+
+.sheet-rolltemplate-3pool div.sheet-template-color-yellow .sheet-template-head,
+.sheet-rolltemplate-minionroll div.sheet-template-color-yellow .sheet-template-head,
+.sheet-rolltemplate-simple div.sheet-template-color-yellow .sheet-template-head {
+	background-color: #ffcc00;
+	color: black;
+}
+
+.sheet-rolltemplate-3pool div.sheet-template-color-red .sheet-template-head,
+.sheet-rolltemplate-minionroll div.sheet-template-color-red .sheet-template-head,
+.sheet-rolltemplate-simple div.sheet-template-color-red .sheet-template-head {
+	background-color: #cc0000;
+}
+
+.sheet-rolltemplate-3pool div.sheet-template-color-out .sheet-template-head,
+.sheet-rolltemplate-minionroll div.sheet-template-color-out .sheet-template-head,
+.sheet-rolltemplate-simple div.sheet-template-color-out .sheet-template-head {
+	background-color: black;
+}
+
 
 .sheet-rolltemplate-simple .sheet-diepic4,
 .sheet-rolltemplate-minionroll .sheet-diepic4,
@@ -1160,7 +1222,7 @@ textarea.sheet-principle {
 .sheet-rolltemplate-simple .sheet-bigdie .sheet-bigresult, 
 .sheet-rolltemplate-3pool .sheet-bigdie .sheet-bigresult 
 {
-	font-size: 21px;
+	font-size: 16px;
 	font-weight: bold;
 }
 
