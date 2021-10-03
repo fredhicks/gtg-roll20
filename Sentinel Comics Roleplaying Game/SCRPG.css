@@ -33,6 +33,7 @@ input.sheet-bigname {
 
 input.sheet-bignum {
 	text-align: center;
+	background: none;
 }
 
 .sheet-smalldata-row {
@@ -60,20 +61,22 @@ input.sheet-bignum {
 }
 
 .sheet-smalldata input[type=text] {
-	font-size: 12pt;
+	font-size: 10pt;
 	border: none;
 	border-bottom: 0.5px solid black;
+	background: none;
 	flex-grow: 1;
 	width: 100%;
 }
 
 .sheet-smalldata textarea {
-	font-size: 12pt;
+	font-size: 10pt;
 	border: none;
 	border-top: 0.5px solid black;
 	border-bottom: 0.5px solid black;
 	flex-grow: 1;
 	width: calc(100% - 9px);
+	background: none;
 }
 
 .sheet-collection-row {
@@ -142,6 +145,16 @@ input.sheet-bignum {
 .sheet-halfsies {
 	width: calc(50% - 12px);
 	flex-basis: calc(50% - 12px);
+}
+
+.sheet-thirdsies {
+	width: calc(33% - 12px);
+	flex-basis: calc(33% - 12px);
+}
+
+.sheet-twothirdsies {
+	width: calc(67% - 12px);
+	flex-basis: calc(67% - 12px);
 }
 
 .sheet-noflexgrow {
@@ -1372,6 +1385,8 @@ textarea.sheet-principle {
 
 .sheet-hoverpopper:hover + .sheet-hoverpop {
 	display: inline-block;
+	position: absolute;
+	z-index: 1;
 }
 
 .sheet-countup ~ .sheet-counter {
