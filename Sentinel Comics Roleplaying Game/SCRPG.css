@@ -14,6 +14,7 @@
 	align-items: center;
 }
 
+.sheet-bigname,
 input.sheet-bignum,
 input.sheet-bigname {
 	font-family: "Bangers", Arial, sans-serif;
@@ -337,8 +338,6 @@ input[type="checkbox"].sheet-oval-marker:checked + span.sheet-oval-icon::before 
 	content: url(https://raw.githubusercontent.com/fredhicks/gtg-roll20/master/Sentinel%20Comics%20Roleplaying%20Game/icons/scrpg-oval-marked.svg);
 }
 
-
-
 .sheet-colorizer + * {
 	color: black;
 }
@@ -367,6 +366,30 @@ input[type="checkbox"].sheet-oval-marker:checked + span.sheet-oval-icon::before 
 	padding-top: 12px;
 	width: 108px;
 	height: 30px;
+}
+
+.sheet-opaque {
+	opacity: 1.0;
+}
+
+.sheet-translucent {
+	opacity: 0.35;
+}
+
+/* This is button formatting */
+.sheet-scene .sheet-pow-red,
+.sheet-scene .sheet-pow-yellow,
+.sheet-scene .sheet-pow-green {
+	width: 72px; height: 12px; /* height adjusted by subtracting top/bottom padding */
+	padding: 0px;
+	padding-top: 8px;
+	margin-bottom: 8px;
+	padding-bottom: 8px;
+	background-size: contain;
+	border: none;
+	background-color: transparent;
+	font-family: 'Pictos';
+	margin-top: -2px;
 }
 
 .sheet-pow-green {
@@ -408,6 +431,7 @@ input[type="checkbox"].sheet-oval-marker:checked + span.sheet-oval-icon::before 
 	align-content: stretch;
 }
 
+.sheet-buttons button,
 .sheet-editcol .repcontrol .repcontrol_add,
 .sheet-editcol .repcontrol .repcontrol_edit,
 .sheet-rollblock button {
@@ -422,6 +446,13 @@ input[type="checkbox"].sheet-oval-marker:checked + span.sheet-oval-icon::before 
 	vertical-align: middle;
 }
 
+.sheet-buttons button:hover,
+.sheet-buttons button:hover span {
+	color: white;
+}
+
+.sheet-buttons button:hover,
+.sheet-buttons button:hover span,
 .sheet-editcol .repcontrol .repcontrol_add:hover,
 .sheet-editcol .repcontrol .repcontrol_add:hover span,
 .sheet-editcol .repcontrol .repcontrol_edit:hover,
@@ -563,9 +594,22 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 	height: 60px;
 }
 
+.sheet-box-colorizer[value="green"] + .sheet-dicecol,
 .sheet-abilities-green {
 	background-color: #eeffee;
 	box-shadow: 3px 3px #009900;
+}
+
+.sheet-box-colorizer[value="yellow"] + .sheet-dicecol,
+.sheet-abilities-yellow {
+	background-color: #ffffee;
+	box-shadow: 3px 3px #ffcc00;
+}
+
+.sheet-box-colorizer[value="red"] + .sheet-dicecol,
+.sheet-abilities-red {
+	background-color: #ffeeee;
+	box-shadow: 3px 3px #cc0000;
 }
 
 .sheet-ability-green {
@@ -577,13 +621,9 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 	background-color: #009900;
 }
 
+.sheet-box-colorizer[value="green"] + .sheet-dicecol .sheet-dicecol-head,
 .sheet-abilities-green .sheet-abilities-head {
 	background-color: #009900;
-}
-
-.sheet-abilities-yellow {
-	background-color: #ffffee;
-	box-shadow: 3px 3px #ffcc00;
 }
 
 .sheet-ability-yellow {
@@ -595,20 +635,17 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 	background-color: #ffcc00;
 }
 
+.sheet-box-colorizer[value="yellow"] + .sheet-dicecol .sheet-dicecol-head,
 .sheet-abilities-yellow .sheet-abilities-head {
 	background-color: #ffcc00;
 	color: black;
-}
-
-.sheet-abilities-red {
-	background-color: #ffeeee;
-	box-shadow: 3px 3px #cc0000;
 }
 
 .sheet-ability-red {
 	background-color: #ffeeee;
 }
 
+.sheet-box-colorizer[value="red"] + .sheet-dicecol .sheet-dicecol-head,
 .sheet-ability-red button[type=action] {
 	color: white;
 	background-color: #cc0000;
@@ -618,6 +655,7 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 	background-color: #cc0000;
 }
 
+.sheet-box-colorizer[value="out"] + .sheet-dicecol,
 .sheet-abilities-out {
 	background-color: #eeeeee;
 	box-shadow: 3px 3px #000000;
@@ -632,6 +670,7 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 	background-color: #000000;
 }
 
+.sheet-box-colorizer[value="out"] + .sheet-dicecol .sheet-dicecol-head,
 .sheet-abilities-out .sheet-abilities-head {
 	background-color: #000000;
 }
@@ -1015,6 +1054,7 @@ textarea.sheet-principle {
 	display: initial;
 }
 
+.sheet-rolltemplate-announcement div.sheet-template-container,
 .sheet-rolltemplate-minionroll div.sheet-template-container,
 .sheet-rolltemplate-simple div.sheet-template-container,
 .sheet-rolltemplate-3pool div.sheet-template-container {
@@ -1023,6 +1063,30 @@ textarea.sheet-principle {
 	box-shadow: 3px 3px #004499;
 	margin-right: 9px;
 	margin-bottom: 9px;
+}
+
+.sheet-rolltemplate-announcement div.sheet-template-container {
+	padding: 3px;
+}
+
+.sheet-rolltemplate-announcement div.sheet-template-color-green {
+	background-color: #eeffee;
+	box-shadow: 3px 3px #009900;
+}
+
+.sheet-rolltemplate-announcement div.sheet-template-color-yellow {
+	background-color: #ffffee;
+	box-shadow: 3px 3px #ffcc00;
+}
+
+.sheet-rolltemplate-announcement div.sheet-template-color-red {
+	background-color: #ffeeee;
+	box-shadow: 3px 3px #cc0000;
+}
+
+.sheet-rolltemplate-announcement div.sheet-template-color-out {
+	background-color: #eeeeee;
+	box-shadow: 3px 3px #000000;
 }
 
 .sheet-rolltemplate-simple .sheet-template-body {
@@ -1307,7 +1371,7 @@ textarea.sheet-principle {
 .sheet-countup[value="2"] + .sheet-counter + .sheet-counter,
 .sheet-countup[value="2"] + .sheet-counter,
 .sheet-countup[value="1"] + .sheet-counter {
-	display: initial;
+	display: inline-block;
 }
 
 .sheet-challenge-component {
@@ -1322,4 +1386,9 @@ textarea.sheet-principle {
 
 .sheet-challenge-component div:first-child {
 	white-space: nowrap;
+}
+
+.sheet-highlight-on-one[value="1"] + div {
+	background-color: #009900;
+	color: white;
 }

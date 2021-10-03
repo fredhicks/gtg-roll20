@@ -171,6 +171,7 @@
 	</div>
 </div>
 
+<!-- Environment -->
 <input type="hidden" name="attr_sheet_environment" value="0" class="sheet-hide-on-zero">
 <div class="sheet-whole">
 	<div>
@@ -1418,22 +1419,360 @@
 
 </div>
 
+<!-- Challenge -->
 <input type="hidden" name="attr_sheet_challenge" value="0" class="sheet-hide-on-zero">
 <div class="sheet-whole">
 	<div>
 		<input type="text" name="attr_character_name" value="" class="sheet-bigname">
 	</div>
-[Challenge, Eventually]
+	<fieldset class="repeating_challenges"><div class="sheet-dicecols">
+		<div class="sheet-dicecol">
+			<div class="sheet-dicecol-head">
+				<input type="hidden" name="attr_toggle" class="sheet-hide-on-zero" value="0">
+				<button type="action" name="act_toggle" class="sheet-button-header-expand"></button>
+				<input type="hidden" name="attr_toggle" class="sheet-hide-on-one" value="0">
+				<button type="action" name="act_toggle" class="sheet-button-header-collapse"></button>
+				<input type="hidden" name="attr_toggle" class="sheet-hide-on-one" value="0">
+				<span><input type="hidden" name="attr_edit" value="1" class="sheet-hide-on-zero"><button type="action" name="act_edit" class="sheet-button-header-close"></button>
+				<input type="hidden" name="attr_edit" value="1" class="sheet-hide-on-one"><button type="action" name="act_edit" class="sheet-button-header-edit"></button></span>
+				<input type="hidden" name="attr_challenge_name" value="New Challlenge"><span name="attr_challenge_name"></span>
+			</div>
+			<input type="hidden" name="attr_toggle" class="sheet-hide-on-one" value="0">
+			<div>
+				<input type="hidden" name="attr_edit" value="1" class="sheet-hide-on-zero">
+				<div class="sheet-padding">
+					<div>
+						<b>Challenge Name:</b>
+						<input type="text" name="attr_challenge_name" value="New Challenge">
+					</div>
+					<div>
+						<b>Description:</b>
+						<textarea name="attr_challenge_description" class="sheet-modest"></textarea>
+					</div>
+					<div>
+						<b>Resolution</b>
+					</div>
+					<div>
+						<i>1st Component:</i> 
+						<select name="attr_challenge_boxes1">
+							<option value="0">0 boxes</option>
+							<option value="1">1 box</option>
+							<option value="2">2 boxes</option>
+							<option value="3">3 boxes</option>
+							<option value="4">4 boxes</option>
+							<option value="5">5 boxes</option>
+							<option value="6">6 boxes</option>
+							<option value="7">7 boxes</option>
+							<option value="8">8 boxes</option>
+							<option value="9">9 boxes</option>
+							<option value="10">10 boxes</option>
+						</select>
+						<br/><i>Component Name: <input type="text" name="attr_challenge_name1">:</i> 
+						<textarea name="attr_challenge_details1" class="sheet-modest"></textarea>
+					</div>
+					<input type="hidden" name="attr_challenge_boxes1" class="sheet-hide-on-zero" value="0">
+					<div>
+						<i>2nd Component:</i> 
+						<select name="attr_challenge_boxes2">
+							<option value="0">0 boxes</option>
+							<option value="1">1 box</option>
+							<option value="2">2 boxes</option>
+							<option value="3">3 boxes</option>
+							<option value="4">4 boxes</option>
+							<option value="5">5 boxes</option>
+							<option value="6">6 boxes</option>
+							<option value="7">7 boxes</option>
+							<option value="8">8 boxes</option>
+							<option value="9">9 boxes</option>
+							<option value="10">10 boxes</option>
+						</select>
+						<br/><i>Component Name: <input type="text" name="attr_challenge_name2">:</i> 
+						<textarea name="attr_challenge_details2" class="sheet-modest"></textarea>
+					</div>
+					<input type="hidden" name="attr_challenge_boxes2" class="sheet-hide-on-zero" value="0">
+					<div>
+						<i>3rd Component:</i> 
+						<select name="attr_challenge_boxes3">
+							<option value="0">0 boxes</option>
+							<option value="1">1 box</option>
+							<option value="2">2 boxes</option>
+							<option value="3">3 boxes</option>
+							<option value="4">4 boxes</option>
+							<option value="5">5 boxes</option>
+							<option value="6">6 boxes</option>
+							<option value="7">7 boxes</option>
+							<option value="8">8 boxes</option>
+							<option value="9">9 boxes</option>
+							<option value="10">10 boxes</option>
+						</select>
+						<br/><i>Component Name: <input type="text" name="attr_challenge_name3">:</i> 
+						<textarea name="attr_challenge_details3" class="sheet-modest"></textarea>
+					</div>
+					<input type="hidden" name="attr_challenge_boxes3" class="sheet-hide-on-zero" value="0">
+					<div>
+						<i>4th Component:</i> 
+						<select name="attr_challenge_boxes4">
+							<option value="0">0 boxes</option>
+							<option value="1">1 box</option>
+							<option value="2">2 boxes</option>
+							<option value="3">3 boxes</option>
+							<option value="4">4 boxes</option>
+							<option value="5">5 boxes</option>
+							<option value="6">6 boxes</option>
+							<option value="7">7 boxes</option>
+							<option value="8">8 boxes</option>
+							<option value="9">9 boxes</option>
+							<option value="10">10 boxes</option>
+						</select>
+						<br/><i>Component Name: <input type="text" name="attr_challenge_name4">:</i> 
+						<textarea name="attr_challenge_details4" class="sheet-modest"></textarea>
+					</div>
+					<input type="hidden" name="attr_challenge_boxes4" class="sheet-hide-on-zero" value="0">
+					<div>
+						<i>5th Component:</i> 
+						<select name="attr_challenge_boxes5">
+							<option value="0">0 boxes</option>
+							<option value="1">1 box</option>
+							<option value="2">2 boxes</option>
+							<option value="3">3 boxes</option>
+							<option value="4">4 boxes</option>
+							<option value="5">5 boxes</option>
+							<option value="6">6 boxes</option>
+							<option value="7">7 boxes</option>
+							<option value="8">8 boxes</option>
+							<option value="9">9 boxes</option>
+							<option value="10">10 boxes</option>
+						</select>
+						<br/><i>Component Name: <input type="text" name="attr_challenge_name5">:</i> 
+						<textarea name="attr_challenge_details5" class="sheet-modest"></textarea>
+					</div>
+					<div>
+						<b>If Triggered:</b>
+						<textarea name="attr_challenge_trigger" class="sheet-modest"></textarea>
+					</div>
+				</div>
+				<input type="hidden" name="attr_edit" value="1" class="sheet-hide-on-one">
+				<div class="sheet-padding">
+					<input type="hidden" name="attr_challenge_description" value="" class="sheet-hide-on-empty"><div>
+						<span name="attr_challenge_description"></span>
+					</div>
+					<div class="sheet-dicecol-head sheet-lefty" style="font-size: 12pt;">
+						<b>Resolution</b>
+					</div>
+					<div>
+						<input type="hidden" name="attr_challenge_boxes1" value="0" class="sheet-hide-on-zero">
+						<div class="sheet-challenge-component">
+							<div><input type="hidden" name="attr_challenge_boxes1" value="0" class="sheet-countup"><input type="checkbox" name="attr_box-1-1" value="1" class="sheet-counter"> <input type="checkbox" name="attr_box-2-1" value="1" class="sheet-counter"> <input type="checkbox" name="attr_box-3-1" value="1" class="sheet-counter"> <input type="checkbox" name="attr_box-4-1" value="1" class="sheet-counter"> <input type="checkbox" name="attr_box-5-1" value="1" class="sheet-counter"> <input type="checkbox" name="attr_box-6-1" value="1" class="sheet-counter"> <input type="checkbox" name="attr_box-7-1" value="1" class="sheet-counter"> <input type="checkbox" name="attr_box-8-1" value="1" class="sheet-counter"> <input type="checkbox" name="attr_box-9-1" value="1" class="sheet-counter"> <input type="checkbox" name="attr_box-10-1" value="1" class="sheet-counter">&nbsp;</div>
+							<div><input type="hidden" name="attr_challenge_name1" value=""><b><span name="attr_challenge_name1"</span></b><input type="hidden" name="attr_challenge_details1" value="" class="sheet-hide-on-empty"><span><b>:</b> <span name="attr_challenge_details1"></span></span></div>
+						</div>
+						<input type="hidden" name="attr_challenge_boxes2" value="0" class="sheet-hide-on-zero">
+						<div class="sheet-challenge-component">
+							<div><input type="hidden" name="attr_challenge_boxes2" value="0" class="sheet-countup"><input type="checkbox" name="attr_box-1-2" value="2" class="sheet-counter"> <input type="checkbox" name="attr_box-2-2" value="2" class="sheet-counter"> <input type="checkbox" name="attr_box-3-2" value="2" class="sheet-counter"> <input type="checkbox" name="attr_box-4-2" value="2" class="sheet-counter"> <input type="checkbox" name="attr_box-5-2" value="2" class="sheet-counter"> <input type="checkbox" name="attr_box-6-2" value="2" class="sheet-counter"> <input type="checkbox" name="attr_box-7-2" value="2" class="sheet-counter"> <input type="checkbox" name="attr_box-8-2" value="2" class="sheet-counter"> <input type="checkbox" name="attr_box-9-2" value="2" class="sheet-counter"> <input type="checkbox" name="attr_box-10-2" value="2" class="sheet-counter">&nbsp;</div>
+							<div><input type="hidden" name="attr_challenge_name2" value=""><b><span name="attr_challenge_name2"</span></b><input type="hidden" name="attr_challenge_details2" value="" class="sheet-hide-on-empty"><span><b>:</b> <span name="attr_challenge_details2"></span></span></div>
+						</div>
+						<input type="hidden" name="attr_challenge_boxes3" value="0" class="sheet-hide-on-zero">
+						<div class="sheet-challenge-component">
+							<div><input type="hidden" name="attr_challenge_boxes3" value="0" class="sheet-countup"><input type="checkbox" name="attr_box-1-3" value="3" class="sheet-counter"> <input type="checkbox" name="attr_box-2-3" value="3" class="sheet-counter"> <input type="checkbox" name="attr_box-3-3" value="3" class="sheet-counter"> <input type="checkbox" name="attr_box-4-3" value="3" class="sheet-counter"> <input type="checkbox" name="attr_box-5-3" value="3" class="sheet-counter"> <input type="checkbox" name="attr_box-6-3" value="3" class="sheet-counter"> <input type="checkbox" name="attr_box-7-3" value="3" class="sheet-counter"> <input type="checkbox" name="attr_box-8-3" value="3" class="sheet-counter"> <input type="checkbox" name="attr_box-9-3" value="3" class="sheet-counter"> <input type="checkbox" name="attr_box-10-3" value="3" class="sheet-counter">&nbsp;</div>
+							<div><input type="hidden" name="attr_challenge_name3" value=""><b><span name="attr_challenge_name3"</span></b><input type="hidden" name="attr_challenge_details3" value="" class="sheet-hide-on-empty"><span><b>:</b> <span name="attr_challenge_details3"></span></span></div>
+						</div>
+						<input type="hidden" name="attr_challenge_boxes4" value="0" class="sheet-hide-on-zero">
+						<div class="sheet-challenge-component">
+							<div><input type="hidden" name="attr_challenge_boxes4" value="0" class="sheet-countup"><input type="checkbox" name="attr_box-1-4" value="4" class="sheet-counter"> <input type="checkbox" name="attr_box-2-4" value="4" class="sheet-counter"> <input type="checkbox" name="attr_box-3-4" value="4" class="sheet-counter"> <input type="checkbox" name="attr_box-4-4" value="4" class="sheet-counter"> <input type="checkbox" name="attr_box-5-4" value="4" class="sheet-counter"> <input type="checkbox" name="attr_box-6-4" value="4" class="sheet-counter"> <input type="checkbox" name="attr_box-7-4" value="4" class="sheet-counter"> <input type="checkbox" name="attr_box-8-4" value="4" class="sheet-counter"> <input type="checkbox" name="attr_box-9-4" value="4" class="sheet-counter"> <input type="checkbox" name="attr_box-10-4" value="4" class="sheet-counter">&nbsp;</div>
+							<div><input type="hidden" name="attr_challenge_name4" value=""><b><span name="attr_challenge_name4"</span></b><input type="hidden" name="attr_challenge_details4" value="" class="sheet-hide-on-empty"><span><b>:</b> <span name="attr_challenge_details4"></span></span></div>
+						</div>
+						<input type="hidden" name="attr_challenge_boxes5" value="0" class="sheet-hide-on-zero">
+						<div class="sheet-challenge-component">
+							<div><input type="hidden" name="attr_challenge_boxes5" value="0" class="sheet-countup"><input type="checkbox" name="attr_box-1-5" value="5" class="sheet-counter"> <input type="checkbox" name="attr_box-2-5" value="5" class="sheet-counter"> <input type="checkbox" name="attr_box-3-5" value="5" class="sheet-counter"> <input type="checkbox" name="attr_box-4-5" value="5" class="sheet-counter"> <input type="checkbox" name="attr_box-5-5" value="5" class="sheet-counter"> <input type="checkbox" name="attr_box-6-5" value="5" class="sheet-counter"> <input type="checkbox" name="attr_box-7-5" value="5" class="sheet-counter"> <input type="checkbox" name="attr_box-8-5" value="5" class="sheet-counter"> <input type="checkbox" name="attr_box-9-5" value="5" class="sheet-counter"> <input type="checkbox" name="attr_box-10-5" value="5" class="sheet-counter">&nbsp;</div>
+							<div><input type="hidden" name="attr_challenge_name5" value=""><b><span name="attr_challenge_name5"</span></b><input type="hidden" name="attr_challenge_details5" value="" class="sheet-hide-on-empty"><span><b>:</b> <span name="attr_challenge_details5"></span></span></div>
+						</div>
+
+					</div>
+					<input type="hidden" name="attr_challenge_trigger" value="" class="sheet-hide-on-empty">
+					<div>
+						<div class="sheet-dicecol-head sheet-lefty" style="font-size: 12pt;">
+							<b>Triggered</b>
+						</div><div>
+							<span name="attr_challenge_trigger"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div></fieldset>
 </div>
 
+<!-- Scene -->
 <input type="hidden" name="attr_sheet_scene" value="0" class="sheet-hide-on-zero">
 <div class="sheet-whole">
 	<div>
 		<input type="text" name="attr_character_name" value="" class="sheet-bigname">
 	</div>
- [Scene and Turn Tracker, Eventually]
+	<div class="sheet-dicecols sheet-scene">
+		<input type="hidden" name="attr_scene_current" value="green" class="sheet-box-colorizer">
+		<div class="sheet-dicecol">
+			<div class="sheet-dicecol-head">
+				<span>
+					<input type="hidden" name="attr_edit_scenetracker" value="1" class="sheet-hide-on-zero"><button type="action" name="act_edit_scenetracker" class="sheet-button-header-close"></button>
+					<input type="hidden" name="attr_edit_scenetracker" value="1" class="sheet-hide-on-one"><button type="action" name="act_edit_scenetracker" class="sheet-button-header-edit"></button>
+				</span>
+				Scene Tracker
+			</div>
+			<input type="hidden" name="attr_edit_scenetracker" value="1" class="sheet-hide-on-zero">
+			<div class="sheet-centered sheet-buttons">
+				Green: <input type="number" name="attr_scene_green" value="2" min="0" max="10">
+				Yellow: <input type="number" name="attr_scene_yellow" value="4" min="0" max="10">
+				Red: <input type="number" name="attr_scene_red" value="2" min="0" max="10">
+				<button type="action" name="act_sceneconfig" value="standard">Standard</button>
+				<button type="action" name="act_sceneconfig" value="prolonged">Prolonged</button>
+				<button type="action" name="act_sceneconfig" value="epic">Epic</button>
+			</div>
+			<div class="sheet-centered sheet-bigname">
+				<input type="hidden" name="attr_scene_current" value="green" class="sheet-colorizer">
+				<span name="attr_scene_current"></span>
+			</div>
+			<div class="sheet-centered">
+				<span>
+					<input type="hidden" name="attr_scene_green_marked" class="sheet-countup" value="0">
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-green" value="green">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-green" value="green">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-green" value="green">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-green" value="green">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-green" value="green">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-green" value="green">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-green" value="green">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-green" value="green">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-green" value="green">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-green" value="green">3</button>
+					<input type="hidden" name="attr_scene_green_unmarked" class="sheet-countup" value="0">
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-green" value="green"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-green" value="green"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-green" value="green"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-green" value="green"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-green" value="green"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-green" value="green"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-green" value="green"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-green" value="green"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-green" value="green"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-green" value="green"></button>
+				</span>
+				<span>
+					<input type="hidden" name="attr_scene_yellow_marked" class="sheet-countup" value="0">
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-yellow" value="yellow">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-yellow" value="yellow">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-yellow" value="yellow">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-yellow" value="yellow">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-yellow" value="yellow">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-yellow" value="yellow">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-yellow" value="yellow">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-yellow" value="yellow">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-yellow" value="yellow">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-yellow" value="yellow">3</button>
+					<input type="hidden" name="attr_scene_yellow_unmarked" class="sheet-countup" value="0">
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-yellow" value="yellow"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-yellow" value="yellow"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-yellow" value="yellow"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-yellow" value="yellow"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-yellow" value="yellow"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-yellow" value="yellow"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-yellow" value="yellow"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-yellow" value="yellow"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-yellow" value="yellow"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-yellow" value="yellow"></button>
+				</span>
+				<span>
+					<input type="hidden" name="attr_scene_red_marked" class="sheet-countup" value="0">
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-red" value="red">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-red" value="red">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-red" value="red">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-red" value="red">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-red" value="red">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-red" value="red">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-red" value="red">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-red" value="red">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-red" value="red">3</button>
+						<button type="action" name="act_sceneunmark" class="sheet-counter sheet-opaque sheet-pow-red" value="red">3</button>
+					<input type="hidden" name="attr_scene_red_unmarked" class="sheet-countup" value="0">
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-red" value="red"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-red" value="red"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-red" value="red"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-red" value="red"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-red" value="red"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-red" value="red"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-red" value="red"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-red" value="red"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-red" value="red"></button>
+						<button type="action" name="act_scenemark" class="sheet-counter sheet-translucent sheet-pow-red" value="red"></button>
+				</span>
+			</div>
+			<div class="sheet-centered sheet-buttons">
+				<input type="hidden" name="attr_scene_updates" value="all">
+				<button type="action" name="act_sceneclear">Reset Tracker</button>
+				<b>Announce:</b>
+				<select name="attr_scene_updates">
+					<option value="all">When a space is marked</option>
+					<option value="change">Status color changes only</option>
+					<option value="none">Never</option>
+				</select>
+			</div>
+			<div class="sheet-centered">
+				<i>Current scene status is the color of the leftmost <b>unmarked</b> space</i>
+			</div>
+		</div>
+	</div>
+	<div class="sheet-centered sheet-padding sheet-buttons">
+		<input type="text" name="attr_addcharacter_name" value=""> <button type="action" name="act_addcharacter" value="ready">→Ready</button> <button type="action" name="act_addcharacter" value="acted">→Acted</button> <button type="action" name="act_addcharacter" value="reserve">→Reserve</button>
+	</div>
+	<div class="sheet-dicecols sheet-buttons">
+		<input type="hidden" name="colorize" value="green" class="sheet-box-colorizer">
+		<div class="sheet-dicecol sheet-halfsies">
+			<div class="sheet-dicecol-head">
+				Ready
+			</div>
+			<fieldset class="repeating_ready">
+			<input type="hidden" name="attr_next" value="0" class="sheet-highlight-on-one"><div>
+				<input type="hidden" name="attr_next" value="0" class="sheet-hide-on-zero"><button type="action" name="act_move" value="acted">→Acted</button>
+				<input type="hidden" name="attr_next" value="0" class="sheet-hide-on-one"><button type="action" name="act_choose" value="next">→Next!</button>
+				<button type="action" name="act_move" value="reserve">→Reserve</button>
+				<b><input type="hidden" name="attr_name" value=""><span name="attr_name"></span></b>
+			</div>
+			</fieldset>
+		</div>
+		<!-- input type="hidden" name="colorize" value="out" class="sheet-box-colorizer" -->
+		<div class="sheet-dicecol sheet-halfsies">
+			<div class="sheet-dicecol-head">
+				Acted
+			</div>
+			<fieldset class="repeating_acted">
+			<div>
+				<button type="action" name="act_move" value="ready">→Ready</button>
+				<button type="action" name="act_move" value="reserve">→Reserve</button>
+				<input type="hidden" name="attr_name" value=""><b><span name="attr_name"></span></b>
+			</div>
+			</fieldset>
+			<div class="sheet-centered">
+				<button type="action" name="act_alltoready">ALL → Ready</button>
+			</div>
+		</div>
+	</div>
+	<div class="sheet-dicecols sheet-buttons">
+		<input type="hidden" name="colorize" value="out" class="sheet-box-colorizer">
+		<div class="sheet-dicecol sheet-halfsies">
+			<div class="sheet-dicecol-head">
+				Reserve
+			</div>
+			<fieldset class="repeating_reserve">
+			<div>
+				<button type="action" name="act_move" value="ready">→Ready</button>
+				<button type="action" name="act_move" value="acted">→Acted</button>
+				<button type="action" name="act_remove" class="sheet-button-delete"></button>
+				<input type="hidden" name="attr_name" value=""><b><span name="attr_name"></span></b>
+			</div>
+			</fieldset>
+		</div>
+	</div>
 </div>
 
+<!-- Hero -->
 <input type="hidden" name="attr_sheet_hero" value="0" class="sheet-hide-on-zero">
 <div class="sheet-whole">
 
@@ -3120,8 +3459,8 @@
 						<span>
 						</span>
 						<span class="sheet-pow-green">
-							<input type="hidden" name="attr_health_max" value="17">
-							<input type="hidden" name="attr_health_green_bottom" value="14">
+							<input type="hidden" name="attr_health_max" value="">
+							<input type="hidden" name="attr_health_green_bottom" value="">
 							<span name="attr_health_max"></span>-<span name="attr_health_green_bottom"></span>
 						</span>
 					</div>
@@ -3130,8 +3469,8 @@
 				<div class="sheet-smalldata-row sheet-padding">
 					<div class="sheet-smalldata sheet-centered">
 						<input type="hidden" value="yellow" class="sheet-colorizer"><span>Yellow</span>
-						<span class="sheet-pow-yellow"><input type="hidden" name="attr_health_yellow_top" value="13">
-							<input type="hidden" name="attr_health_yellow_bottom" value="7">
+						<span class="sheet-pow-yellow"><input type="hidden" name="attr_health_yellow_top" value="">
+							<input type="hidden" name="attr_health_yellow_bottom" value="">
 							<span name="attr_health_yellow_top"></span>-<span name="attr_health_yellow_bottom"></span>
 						</span>
 					</div>
@@ -3140,7 +3479,7 @@
 				<div class="sheet-smalldata-row sheet-padding">
 					<div class="sheet-smalldata sheet-centered">
 						<input type="hidden" value="red" class="sheet-colorizer"><span>Red</span>
-						<span class="sheet-pow-red"><input type="hidden" name="attr_health_red_top" value="6">
+						<span class="sheet-pow-red"><input type="hidden" name="attr_health_red_top" value="">
 							<span name="attr_health_red_top"></span>-1
 						</span>
 					</div>
@@ -3535,6 +3874,18 @@
 	</div> <!-- dicecols -->
 
 </div> <!-- sheet-whole -->
+
+<!-- for some jerk reason, roll20 is deciding to prepend "sheet-" to the template-color- style when constructed this way, so I need to leave it off -->
+<rolltemplate class="sheet-rolltemplate-announcement">
+<div class="sheet-template-container {{#color}}template-color-{{color}}{{/color}}"> 
+	<div>
+		{{message}}
+	</div>
+	<div style="font-size: 50%; text-align: right; font-style: italic; opacity: 0.5;">
+		{{name}}
+	</div>
+</div>
+</rolltemplate>
 
 <rolltemplate class="sheet-rolltemplate-simple">
 <div class="sheet-template-container">
@@ -4694,7 +5045,7 @@ on("clicked:repeating_bonuses:increase clicked:repeating_penalties:increase", fu
 	});
 });
 
-on("clicked:edit_environment_green clicked:edit_environment_yellow clicked:edit_environment_red clicked:edit_envdice clicked:add_squadmember clicked:toggle_abilitieslibrary clicked:toggle_green clicked:toggle_yellow clicked:toggle_red clicked:toggle_out clicked:toggle_health clicked:toggle_rewards clicked:toggle_bonuses clicked:toggle_penalties clicked:toggle_modes clicked:toggle_minions clicked:edit_powers clicked:edit_qualities clicked:edit_status clicked:edit_health clicked:edit_penalties clicked:edit_bonuses clicked:edit_principles clicked:edit_modes clicked:add_minion clicked:edit_abilities_green clicked:edit_abilities_yellow clicked:edit_abilities_red clicked:edit_abilities_out clicked:repeating_abilitiesgreen:actionicona clicked:repeating_abilitiesgreen:actioniconb clicked:repeating_abilitiesgreen:actioniconh clicked:repeating_abilitiesgreen:actionicono clicked:repeating_abilitiesgreen:actionicond clicked:repeating_abilitiesgreen:actioniconr clicked:repeating_abilitiesyellow:actionicona clicked:repeating_abilitiesyellow:actioniconb clicked:repeating_abilitiesyellow:actioniconh clicked:repeating_abilitiesyellow:actionicono clicked:repeating_abilitiesyellow:actionicond clicked:repeating_abilitiesyellow:actioniconr clicked:repeating_abilitiesred:actionicona clicked:repeating_abilitiesred:actioniconb clicked:repeating_abilitiesred:actioniconh clicked:repeating_abilitiesred:actionicono clicked:repeating_abilitiesred:actionicond clicked:repeating_abilitiesred:actioniconr clicked:repeating_abilitiesout:actionicona clicked:repeating_abilitiesout:actioniconb clicked:repeating_abilitiesout:actioniconh clicked:repeating_abilitiesout:actionicono clicked:repeating_abilitiesout:actionicond clicked:repeating_abilitiesout:actioniconr clicked:minionactionicona clicked:minionactioniconb clicked:minionactioniconh clicked:minionactionicono clicked:minionactionicond clicked:minionactioniconr", function(e) {
+on("clicked:edit_scenetracker clicked:edit_environment_green clicked:edit_environment_yellow clicked:edit_environment_red clicked:edit_envdice clicked:add_squadmember clicked:toggle_abilitieslibrary clicked:toggle_green clicked:toggle_yellow clicked:toggle_red clicked:toggle_out clicked:toggle_health clicked:toggle_rewards clicked:toggle_bonuses clicked:toggle_penalties clicked:toggle_modes clicked:toggle_minions clicked:edit_powers clicked:edit_qualities clicked:edit_status clicked:edit_health clicked:edit_penalties clicked:edit_bonuses clicked:edit_principles clicked:edit_modes clicked:add_minion clicked:edit_abilities_green clicked:edit_abilities_yellow clicked:edit_abilities_red clicked:edit_abilities_out clicked:repeating_abilitiesgreen:actionicona clicked:repeating_abilitiesgreen:actioniconb clicked:repeating_abilitiesgreen:actioniconh clicked:repeating_abilitiesgreen:actionicono clicked:repeating_abilitiesgreen:actionicond clicked:repeating_abilitiesgreen:actioniconr clicked:repeating_abilitiesyellow:actionicona clicked:repeating_abilitiesyellow:actioniconb clicked:repeating_abilitiesyellow:actioniconh clicked:repeating_abilitiesyellow:actionicono clicked:repeating_abilitiesyellow:actionicond clicked:repeating_abilitiesyellow:actioniconr clicked:repeating_abilitiesred:actionicona clicked:repeating_abilitiesred:actioniconb clicked:repeating_abilitiesred:actioniconh clicked:repeating_abilitiesred:actionicono clicked:repeating_abilitiesred:actionicond clicked:repeating_abilitiesred:actioniconr clicked:repeating_abilitiesout:actionicona clicked:repeating_abilitiesout:actioniconb clicked:repeating_abilitiesout:actioniconh clicked:repeating_abilitiesout:actionicono clicked:repeating_abilitiesout:actionicond clicked:repeating_abilitiesout:actioniconr clicked:minionactionicona clicked:minionactioniconb clicked:minionactioniconh clicked:minionactionicono clicked:minionactionicond clicked:minionactioniconr", function(e) {
 	log(e);
 	var id = "";
 	if ( typeof e.sourceAttribute !== "undefined" && e.sourceAttribute !== "" ) {
@@ -6393,6 +6744,341 @@ on("clicked:rollenvpool", function() {
 		log(rtext);
 		startRoll(rtext, function(roll) {
 			finishRoll( roll.rollId );
+		});
+	});
+});
+
+on("clicked:repeating_challenges:edit clicked:repeating_challenges:toggle", function(e) {
+	getAttrs([e.sourceAttribute], function(a) {
+		var s = {}; s[e.sourceAttribute] = "0";
+		if ( typeof a[e.sourceAttribute] === "undefined" || a[e.sourceAttribute] === "0" || a[e.sourceAttribute] === "" ) {
+			s[e.sourceAttribute] = "1";
+		}
+		setAttrs(s);
+	});
+});
+
+on("sheet:opened change:scene_green change:scene_yellow change:scene_red", function(e) {
+	log(e);
+	const flist = [
+		"scene_green",
+		"scene_yellow",
+		"scene_red",
+		"scene_green_marked",
+		"scene_yellow_marked",
+		"scene_red_marked",
+		"scene_current",
+		"scene_updates"
+	];
+	getAttrs(flist, function(a) {
+		var s = {};
+		var green = Number(a.scene_green);
+		var yellow = Number(a.scene_yellow);
+		var red = Number(a.scene_red);
+		var mgreen = Number(a.scene_green_marked);
+		var myellow = Number(a.scene_yellow_marked);
+		var mred = Number(a.scene_red_marked);
+		log(typeof green);
+		log(typeof mgreen);
+		if ( typeof green !== "number" ) { green = 0; }
+		if ( typeof yellow !== "number" ) { yellow = 0; }
+		if ( typeof red !== "number" ) { red = 0; }
+		if ( typeof mgreen !== "number" ) { mgreen = 0; }
+		if ( typeof myellow !== "number" ) { myellow = 0; }
+		if ( typeof mred !== "number" ) { mred = 0; }
+		var ugreen = green - mgreen;
+		var uyellow = yellow - myellow;
+		var ured = red - mred;
+		s.scene_green_marked = mgreen;
+		s.scene_yellow_marked = myellow;
+		s.scene_red_marked = mred;
+		s.scene_green_unmarked = ugreen;
+		s.scene_yellow_unmarked = uyellow;
+		s.scene_red_unmarked = ured;
+		s.scene_current = "green";
+		if ( ugreen === 0 ) {
+			s.scene_current = "yellow";
+			if ( uyellow === 0 ) {
+				s.scene_current = "red";
+				if ( ured === 0 ) {
+					s.scene_current = "out";
+				}
+			}
+		}
+		log(s);
+		setAttrs(s);
+	});
+});
+
+on("clicked:scenemark", function(e) {
+
+	log(e);
+	var which = e.htmlAttributes.value;
+
+	const flist = [
+		"scene_green",
+		"scene_yellow",
+		"scene_red",
+		"scene_green_marked",
+		"scene_yellow_marked",
+		"scene_red_marked",
+		"scene_current",
+		"scene_updates"
+	];
+	getAttrs(flist, function(a) {
+		var s = {};
+		var green = Number(a.scene_green);
+		var yellow = Number(a.scene_yellow);
+		var red = Number(a.scene_red);
+		var mgreen = Number(a.scene_green_marked);
+		var myellow = Number(a.scene_yellow_marked);
+		var mred = Number(a.scene_red_marked);
+		log(typeof green);
+		log(typeof mgreen);
+		if ( typeof green !== "number" ) { green = 0; }
+		if ( typeof yellow !== "number" ) { yellow = 0; }
+		if ( typeof red !== "number" ) { red = 0; }
+		if ( typeof mgreen !== "number" ) { mgreen = 0; }
+		if ( typeof myellow !== "number" ) { myellow = 0; }
+		if ( typeof mred !== "number" ) { mred = 0; }
+		var ugreen = green - mgreen;
+		var uyellow = yellow - myellow;
+		var ured = red - mred;
+		if ( which === "green" && green > mgreen) {
+			ugreen = ugreen - 1; mgreen = mgreen + 1;
+		} else if ( which === "yellow" && yellow > myellow) {
+			uyellow = uyellow - 1; myellow = myellow + 1;
+		} else if ( which === "red" && red > mred) {
+			ured = ured - 1; mred = mred + 1;
+		}
+		s.scene_green_marked = mgreen;
+		s.scene_yellow_marked = myellow;
+		s.scene_red_marked = mred;
+		s.scene_green_unmarked = ugreen;
+		s.scene_yellow_unmarked = uyellow;
+		s.scene_red_unmarked = ured;
+		s.scene_current = "green";
+		var plural = ""; var verb = "";
+		plural = "s"; verb = ""; if ( ugreen === 1 ) { plural = ""; verb = "s"; }
+		var remaintext = ` **${ugreen}** green space${plural} remain${verb} unmarked.`;
+		if ( ugreen === 0 ) {
+			s.scene_current = "yellow";
+			plural = "s"; verb = ""; if ( uyellow === 1 ) { plural = ""; verb = "s"; }
+			remaintext = ` **${uyellow}** yellow space${plural} remain${verb} unmarked.`;
+			if ( uyellow === 0 ) {
+				s.scene_current = "red";
+				plural = "s"; verb = ""; if ( ured === 1 ) { plural = ""; verb = "s"; }
+				remaintext = ` **${ured}** red space${plural} remain${verb} unmarked.`;
+				if ( ured === 0 ) {
+					s.scene_current = "out";
+					remaintext = " **All** spaces have been marked.";
+				}
+			}
+		}
+		log(s);
+		setAttrs(s);
+		if ( a.scene_updates === "all" &&  a.scene_current === s.scene_current ) { var statusbig = s.scene_current.toUpperCase(); announce(`A ${which} space has been marked.${remaintext} Scene status remains **${statusbig}**.`, s.scene_current); }
+		if ( ( a.scene_updates === "change"||a.scene_updates === "all" ) && a.scene_current !== s.scene_current ) { var statusbig = s.scene_current.toUpperCase(); announce(`**Status change!** Scene status is now **${statusbig}**. *Make sure to update the current scene status level on your character sheet.*${remaintext}`, s.scene_current); }
+	});
+});
+
+on("clicked:sceneunmark", function(e) {
+
+	log(e);
+	var which = e.htmlAttributes.value;
+
+	const flist = [
+		"scene_green",
+		"scene_yellow",
+		"scene_red",
+		"scene_green_marked",
+		"scene_yellow_marked",
+		"scene_red_marked",
+		"scene_current",
+		"scene_updates"
+	];
+	getAttrs(flist, function(a) {
+		var s = {};
+		var green = Number(a.scene_green);
+		var yellow = Number(a.scene_yellow);
+		var red = Number(a.scene_red);
+		var mgreen = Number(a.scene_green_marked);
+		var myellow = Number(a.scene_yellow_marked);
+		var mred = Number(a.scene_red_marked);
+		if ( typeof green !== "number" ) { green = 0; }
+		if ( typeof yellow !== "number" ) { yellow = 0; }
+		if ( typeof red !== "number" ) { red = 0; }
+		if ( typeof mgreen !== "number" ) { mgreen = 0; }
+		if ( typeof myellow !== "number" ) { myellow = 0; }
+		if ( typeof mred !== "number" ) { mred = 0; }
+		var ugreen = green - mgreen;
+		var uyellow = yellow - myellow;
+		var ured = red - mred;
+		if ( which === "green" && mgreen > 0) {
+			ugreen = ugreen + 1; mgreen = mgreen - 1;
+		} else if ( which === "yellow" && myellow > 0) {
+			uyellow = uyellow + 1; myellow = myellow - 1;
+		} else if ( which === "red" && mred > 0) {
+			ured = ured + 1; mred = mred - 1;
+		} 
+		s.scene_green_marked = mgreen;
+		s.scene_yellow_marked = myellow;
+		s.scene_red_marked = mred;
+		s.scene_green_unmarked = ugreen;
+		s.scene_yellow_unmarked = uyellow;
+		s.scene_red_unmarked = ured;
+		s.scene_current = "green";
+		var plural = ""; var verb = "";
+		plural = "s"; verb = ""; if ( ugreen === 1 ) { plural = ""; verb = "s"; }
+		var remaintext = ` **${ugreen}** green space${plural} remain${verb} unmarked.`;
+		if ( ugreen === 0 ) {
+			s.scene_current = "yellow";
+			plural = "s"; verb = ""; if ( uyellow === 1 ) { plural = ""; verb = "s"; }
+			remaintext = ` **${uyellow}** yellow space${plural} remain${verb} unmarked.`;
+			if ( uyellow === 0 ) {
+				s.scene_current = "red";
+				plural = "s"; verb = ""; if ( ured === 1 ) { plural = ""; verb = "s"; }
+				remaintext = ` **${ured}** red space${plural} remain${verb} unmarked.`;
+				if ( ured === 0 ) {
+					s.scene_current = "out";
+					remaintext = " **All** spaces have been marked.";
+				}
+			}
+		}
+		log(s);
+		setAttrs(s);
+		if ( a.scene_updates === "all" &&  a.scene_current === s.scene_current ) { var statusbig = s.scene_current.toUpperCase(); announce(`A ${which} space has been unmarked.${remaintext} Scene status remains **${statusbig}**.`, s.scene_current); }
+		if ( ( a.scene_updates === "change"||a.scene_updates === "all" ) && a.scene_current !== s.scene_current ) { var statusbig = s.scene_current.toUpperCase(); announce(`**Status change!** Scene status is now **${statusbig}**. *Make sure to update the current scene status level on your character sheet.*${remaintext}`, s.scene_current); }
+	});
+});
+
+on("clicked:sceneclear", function() {
+	const flist = [
+		"scene_green",
+		"scene_yellow",
+		"scene_red",
+		"scene_current",
+		"scene_updates"
+	];
+	getAttrs(flist, function(a) {
+		var s = {};
+		s.scene_green_marked = 0;
+		s.scene_green_unmarked = a.scene_green;
+		s.scene_yellow_marked = 0;
+		s.scene_yellow_unmarked = a.scene_yellow;
+		s.scene_red_marked = 0;
+		s.scene_red_unmarked = a.scene_red;
+		s.scene_current = "green";
+		setAttrs(s);
+		if ( a.scene_updates === "all" || a.scene_updates === "change" ) { log(a.scene_updates); announce("**Scene tracker has been reset.**", s.scene_current); }
+	});
+	
+});
+
+const sceneconfigs = {
+	"standard": {
+		"scene_green": 2, "scene_yellow": 4, "scene_red": 2
+	},
+	"prolonged": {
+		"scene_green": 3, "scene_yellow": 5, "scene_red": 3
+	},
+	"epic": {
+		"scene_green": 1, "scene_yellow": 3, "scene_red": 4
+	}
+};
+
+on("clicked:sceneconfig", function(e) {
+	var which = e.htmlAttributes.value;
+	var s = sceneconfigs[which];
+	setAttrs(s);
+});
+
+var announce = function(text,color) {
+	var rtext = `&{template:announcement} {{name=@{character_name}}} {{message=${text}}}`;
+	if ( typeof color !== "undefined" ) {
+		rtext = `${rtext} {{color=${color}}}`;
+	}
+	log(rtext);
+	startRoll(rtext, function(roll) {
+		finishRoll( roll.rollId );
+	});
+}
+
+on("clicked:addcharacter", function(e) {
+	var which = e.htmlAttributes.value;
+	var field = `repeating_${which}_` + generateActuallyUniqueRowID() + "_name";
+	getAttrs(["addcharacter_name"], function(a) {
+		if ( typeof a.addcharacter_name !== "undefined" ) {
+			var s = {};
+			s[field] = a.addcharacter_name;
+			s.addcharacter_name = "";
+			setAttrs(s);
+		}
+	});
+});
+
+on("clicked:repeating_ready:choose", function(e) {
+	var rowprefix = e.sourceAttribute.slice(0,-6); // chops off "choose"
+	var field = rowprefix + "next";
+	var s = {};
+	getSectionIDs("repeating_ready", function(d) {
+		for(var i = 0; i < d.length; i++) {
+			var cf = "repeating_ready_" + d[i] + "_next";
+			if ( cf !== field ) {
+				s[cf] = 0;
+			}
+		}
+		s[field] = 1;
+		setAttrs(s, function() {
+			var nameid = rowprefix + "name";
+			getAttrs([nameid], function(a) {
+				announce(`**${a[nameid]}** is up next!`);
+			});
+		});
+	});
+});
+
+on("clicked:repeating_reserve:remove", function(e) {
+	var rowid = e.sourceAttribute.slice(0,-7); // chops off "_remove"
+	removeRepeatingRow(rowid);
+});
+
+on("clicked:repeating_ready:move clicked:repeating_acted:move clicked:repeating_reserve:move", function(e) {
+	var rowid = e.sourceAttribute.slice(0,-5); // chops off "_move"
+	var which = e.htmlAttributes.value;
+	var oldfield = rowid + "_name";
+	var newfield = `repeating_${which}_` + generateActuallyUniqueRowID() + "_name";
+	getAttrs([oldfield], function(a) {
+		var s = {};
+		s[newfield] = a[oldfield];
+		setAttrs(s, function() {
+			removeRepeatingRow(rowid);
+			var prior = oldfield.substring(10,15); // should extract "ready"
+			if ( prior === "ready" && which === "acted" ) {
+				announce(`*${s[newfield]} has acted.*`,"out");
+			}
+		});
+	});
+});
+
+on("clicked:alltoready", function() {
+	getSectionIDs("repeating_acted", function(d) {
+		var load = [];
+		for(var i = 0; i < d.length; i++) {
+			load[load.length] = "repeating_acted_"+ d[i] + "_name";
+		}
+		log(load);
+		getAttrs(load, function(a) {
+			var s = {};
+			for(var i = 0; i < load.length; i++) {
+				var name = load[i];
+				var newfield = `repeating_ready_` + generateActuallyUniqueRowID() + "_name";
+				log(name);
+				log(newfield);
+				s[newfield] = a[name];
+				removeRepeatingRow("repeating_acted_"+d[i]);
+			}
+			setAttrs(s, function() { announce("**A new round begins!**"); });
 		});
 	});
 });
