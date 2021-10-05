@@ -1081,14 +1081,14 @@ textarea.sheet-principle {
 }
 
 .sheet-controlcell {
-	display: none;
+	opacity: 0.0;
 	flex-grow: 0;
 	flex-shrink: 0;
 	flex-basis: 50px;
 }
 
 .sheet-dicerow:hover .sheet-controlcell {
-	display: initial;
+	opacity: 1.0;
 }
 
 .sheet-rolltemplate-announcement div.sheet-template-container,
