@@ -1,5 +1,55 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 
+.charsheet {
+	--scrpg-background: white;
+	--scrpg-foreground: black;
+	--scrpg-darkblue: #004499;
+	--scrpg-highlight: #ddeeff;
+	--scrpg-palegreen: #eeffee;
+	--scrpg-palegreenfg: #000000;
+	--scrpg-paleyellow: #ffffee;
+	--scrpg-paleyellowfg: #000000;
+	--scrpg-palered: #ffeeee;
+	--scrpg-paleredfg: #000000;
+	--scrpg-palegray: #eeeeee;
+	--scrpg-palegrayfg: #000000;
+	--scrpg-darkgray: #282828;
+	background-color: var(--scrpg-background);
+	color: var(--scrpg-foreground);
+}
+
+/* Strip off all the unwanted bells and whistles Roll20 saddles us with */
+
+.btn {
+	background-image: none;
+	text-shadow: none;
+	box-shadow: none;
+}
+
+.sheet-darkmode .tab-content .charsheet {
+	--scrpg-background: #1f1f1f;
+	--scrpg-foreground: #eee;
+	--scrpg-highlight: #333333;
+	--scrpg-palegreen: #000000;
+	--scrpg-palegreenfg: #99ff99;
+	--scrpg-paleyellow: #000000;
+	--scrpg-paleyellowfg: #ffcc99;
+	--scrpg-palered: #000000;
+	--scrpg-paleredfg: #ff9999;
+	--scrpg-palegray: #000000;
+	--scrpg-palegrayfg: #eeeeee;
+}
+
+.tab-content .charsheet button.colorized,
+.tab-content .charsheet input,
+.tab-content .charsheet select,
+.tab-content .charsheet textarea,
+.tab-content .charsheet
+{
+	background-color: var(--scrpg-background);
+	color: var(--scrpg-foreground);
+}
+
 .sheet-whole {
 	min-width: 775px;
 }
@@ -20,7 +70,7 @@ input.sheet-bigname {
 	font-family: "Bangers", Arial, sans-serif;
 	letter-spacing: 1pt;
 	font-size: 30pt;
-	color: black;
+	color: var(--scrpg-foreground);
 	border: none;
 }
 
@@ -63,7 +113,7 @@ input.sheet-bignum {
 .sheet-smalldata input[type=text] {
 	font-size: 10pt;
 	border: none;
-	border-bottom: 0.5px solid black;
+	border-bottom: 0.5px solid var(--scrpg-foreground);
 	background: none;
 	flex-grow: 1;
 	width: 100%;
@@ -72,8 +122,8 @@ input.sheet-bignum {
 .sheet-smalldata textarea {
 	font-size: 10pt;
 	border: none;
-	border-top: 0.5px solid black;
-	border-bottom: 0.5px solid black;
+	border-top: 0.5px solid var(--scrpg-foreground);
+	border-bottom: 0.5px solid var(--scrpg-foreground);
 	flex-grow: 1;
 	width: calc(100% - 9px);
 	background: none;
@@ -96,7 +146,7 @@ input.sheet-bignum {
 .sheet-collection-row input[type=text] {
 	font-size: 12pt;
 	border: none;
-	border-bottom: 0.5px solid black;
+	border-bottom: 0.5px solid var(--scrpg-foreground);
 	flex-grow: 0;
 	max-width: 145px;
 }
@@ -132,8 +182,8 @@ input.sheet-bignum {
 }
 
 .sheet-dicecol {
-	border: 1px solid black;
-	box-shadow: 3px 3px #004499;
+	border: 1px solid var(--scrpg-foreground);
+	box-shadow: 3px 3px var(--scrpg-darkblue);
 	margin-right: 9px;
 	margin-bottom: 9px;
 }
@@ -200,7 +250,7 @@ textarea.sheet-modest {
 	padding-right: 7px;
 	margin-bottom: 6px;
 	text-align: center;
-	background-color: #004499;
+	background-color: var(--scrpg-darkblue);
 	color: white;
 }
 
@@ -242,7 +292,7 @@ textarea.sheet-modest {
 .sheet-dielabel {
 	flex-grow: 1;
 	font-size: 15pt;
-	color: black;
+	color: var(--scrpg-foreground);
 	padding-bottom: 0px;
 	padding-left: 6px;
 }
@@ -254,14 +304,14 @@ textarea.sheet-modest {
 input.sheet-dieselected[value=""] ~ .sheet-die,
 input.sheet-dieselected[value=""] ~ .sheet-dielabel
 {
-	background-color: white;
+	background-color: var(--scrpg-background);
 	font-weight: normal;
 }
 
 input.sheet-dieselected[value="1"] ~ .sheet-die,
 input.sheet-dieselected[value="1"] ~ .sheet-dielabel
 {
-	background-color: #ddeeff;
+	background-color: var(--scrpg-highlight);
 	font-weight: bold;
 }
 
@@ -269,7 +319,8 @@ input.sheet-dieselected[value="1"] ~ .sheet-dielabel
 .sheet-box-colorizer[value="red"] + input + .sheet-dicecol input.sheet-dieselected[value=""] ~ .sheet-die,
 .sheet-box-colorizer[value="red"] + input + .sheet-dicecol input.sheet-dieselected[value=""] ~ .sheet-dielabel
 {
-	background-color: #ffeeee;
+	background-color: var(--scrpg-palered);
+	color: var(--scrpg-paleredfg);
 	font-weight: normal;
 }
 
@@ -562,7 +613,7 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 	align-content: stretch;
 	justify-content: flex-start;
 	min-width: 240px;
-	border: 1px solid black;
+	border: 1px solid var(--scrpg-foreground);
 	margin-right: 9px;
 	margin-bottom: 9px;
 	flex-grow: 2;
@@ -626,26 +677,30 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 .sheet-box-colorizer[value="green"] + input + .sheet-dicecol,
 .sheet-box-colorizer[value="green"] + .sheet-dicecol,
 .sheet-abilities-green {
-	background-color: #eeffee;
+	background-color: var(--scrpg-palegreen);
+	color: var(--scrpg-palegreenfg);
 	box-shadow: 3px 3px #009900;
 }
 
 .sheet-box-colorizer[value="yellow"] + input + .sheet-dicecol,
 .sheet-box-colorizer[value="yellow"] + .sheet-dicecol,
 .sheet-abilities-yellow {
-	background-color: #ffffee;
+	background-color: var(--scrpg-paleyellow);
+	color: var(--scrpg-paleyellowfg);
 	box-shadow: 3px 3px #ffcc00;
 }
 
 .sheet-box-colorizer[value="red"] + input + .sheet-dicecol,
 .sheet-box-colorizer[value="red"] + .sheet-dicecol,
 .sheet-abilities-red {
-	background-color: #ffeeee;
+	background-color: var(--scrpg-palered);
+	color: var(--scrpg-paleredfg);
 	box-shadow: 3px 3px #cc0000;
 }
 
 .sheet-ability-green {
-	background-color: #eeffee;
+	background-color: var(--scrpg-palegreen);
+	color: var(--scrpg-palegreenfg);
 }
 
 .sheet-ability-green button[type=action] {
@@ -660,7 +715,8 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 }
 
 .sheet-ability-yellow {
-	background-color: #ffffee;
+	background-color: var(--scrpg-paleyellow); 
+	color: var(--scrpg-paleyellowfg);
 }
 
 .sheet-ability-yellow button[type=action] {
@@ -676,7 +732,8 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 }
 
 .sheet-ability-red {
-	background-color: #ffeeee;
+	background-color: var(--scrpg-palered);
+	color: var(--scrpg-paleredfg);
 }
 
 .sheet-box-colorizer[value="red"] + input + .sheet-dicecol .sheet-dicecol-head,
@@ -693,12 +750,14 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 .sheet-box-colorizer[value="out"] + input + .sheet-dicecol,
 .sheet-box-colorizer[value="out"] + .sheet-dicecol,
 .sheet-abilities-out {
-	background-color: #eeeeee;
+	background-color: var(--scrpg-palegray);
+	color: var(--scrpg-palegrayfg);
 	box-shadow: 3px 3px #000000;
 }
 
 .sheet-ability-out {
-	background-color: #eeeeee;
+	background-color: var(--scrpg-palegray);
+	color: var(--scrpg-palegrayfg);
 }
 
 .sheet-ability-out button[type=action] {
@@ -709,7 +768,7 @@ input.sheet-inlinedie[value="12"] + .sheet-diepic {
 .sheet-box-colorizer[value="out"] + input + .sheet-dicecol .sheet-dicecol-head,
 .sheet-box-colorizer[value="out"] + .sheet-dicecol .sheet-dicecol-head,
 .sheet-abilities-out .sheet-abilities-head {
-	background-color: #000000;
+	background-color: var(--scrpg-darkgray);
 }
 
 .sheet-rolltemplate-minionroll .sheet-action-icon-a,
@@ -1110,7 +1169,8 @@ textarea.sheet-principle {
 .sheet-rolltemplate-minionroll div.sheet-template-color-green,
 .sheet-rolltemplate-simple div.sheet-template-color-green,
 .sheet-rolltemplate-announcement div.sheet-template-color-green {
-	background-color: #eeffee;
+	background-color: var(--scrpg-palegreen);
+	color: var(--scrpg-palegreenfg);
 	box-shadow: 3px 3px #009900;
 }
 
@@ -1118,7 +1178,8 @@ textarea.sheet-principle {
 .sheet-rolltemplate-minionroll div.sheet-template-color-yellow,
 .sheet-rolltemplate-simple div.sheet-template-color-yellow,
 .sheet-rolltemplate-announcement div.sheet-template-color-yellow {
-	background-color: #ffffee;
+	background-color: var(--scrpg-paleyellow);
+	color: var(--scrpg-paleyellowfg);
 	box-shadow: 3px 3px #ffcc00;
 }
 
@@ -1126,7 +1187,8 @@ textarea.sheet-principle {
 .sheet-rolltemplate-minionroll div.sheet-template-color-red,
 .sheet-rolltemplate-simple div.sheet-template-color-red,
 .sheet-rolltemplate-announcement div.sheet-template-color-red {
-	background-color: #ffeeee;
+	background-color: var(--scrpg-palered);
+	color: var(--scrpg-paleredfg);
 	box-shadow: 3px 3px #cc0000;
 }
 
@@ -1134,7 +1196,8 @@ textarea.sheet-principle {
 .sheet-rolltemplate-minionroll div.sheet-template-color-out,
 .sheet-rolltemplate-simple div.sheet-template-color-out,
 .sheet-rolltemplate-announcement div.sheet-template-color-out {
-	background-color: #eeeeee;
+	background-color: var(--scrpg-palegray);
+	color: var(--scrpg-palegrayfg);
 	box-shadow: 3px 3px #000000;
 }
 
@@ -1391,6 +1454,12 @@ textarea.sheet-principle {
 
 .sheet-countup ~ .sheet-counter {
 	display: none;
+}
+
+.sheet-hoverpop {
+	color: var(--scrpg-foreground);
+	background-color: var(--scrpg-background);
+	border: 0.5px solid var(--scrpg-foreground);
 }
 
 .sheet-countup[value="10"] + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter + .sheet-counter,
