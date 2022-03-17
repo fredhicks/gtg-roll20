@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 
-.charsheet {
+:root {
 	--scrpg-background: white;
 	--scrpg-foreground: black;
 	--scrpg-darkblue: #004499;
@@ -419,7 +419,7 @@ input[type="checkbox"].sheet-oval-marker:checked + span.sheet-oval-icon::before 
 }
 
 .sheet-colorizer + * {
-	color: black;
+	color: #333;
 }
 
 .sheet-colorizer[value="green"] + *,
@@ -1155,7 +1155,7 @@ textarea.sheet-principle {
 .sheet-rolltemplate-simple div.sheet-template-container,
 .sheet-rolltemplate-3pool div.sheet-template-container {
 	border: 1px solid black;
-	background: white;
+	background: transparent;
 	box-shadow: 3px 3px #004499;
 	margin-right: 9px;
 	margin-bottom: 9px;
@@ -1320,7 +1320,8 @@ textarea.sheet-principle {
 	z-index: 1;
 	padding: 3px;
 	border: 0.5px solid black;
-	background-color: #ffffdd;
+	color: #ffffdd;
+	background-color: #333;
 	box-shadow: 2px 2px 4px black;
 }
 
